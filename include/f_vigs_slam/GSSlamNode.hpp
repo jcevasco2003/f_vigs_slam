@@ -18,6 +18,7 @@
 #include <vector>
 #include <Eigen/Dense>
 #include <opencv2/opencv.hpp>
+#include "f_vigs_slam/GaussianSplattingViewer.hpp"
 
 // Definimos la clase que se encarga de la logica del nodo en si mismo
 
@@ -31,6 +32,7 @@ namespace f_vigs_slam
 
     protected:
         GSSlam gs_core_;
+        std::shared_ptr<GaussianSplattingViewer> viewer_;
         IntrinsicParameters intrinsics;
         bool hasIntrinsics = false;
         bool hasImu = false;

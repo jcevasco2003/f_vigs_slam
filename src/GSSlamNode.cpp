@@ -53,6 +53,7 @@ namespace f_vigs_slam
             this->declare_parameter<int>("gaussian_iterations", 10);
             this->declare_parameter<double>("eta_pose", 0.01);
             this->declare_parameter<double>("eta_gaussian", 0.002);
+            this->declare_parameter<std::string>("gaussian_sampling_method", "beta_binomial");
 
             gauss_init_size_px_ = this->get_parameter("gauss_init_size_px").as_int();
             gauss_init_scale_ = this->get_parameter("gauss_init_scale").as_double();
@@ -66,6 +67,7 @@ namespace f_vigs_slam
             gs_core_.setGaussianIterations(this->get_parameter("gaussian_iterations").as_int());
             gs_core_.setEtaPose(static_cast<float>(this->get_parameter("eta_pose").as_double()));
             gs_core_.setEtaGaussian(static_cast<float>(this->get_parameter("eta_gaussian").as_double()));
+            gs_core_.setGaussianSamplingMethod(this->get_parameter("gaussian_sampling_method").as_string());
 
             // Subscribimos los nodos a los topicos
             imu_sub_ = this->create_subscription<sensor_msgs::msg::Imu>(
@@ -98,6 +100,13 @@ namespace f_vigs_slam
             odom_imu_msg_.header.frame_id = world_frame_id_;
 
             RCLCPP_INFO(this->get_logger(), "Odometry publishers created on topics 'odom' and 'odom_imu'");
+
+            this->declare_parameter<bool>("viewer", true);
+            if (this->get_parameter("viewer").as_bool())
+            {
+                viewer_ = std::make_shared<GaussianSplattingViewer>(gs_core_);
+                viewer_->startThread();
+            }
 
 
             
@@ -232,10 +241,11 @@ namespace f_vigs_slam
             odom_pose_init_.position.x = static_cast<float>(t_imu_cam_.x());
             odom_pose_init_.position.y = static_cast<float>(t_imu_cam_.y());
             odom_pose_init_.position.z = static_cast<float>(t_imu_cam_.z());
-            odom_pose_init_.orientation.x = static_cast<float>(q_init_cam.w());
-            odom_pose_init_.orientation.y = static_cast<float>(q_init_cam.x());
-            odom_pose_init_.orientation.z = static_cast<float>(q_init_cam.y());
-            odom_pose_init_.orientation.w = static_cast<float>(q_init_cam.z());
+            // Guardamos en orden estándar (x, y, z, w)
+            odom_pose_init_.orientation.x = static_cast<float>(q_init_cam.x());
+            odom_pose_init_.orientation.y = static_cast<float>(q_init_cam.y());
+            odom_pose_init_.orientation.z = static_cast<float>(q_init_cam.z());
+            odom_pose_init_.orientation.w = static_cast<float>(q_init_cam.w());
 
             // Configurar imu_data_ completo con medición inicial
             imu_data_.Acc = avg_acc_;

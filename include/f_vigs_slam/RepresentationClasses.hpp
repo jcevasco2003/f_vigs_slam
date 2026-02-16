@@ -3,6 +3,8 @@
 #include <thrust/device_vector.h>
 #include <thrust/tuple.h>
 #include <Eigen/Geometry>
+#include <opencv2/core/cuda.hpp>
+#include <cuda_runtime.h>
 
 // Definimos estructuras de datos auxiliares.
 
@@ -94,6 +96,29 @@ namespace f_vigs_slam
                 colors.end(),
                 opacities.end()));
         }
+    };
+
+    struct IntrinsicParameters
+    {
+        // f longitud focal, c centro optico
+        float2 f, c;
+    };
+
+    struct CameraPose {
+        // Pose de la camara representada por posicion y orientacion (quaternion)
+        // Quaternion formato: (w, x, y, z)
+        
+        float3 position;     // Posicion (x, y, z)
+        float4 orientation;  // Quaternion (w, x, y, z)
+
+        // Constructor por defecto: identidad
+        __device__ __host__ CameraPose() 
+            : position(make_float3(0.0f, 0.0f, 0.0f)),
+              orientation(make_float4(1.0f, 0.0f, 0.0f, 0.0f)) {}
+
+        // Constructor con valores
+        __device__ __host__ CameraPose(float3 pos, float4 quat)
+            : position(pos), orientation(quat) {}
     };
 
     /**
@@ -204,12 +229,6 @@ namespace f_vigs_slam
         }
     };
 
-    struct IntrinsicParameters
-    {
-        // f longitud focal, c centro optico
-        float2 f, c;
-    };
-
     struct ImuData
     {
         // En este struct guardamos la informacion medida y los parametros
@@ -252,7 +271,7 @@ namespace f_vigs_slam
 
             return *this;
         }
-    }
+    };
     
     struct PoseOptimizationMetrics {
         // En este struct guardamos metricas de optimizacion de pose
@@ -260,20 +279,4 @@ namespace f_vigs_slam
         // NO IMPLEMENTADA AUN
     };
 
-    struct CameraPose {
-        // Pose de la camara representada por posicion y orientacion (quaternion)
-        // Quaternion formato: (w, x, y, z)
-        
-        float3 position;     // Posicion (x, y, z)
-        float4 orientation;  // Quaternion (w, x, y, z)
-
-        // Constructor por defecto: identidad
-        __device__ __host__ CameraPose() 
-            : position(make_float3(0.0f, 0.0f, 0.0f)),
-              orientation(make_float4(1.0f, 0.0f, 0.0f, 0.0f)) {}
-
-        // Constructor con valores
-        __device__ __host__ CameraPose(float3 pos, float4 quat)
-            : position(pos), orientation(quat) {}
-    };
 }

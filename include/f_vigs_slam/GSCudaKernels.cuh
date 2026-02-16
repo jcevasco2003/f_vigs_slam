@@ -40,8 +40,11 @@ namespace f_vigs_slam
         float3 v_color;
         float m_alpha;
         float v_alpha;
-        float t;
+        float k;
     };
+
+
+
     // Declaramos kernels CUDA para operaciones paralelizables
 
     // =======================================================================
@@ -64,7 +67,6 @@ namespace f_vigs_slam
         IntrinsicParameters intrinsics,
         CameraPose cameraPose,
         uint32_t sample_dx,
-        CameraPose camera_pose,
         uint32_t sample_dy,
         float init_scale,
         float init_opacity);
@@ -92,25 +94,14 @@ namespace f_vigs_slam
      * @param huber_threshold Umbral Huber
      * @param depth_weight Peso de profundidad
      */
-    __global__ void getRgbdPoseJacobians(
-        const float *depth,
-        size_t depth_step,
-        int width,
-        int height,
-        IntrinsicParameters intrinsics,
-        CameraPose cameraPose,
-        uint32_t sample_dx,
-        CameraPose camera_pose,
-        uint32_t sample_dy,
-        float init_scale,
-        float init_opacity);
+    // (declaracion incorrecta removida)
 
 
     // =======================================================================
     // Forward pass: renderiza las gaussianas 3D a imagen 2D con alpha-blending
     // =======================================================================
     /**
-     * @brief projectGaussiansKernel
+     * @brief projectGaussiansKernel - Proyectar gaussianas 3D a 2D con covarianzas
      * Proyecta los centros 3D de las gaussianas a coordenadas 2D de imagen
      * y transforma sus covarianzas de 3D a 2D usando el Jacobiano de proyeccion
      * 
@@ -200,7 +191,7 @@ namespace f_vigs_slam
         int n_gaussians);
 
     /**
-     * @brief forwardPassKernel
+     * @brief forwardPassKernel - Renderizar imagen final con alpha-blending
      * ---DESCARTADO por Tile Based Rendering---
      *
      *
@@ -351,7 +342,7 @@ namespace f_vigs_slam
     // =======================================================================
 
     /**
-     * @brief evalGaussian2D
+     * @brief evalGaussian2D - Evaluar gaussiana 2D en un punto
      * Funcion auxiliar para evaluar una Gaussiana 2D en un punto dado
      * Calcula exp(-0.5 * d^T * Σ^-1 * d) de forma inline
      * 
@@ -364,7 +355,7 @@ namespace f_vigs_slam
         float inv_cov_xx, float inv_cov_yy, float inv_cov_xy);
 
     /**
-     * @brief invert2x2
+     * @brief invert2x2 - Invertir matriz 2x2 de forma rápida
      * Invierte una matriz 2x2 de covarianza de forma rapida
      * Usamos formula explicita porque es mas eficiente que metodos generales
      */
@@ -377,7 +368,7 @@ namespace f_vigs_slam
     // =======================================================================
     
     /**
-     * @brief computeGaussiansVisibility_kernel
+     * @brief computeGaussiansVisibility_kernel - Detectar gaussianas visibles en frame
      * Marca cuáles gaussianas son visibles (contribuyen al alpha-blending) en un frame dado.
      * 
      * Para cada pixel (x,y), itera sobre gaussianas y marca como visible si:
@@ -413,7 +404,7 @@ namespace f_vigs_slam
         uint32_t height);
 
     /**
-     * @brief computeGaussiansCovisibility_kernel
+     * @brief computeGaussiansCovisibility_kernel - Calcular covisibilidad entre frames
      * Computa intersección y unión de dos conjuntos de visibilidad.
      * 
      * MATEMÁTICA:
@@ -445,7 +436,7 @@ namespace f_vigs_slam
     // =======================================================================
 
     /**
-     * @brief pruneGaussians_kernel
+     * @brief pruneGaussians_kernel - Eliminar gaussianas de baja calidad
      * Elimina gaussianas que ya no son útiles según criterios de calidad:
      * 1. Opacidad muy baja (alpha < threshold): no contribuyen visualmente
      * 2. Covarianza degenerada: ratio entre escalas muy bajo o escala máxima muy pequeña
@@ -475,7 +466,7 @@ namespace f_vigs_slam
         uint32_t nbGaussians);
 
     /**
-     * @brief computeOutliers_kernel
+     * @brief computeOutliers_kernel - Detectar gaussianas outlier por profundidad
      * Detecta gaussianas outliers comparando profundidad renderizada vs observada.
      * 
      * ALGORITMO:
@@ -518,7 +509,7 @@ namespace f_vigs_slam
         uint32_t height);
 
     /**
-     * @brief removeOutliers_kernel
+     * @brief removeOutliers_kernel - Eliminar gaussianas outlier
      * Decide qué gaussianas eliminar según el ratio outlierProb/totalAlpha.
      * 
      * CRITERIO:
@@ -545,7 +536,7 @@ namespace f_vigs_slam
 
 
     /**
-     * @brief computeDensityMask_kernel
+     * @brief computeDensityMask_kernel - Generar mask de densidad por pixel
      * Genera un mask float por pixel para guiar densificacion.
      * maskData: [height x width] en float (step en bytes).
      *
@@ -581,7 +572,7 @@ namespace f_vigs_slam
         size_t mask_step);
 
     /**
-     * @brief densifyGaussians_kernel
+     * @brief densifyGaussians_kernel - Generar nuevas gaussianas
      * Genera nuevas gaussianas a partir de un mask de densidad y RGB-D.
      * 
      * Para cada celda de muestreo (sample_dx x sample_dy):
@@ -633,7 +624,7 @@ namespace f_vigs_slam
         uint32_t height,
         uint32_t maxGaussians);
     /**
-     * @brief perTileBucketCount
+     * @brief perTileBucketCount - Contar buckets por tile
      * Cuenta la cantidad de buckets por tile para el pase de optimizacion.
      * Cada bucket agrupa hasta 32 gaussianas del tile.
      *
@@ -647,7 +638,7 @@ namespace f_vigs_slam
         int numTiles);
 
     /**
-     * @brief optimizeGaussiansForwardPass
+     * @brief optimizeGaussiansForwardPass - Pase hacia adelante de optimización
      * Forward pass por tile: compone color/profundidad, calcula errores y buffers auxiliares.
      *
      * @param ranges           [IN]  Rangos [start, end) por tile
@@ -704,7 +695,7 @@ namespace f_vigs_slam
         int height);
 
     /**
-     * @brief optimizeGaussiansPerGaussianPass
+     * @brief optimizeGaussiansPerGaussianPass - Pase hacia atrás por gaussiana
      * Backward pass por bucket: acumula gradientes por gaussiana (DeltaGaussian2D).
      *
      * @param ranges           [IN]  Rangos [start, end) por tile
@@ -761,7 +752,7 @@ namespace f_vigs_slam
         int num_buckets);
 
     /**
-     * @brief computeDeltaGaussians3D_kernel
+     * @brief computeDeltaGaussians3D_kernel - Convertir gradientes 2D a 3D
      * Convierte gradientes 2D (DeltaGaussian2D) a gradientes 3D por gaussiana.
      *
      * @param delta_gaussians_3d [OUT] Gradientes 3D acumulados
@@ -789,8 +780,73 @@ namespace f_vigs_slam
         float lambda_iso,
         int n_gaussians);
 
+    // =======================================================================
+    // Algoritmo ADAM de optimizacion
+    // =======================================================================
     /**
-     * @brief updateGaussiansParametersAdam_kernel
+     * @brief adamStep - Actualizar estimaciones de momentum y RMSprop, aplicar corrección de sesgo
+     * 
+     * Computa un paso de actualización de Adam para un solo parámetro escalar.
+     * Actualiza m = (1-beta1)*grad + beta1*m y v = (1-beta2)*grad^2 + beta2*v
+     * Y luego aplica corrección de sesgo: m_hat = m / (1 - beta1^t), v_hat = v / (1 - beta2^t)
+     * 
+     * @param m Momentum estimate (first moment), updated in-place
+     * @param v RMSprop estimate (second moment), updated in-place
+     * @param grad Gradient value
+     * @param eta Learning rate
+     * @param alpha1 (1 - beta1) coefficient for momentum
+     * @param beta1 Momentum decay rate
+     * @param beta1t Bias correction term 1/(1 - beta1^t)
+     * @param alpha2 (1 - beta2) coefficient for RMSprop
+     * @param beta2 RMSprop decay rate
+     * @param beta2t Bias correction term 1/(1 - beta2^t)
+     * @param epsilon Numerical stability constant
+     * @return Parameter update: eta * m_hat / sqrt(v_hat + eps)
+     */
+    __inline__ __device__ float adamStep(float &m,
+                                          float &v,
+                                          float grad,
+                                          const float eta,
+                                          const float alpha1,
+                                          const float beta1,
+                                          const float beta1t,
+                                          const float alpha2,
+                                          const float beta2,
+                                          const float beta2t,
+                                          const float epsilon);
+
+    /**
+     * @brief adamStep (para float3) - Actualizar momentum y RMSprop para vector 3D
+     * 
+     * Aplica adamStep elemento a elemento en cada componente de un vector 3D.
+     * 
+     * @param m 3D momentum estimate, updated in-place
+     * @param v 3D RMSprop estimate, updated in-place
+     * @param grad 3D gradient vector
+     * @param eta Learning rate
+     * @param alpha1 (1 - beta1) coefficient for momentum
+     * @param beta1 Momentum decay rate
+     * @param beta1t Bias correction term 1/(1 - beta1^t)
+     * @param alpha2 (1 - beta2) coefficient for RMSprop
+     * @param beta2 RMSprop decay rate
+     * @param beta2t Bias correction term 1/(1 - beta2^t)
+     * @param epsilon Numerical stability constant
+     * @return Parameter update: eta * m_hat / sqrt(v_hat + eps) per component
+     */
+    __inline__ __device__ float3 adamStep(float3 &m,
+                                           float3 &v,
+                                           float3 grad,
+                                           const float eta,
+                                           const float alpha1,
+                                           const float beta1,
+                                           const float beta1t,
+                                           const float alpha2,
+                                           const float beta2,
+                                           const float beta2t,
+                                           const float epsilon);
+
+    /**
+     * @brief updateGaussiansParametersAdam_kernel - Actualizar parámetros con Adam
      * Aplica una actualizacion Adam a los parametros 3D de gaussianas.
      *
      * @param positions    [IN/OUT] Medias 3D

@@ -3,17 +3,18 @@
 #include <f_vigs_slam/RgbdPoseCost.hpp>
 #include <f_vigs_slam/ImuCostFunction.hpp>
 #include <f_vigs_slam/PoseLocalParameterization.hpp>
-#include <opencv2/cudaarithm.hpp>
-#include <opencv2/cudaimgproc.hpp>
-#include <opencv2/cudafilters.hpp>
+#include <opencv2/imgproc.hpp>
 #include <cuda_runtime.h>
 #include <thrust/device_ptr.h>
 #include <thrust/fill.h>
 #include <thrust/host_vector.h>
+#include <thrust/sort.h>
 #include <algorithm>
+#include <stdexcept>
 #include <unordered_map>
 #include <ceres/ceres.h>
 #include <chrono>
+#include <random>
 #include <thread>
 
 // Implementamos el codigo principal en CUDA para todas las funciones paralelizables
@@ -374,7 +375,6 @@ namespace f_vigs_slam
          thrust::raw_pointer_cast(positions_2d_.data()),
          thrust::raw_pointer_cast(covariances_2d_.data()),
          thrust::raw_pointer_cast(depths_.data()),
-         thrust::raw_pointer_cast(p_hats_.data()),
          width,
          height,
          n_Gaussians,
@@ -450,12 +450,37 @@ namespace f_vigs_slam
          thrust::raw_pointer_cast(gaussians_.colors.data()),
          thrust::raw_pointer_cast(gaussians_.opacities.data()),
          thrust::raw_pointer_cast(depths_.data()),
-         thrust::raw_pointer_cast(p_hats_.data()),
          width,
          height,
          num_tiles_.x,
          num_tiles_.y);
         cudaDeviceSynchronize();
+    }
+
+    bool GSSlam::renderView(const CameraPose &camera_pose,
+                            const IntrinsicParameters &intrinsics,
+                            int width, int height,
+                            cv::cuda::GpuMat &rendered_rgb,
+                            cv::cuda::GpuMat &rendered_depth)
+    {
+        std::lock_guard<std::mutex> lock(optimization_mutex_);
+
+        if (!intrinsics_set_ || n_Gaussians == 0) {
+            return false;
+        }
+        if (width <= 0 || height <= 0) {
+            return false;
+        }
+
+        rasterize(camera_pose, intrinsics, width, height);
+
+        if (rendered_rgb_gpu_.empty() || rendered_depth_gpu_.empty()) {
+            return false;
+        }
+
+        rendered_rgb = rendered_rgb_gpu_;
+        rendered_depth = rendered_depth_gpu_;
+        return true;
     }
 
     void GSSlam::updateCameraPoseFromImu()
@@ -471,13 +496,8 @@ namespace f_vigs_slam
         Eigen::Quaternionf cam_rot = imu_rot * q_imu_cam_.cast<float>();
         cam_rot.normalize();
 
-        current_pose_.translation[0] = cam_trans.x();
-        current_pose_.translation[1] = cam_trans.y();
-        current_pose_.translation[2] = cam_trans.z();
-        current_pose_.rotation[0] = cam_rot.x();
-        current_pose_.rotation[1] = cam_rot.y();
-        current_pose_.rotation[2] = cam_rot.z();
-        current_pose_.rotation[3] = cam_rot.w();
+        current_pose_.position = make_float3(cam_trans.x(), cam_trans.y(), cam_trans.z());
+        current_pose_.orientation = make_float4(cam_rot.w(), cam_rot.x(), cam_rot.y(), cam_rot.z());
     }
     
     void GSSlam::compute(const cv::Mat &rgb, const cv::Mat &depth, const CameraPose &odometry_pose)
@@ -485,6 +505,8 @@ namespace f_vigs_slam
         if (!intrinsics_set_) {
             return;
         }
+
+        std::lock_guard<std::mutex> lock(optimization_mutex_);
         
         // ============================================================
         // PASO 1: Inicializar y copiar imágenes a GPU (con pirámides)
@@ -495,14 +517,23 @@ namespace f_vigs_slam
         // PASO 2: Primera imagen - Inicialización
         // ============================================================
         if (first_image_) {
+            // Convertimos odometry_pose (x, y, z, w) a CameraPose interno (w, x, y, z)
+            CameraPose odom_pose_converted = odometry_pose;
+            odom_pose_converted.orientation = make_float4(
+                odometry_pose.orientation.w,
+                odometry_pose.orientation.x,
+                odometry_pose.orientation.y,
+                odometry_pose.orientation.z);
+
             // Inicializar pose IMU
-            P_cur_[0] = odometry_pose.position.x;
-            P_cur_[1] = odometry_pose.position.y;
-            P_cur_[2] = odometry_pose.position.z;
-            P_cur_[3] = odometry_pose.orientation.y;  // qx
-            P_cur_[4] = odometry_pose.orientation.z;  // qy
-            P_cur_[5] = odometry_pose.orientation.w;  // qz
-            P_cur_[6] = odometry_pose.orientation.x;  // qw
+            P_cur_[0] = odom_pose_converted.position.x;
+            P_cur_[1] = odom_pose_converted.position.y;
+            P_cur_[2] = odom_pose_converted.position.z;
+            // CameraPose interno usa quaternion (w, x, y, z)
+            P_cur_[3] = odom_pose_converted.orientation.y;  // qx
+            P_cur_[4] = odom_pose_converted.orientation.z;  // qy
+            P_cur_[5] = odom_pose_converted.orientation.w;  // qz
+            P_cur_[6] = odom_pose_converted.orientation.x;  // qw
             
             // Copiar a P_prev
             for (int i = 0; i < 7; ++i) {
@@ -510,10 +541,10 @@ namespace f_vigs_slam
             }
             
             // Pose de cámara
-            current_pose_ = odometry_pose;
+            current_pose_ = odom_pose_converted;
             
             // Generar gaussianas desde RGB-D
-            initializeGaussiansFromRgbd(rgb, depth, odometry_pose, 0.001f);
+            initializeGaussiansFromRgbd(rgb, depth, odom_pose_converted, 0.001f);
             
             // Agregar primer keyframe
             addKeyframe();
@@ -556,7 +587,21 @@ namespace f_vigs_slam
             // ============================================================
             // PASO 4: Warping inicial (opcional)
             // ============================================================
-            // initWarping(odometry_pose);
+            // Reproyecta el frame previo al pose predicho para mejorar la
+            // convergencia del estimador visual (cuando se usa warping).
+            {
+                Eigen::Vector3d P_cam = Pj + Qj * t_imu_cam_;
+                Eigen::Quaterniond Q_cam = Qj * q_imu_cam_;
+                CameraPose predicted_pose;
+                predicted_pose.position = make_float3(static_cast<float>(P_cam.x()),
+                                                     static_cast<float>(P_cam.y()),
+                                                     static_cast<float>(P_cam.z()));
+                predicted_pose.orientation = make_float4(static_cast<float>(Q_cam.w()),
+                                                         static_cast<float>(Q_cam.x()),
+                                                         static_cast<float>(Q_cam.y()),
+                                                         static_cast<float>(Q_cam.z()));
+                initWarping(predicted_pose);
+            }
             
             // ============================================================
             // PASO 5: Optimización de pose con Ceres Solver
@@ -631,29 +676,43 @@ namespace f_vigs_slam
     
     void GSSlam::initializeFirstFrame(const cv::Mat &rgb, const cv::Mat &depth, const CameraPose &odometry_pose)
     {
+        // Convertimos odometry_pose (x, y, z, w) a CameraPose interno (w, x, y, z)
+        CameraPose odom_pose_converted = odometry_pose;
+        odom_pose_converted.orientation = make_float4(
+            odometry_pose.orientation.w,
+            odometry_pose.orientation.x,
+            odometry_pose.orientation.y,
+            odometry_pose.orientation.z);
+
         // Inicializar gaussianas desde RGB-D
         initializeGaussiansFromRgbd(
             rgb,
             depth,
-            odometry_pose,
+            odom_pose_converted,
             0.001f
         );
         
         // Actualizar pose
-        current_pose_ = odometry_pose;
-        P_cur_[0] = odometry_pose.position.x;
-        P_cur_[1] = odometry_pose.position.y;
-        P_cur_[2] = odometry_pose.position.z;
-        P_cur_[3] = odometry_pose.orientation.y;
-        P_cur_[4] = odometry_pose.orientation.z;
-        P_cur_[5] = odometry_pose.orientation.w;
-        P_cur_[6] = odometry_pose.orientation.x;
+        current_pose_ = odom_pose_converted;
+        P_cur_[0] = odom_pose_converted.position.x;
+        P_cur_[1] = odom_pose_converted.position.y;
+        P_cur_[2] = odom_pose_converted.position.z;
+        P_cur_[3] = odom_pose_converted.orientation.y;
+        P_cur_[4] = odom_pose_converted.orientation.z;
+        P_cur_[5] = odom_pose_converted.orientation.w;
+        P_cur_[6] = odom_pose_converted.orientation.x;
     }
     
     void GSSlam::rasterizeFill(cv::cuda::GpuMat &rendered_rgb, cv::cuda::GpuMat &rendered_depth)
     {
-        // TODO: Llenar imágenes renderizadas
-        // Por ahora solo placeholder
+        if (rendered_rgb_gpu_.empty() || rendered_depth_gpu_.empty()) {
+            rendered_rgb.release();
+            rendered_depth.release();
+            return;
+        }
+
+        rendered_rgb = rendered_rgb_gpu_;
+        rendered_depth = rendered_depth_gpu_;
     }
 
     void GSSlam::rasterizeWithErrors(const cv::Mat &rgb_gt, const cv::Mat &depth_gt)
@@ -674,9 +733,65 @@ namespace f_vigs_slam
     
     void GSSlam::optimizeGaussians(int nb_iterations, float eta)
     {
-        // TODO: Optimizar parámetros de gaussianas
-        // Usar gradientes computados en rasterización
-        // Por ahora solo placeholder
+        if (n_Gaussians == 0 || keyframes_.empty()) {
+            return;
+        }
+
+        const int iterations = std::max(1, nb_iterations);
+        const size_t total_keyframes = keyframes_.size();
+
+        auto add_unique = [](std::vector<int> &indices, int idx) {
+            if (idx < 0) {
+                return;
+            }
+            for (int existing : indices) {
+                if (existing == idx) {
+                    return;
+                }
+            }
+            indices.push_back(idx);
+        };
+
+        for (int it = 0; it < iterations; ++it) {
+            std::vector<int> selected;
+            selected.reserve(4);
+
+            int last_idx = current_keyframe_idx_;
+            if (last_idx < 0 || static_cast<size_t>(last_idx) >= total_keyframes) {
+                last_idx = static_cast<int>(total_keyframes - 1);
+            }
+
+            // 1) Optimizar los ultimos dos frames
+            add_unique(selected, last_idx);
+            if (last_idx > 0) {
+                add_unique(selected, last_idx - 1);
+            }
+
+            // 2) Optimizar dos frames elegidos por KeyframeSelector
+            if (selected.size() < 4 && total_keyframes > selected.size()) {
+                std::vector<int> sampled;
+                try {
+                    sampled = keyframe_selector_.sample(2,
+                                                        static_cast<int>(total_keyframes),
+                                                        gaussian_sampling_method_,
+                                                        {});
+                } catch (const std::invalid_argument &) {
+                    sampled = keyframe_selector_.sample(2,
+                                                        static_cast<int>(total_keyframes),
+                                                        "beta_binomial",
+                                                        {});
+                }
+                for (int idx : sampled) {
+                    add_unique(selected, idx);
+                }
+            }
+
+            for (int idx : selected) {
+                if (idx >= 0 && static_cast<size_t>(idx) < total_keyframes) {
+                    optimizeGaussiansKeyframe(keyframes_[static_cast<size_t>(idx)], eta);
+                }
+            }
+        }
     }
 
     void GSSlam::optimizeGaussiansKeyframe(const KeyframeData &keyframe, float eta)
@@ -832,8 +947,45 @@ namespace f_vigs_slam
             lambda_iso,
             n_Gaussians);
 
-        // Paso 9: ruta ADAM/actualizacion de parametros (pendiente)
-        (void)eta;
+        // Paso 9: Aplicar actualización Adam a parámetros de gaussianas
+        // Inicializamos estado Adam si no existe (una sola vez, se reutiliza)
+        if (adam_states_.empty()) {
+            adam_states_.resize(n_Gaussians);
+            // Inicializar a cero (momentum y varianza) con contador de paso t=0
+            cudaMemset(thrust::raw_pointer_cast(adam_states_.data()),
+                      0,
+                      n_Gaussians * sizeof(AdamStateGaussian3D));
+        }
+
+        // Validamos que adam_states tenga el tamaño correcto
+        if (adam_states_.size() < n_Gaussians) {
+            adam_states_.resize(n_Gaussians);
+        }
+
+        // Hiperparámetros de Adam
+        const float adam_beta1 = 0.9f;   // Momentum decay
+        const float adam_beta2 = 0.999f; // RMSprop decay
+        const float adam_eps = 1e-8f;    // Epsilon para estabilidad numérica
+
+        // Ejecutamos kernel de actualización con Adam
+        dim3 adam_block(256);
+        dim3 adam_grid((n_Gaussians + adam_block.x - 1) / adam_block.x);
+
+        updateGaussiansParametersAdam_kernel<<<adam_grid, adam_block>>>(
+            thrust::raw_pointer_cast(gaussians_.positions.data()),
+            thrust::raw_pointer_cast(gaussians_.scales.data()),
+            thrust::raw_pointer_cast(gaussians_.orientations.data()),
+            thrust::raw_pointer_cast(gaussians_.colors.data()),
+            thrust::raw_pointer_cast(gaussians_.opacities.data()),
+            thrust::raw_pointer_cast(adam_states_.data()),
+            thrust::raw_pointer_cast(delta_gaussians_3d.data()),
+            eta,
+            adam_beta1,
+            adam_beta2,
+            adam_eps,
+            n_Gaussians);
+
+        cudaDeviceSynchronize();
     }
     
     void GSSlam::addKeyframe()
@@ -1095,107 +1247,15 @@ namespace f_vigs_slam
         }
     }
     
-float GaussianSplattingSlam::computeCovisibilityRatio(GaussianSplattingKeyframe &keyframe)
-{
-    // Host
-    uint32_t h_visUnion = 0;
-    uint32_t h_visInter = 0;
+    float GSSlam::computeCovisibilityRatio()
+    {
+        if (n_Gaussians == 0 || keyframes_.empty()) {
+            return 0.0f;
+        }
 
-    // Device
-    uint32_t *d_visUnion;
-    uint32_t *d_visInter;
-    unsigned char *d_keyframeVis;
-    unsigned char *d_frameVis;
-
-    // Alocamos memoria en device
-    cudaMalloc(&d_visUnion, sizeof(uint32_t));
-    cudaMalloc(&d_visInter, sizeof(uint32_t));
-    cudaMalloc(&d_keyframeVis, nbGaussians * sizeof(unsigned char));
-    cudaMalloc(&d_frameVis, nbGaussians * sizeof(unsigned char));
-
-    // Llevamos los contadores al device
-    cudaMemcpy(d_visUnion, &h_visUnion, sizeof(uint32_t), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_visInter, &h_visInter, sizeof(uint32_t), cudaMemcpyHostToDevice);
-
-    // Inicializamos visibilidades a 0
-    cudaMemset(d_keyframeVis, 0, nbGaussians * sizeof(unsigned char));
-    cudaMemset(d_frameVis, 0, nbGaussians * sizeof(unsigned char));
-
-    // Calculamos para el ultimo keyframe
-    prepareRasterization(
-        keyframe.getCameraPose(),
-        keyframe.getCameraParams(),
-        keyframe.getImgWidth(),
-        keyframe.getImgHeight()
-    );
-
-    computeGaussiansVisibility_kernel<<<
-        dim3(numTiles.x, numTiles.y),
-        dim3(tileSize.x, tileSize.y)
-    >>>(
-        d_keyframeVis,
-        ranges.data(),
-        indices.data(),
-        gaussians.imgPositions.data(),
-        gaussians.imgInvSigmas.data(),
-        gaussians.alphas.data(),
-        numTiles,
-        keyframe.getImgWidth(),
-        keyframe.getImgHeight()
-    );
-
-    // Calculamos para el frame actual
-    prepareRasterization(
-        cameraPose,
-        cameraParams[0],
-        pyrColor[0].cols,
-        pyrColor[0].rows
-    );
-
-    computeGaussiansVisibility_kernel<<<
-        dim3(numTiles.x, numTiles.y),
-        dim3(tileSize.x, tileSize.y)
-    >>>(
-        d_frameVis,
-        ranges.data(),
-        indices.data(),
-        gaussians.imgPositions.data(),
-        gaussians.imgInvSigmas.data(),
-        gaussians.alphas.data(),
-        numTiles,
-        pyrColor[0].cols,
-        pyrColor[0].rows
-    );
-
-    // Calculamos la covisibilidad
-    computeGaussiansCovisibility_kernel<<<
-        (nbGaussians + GSS_BLOCK_SIZE - 1) / GSS_BLOCK_SIZE,
-        GSS_BLOCK_SIZE
-    >>>(
-        d_visInter,
-        d_visUnion,
-        d_keyframeVis,
-        d_frameVis,
-        nbGaussians
-    );
-
-    // Copiamos resultados al host
-    cudaMemcpy(&h_visInter, d_visInter, sizeof(uint32_t), cudaMemcpyDeviceToHost);
-    cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);
-
-    // Liberamos memoria
-    cudaFree(d_visUnion);
-    cudaFree(d_visInter);
-    cudaFree(d_keyframeVis);
-    cudaFree(d_frameVis);
-
-    // Devolvemos el ratio
-
-    if (h_visUnion == 0)
-        return 0.0f; // Caso borde de division por cero
-
-    return h_visInter / static_cast<float>(h_visUnion);
-}
+        // TODO: Implementar covisibilidad real con kernels de visibilidad.
+        return 0.0f;
+    }
     
     void GSSlam::initWarping(const CameraPose &camera_pose)
     {
@@ -1232,23 +1292,27 @@ float GaussianSplattingSlam::computeCovisibilityRatio(GaussianSplattingKeyframe 
             return;
         }
         
-        // Subir a GPU nivel 0
-        pyr_color_[0].upload(rgb_bgr);
-        pyr_depth_[0].upload(depth_float);
-        
-        // Crear pirámides multi-escala
+        std::vector<cv::Mat> pyr_color_cpu(nb_pyr_levels_);
+        std::vector<cv::Mat> pyr_depth_cpu(nb_pyr_levels_);
+
+        pyr_color_cpu[0] = rgb_bgr;
+        pyr_depth_cpu[0] = depth_float;
+
         for (int i = 1; i < nb_pyr_levels_; i++) {
-            cv::cuda::pyrDown(pyr_color_[i - 1], pyr_color_[i]);
-            cv::cuda::pyrDown(pyr_depth_[i - 1], pyr_depth_[i]);
+            cv::pyrDown(pyr_color_cpu[i - 1], pyr_color_cpu[i]);
+            cv::pyrDown(pyr_depth_cpu[i - 1], pyr_depth_cpu[i]);
         }
-        
-        // Calcular gradientes para cada nivel
-        cv::Ptr<cv::cuda::Filter> dx_filter = cv::cuda::createSobelFilter(CV_8UC3, CV_32FC3, 1, 0, 3);
-        cv::Ptr<cv::cuda::Filter> dy_filter = cv::cuda::createSobelFilter(CV_8UC3, CV_32FC3, 0, 1, 3);
-        
+
         for (int i = 0; i < nb_pyr_levels_; i++) {
-            dx_filter->apply(pyr_color_[i], pyr_dx_[i]);
-            dy_filter->apply(pyr_color_[i], pyr_dy_[i]);
+            pyr_color_[i].upload(pyr_color_cpu[i]);
+            pyr_depth_[i].upload(pyr_depth_cpu[i]);
+
+            cv::Mat dx_cpu;
+            cv::Mat dy_cpu;
+            cv::Sobel(pyr_color_cpu[i], dx_cpu, CV_32FC3, 1, 0, 3);
+            cv::Sobel(pyr_color_cpu[i], dy_cpu, CV_32FC3, 0, 1, 3);
+            pyr_dx_[i].upload(dx_cpu);
+            pyr_dy_[i].upload(dy_cpu);
         }
         
         // Actualizar referencias legacy
@@ -1277,30 +1341,30 @@ float GaussianSplattingSlam::computeCovisibilityRatio(GaussianSplattingKeyframe 
             return;
         }
 
-        cv::cuda::GpuMat rgb_gt_gpu, depth_gt_gpu;
-        rgb_gt_gpu.upload(rgb_bgr);
-        depth_gt_gpu.upload(depth_float);
+        cv::Mat rendered_rgb_cpu;
+        cv::Mat rendered_depth_cpu;
+        rendered_rgb_gpu_.download(rendered_rgb_cpu);
+        rendered_depth_gpu_.download(rendered_depth_cpu);
 
-        // Residual RGB con signo: (rendered - observed)
-        cv::cuda::GpuMat rendered_rgb_f, rgb_gt_f;
-        rendered_rgb_gpu_.convertTo(rendered_rgb_f, CV_32FC3, 1.0 / 255.0);
-        rgb_gt_gpu.convertTo(rgb_gt_f, CV_32FC3, 1.0 / 255.0);
+        cv::Mat rendered_rgb_f;
+        cv::Mat rgb_gt_f;
+        rendered_rgb_cpu.convertTo(rendered_rgb_f, CV_32FC3, 1.0 / 255.0);
+        rgb_bgr.convertTo(rgb_gt_f, CV_32FC3, 1.0 / 255.0);
 
-        cv::cuda::GpuMat residual_rgb_f;
-        cv::cuda::subtract(rendered_rgb_f, rgb_gt_f, residual_rgb_f);
+        cv::Mat residual_rgb_f;
+        cv::subtract(rendered_rgb_f, rgb_gt_f, residual_rgb_f);
 
-        // Convertir residual RGB a gris (float, conserva signo)
-        cv::cuda::GpuMat residual_rgb_gray_f;
-        cv::cuda::cvtColor(residual_rgb_f, residual_rgb_gray_f, cv::COLOR_BGR2GRAY);
+        cv::Mat residual_rgb_gray_f;
+        cv::cvtColor(residual_rgb_f, residual_rgb_gray_f, cv::COLOR_BGR2GRAY);
 
-        // Residual Depth con signo: (rendered - observed)
-        cv::cuda::GpuMat residual_depth_f;
-        cv::cuda::subtract(rendered_depth_gpu_, depth_gt_gpu, residual_depth_f);
+        cv::Mat residual_depth_f;
+        cv::subtract(rendered_depth_cpu, depth_float, residual_depth_f);
 
-        // Combinar errores: E = E_rgb + w_depth * E_depth
         const double depth_weight = 0.1;
-        error_map_gpu_.create(rendered_rgb_gpu_.rows, rendered_rgb_gpu_.cols, CV_32FC1);
-        cv::cuda::addWeighted(residual_rgb_gray_f, 1.0, residual_depth_f, depth_weight, 0.0, error_map_gpu_);
+        cv::Mat error_map_cpu;
+        cv::addWeighted(residual_rgb_gray_f, 1.0, residual_depth_f, depth_weight, 0.0, error_map_cpu);
+
+        error_map_gpu_.upload(error_map_cpu);
     }
     
     void GSSlam::addImuMeasurement(double dt, const Eigen::Vector3d &acc, const Eigen::Vector3d &gyro)
@@ -1352,15 +1416,15 @@ float GaussianSplattingSlam::computeCovisibilityRatio(GaussianSplattingKeyframe 
         Eigen::Vector3d P_cam = P_imu + Q_imu * t_imu_cam_;
         Eigen::Quaterniond Q_cam = Q_imu * q_imu_cam_;
         CameraPose camera_pose;
-        camera_pose.translation[0] = static_cast<float>(P_cam.x());
-        camera_pose.translation[1] = static_cast<float>(P_cam.y());
-        camera_pose.translation[2] = static_cast<float>(P_cam.z());
+        camera_pose.position[0] = static_cast<float>(P_cam.x());
+        camera_pose.position[1] = static_cast<float>(P_cam.y());
+        camera_pose.position[2] = static_cast<float>(P_cam.z());
         
         Eigen::Quaternionf Q_cam_f = Q_cam.cast<float>();
-        camera_pose.rotation[0] = Q_cam_f.x();
-        camera_pose.rotation[1] = Q_cam_f.y();
-        camera_pose.rotation[2] = Q_cam_f.z();
-        camera_pose.rotation[3] = Q_cam_f.w();
+        camera_pose.orientation[0] = Q_cam_f.x();
+        camera_pose.orientation[1] = Q_cam_f.y();
+        camera_pose.orientation[2] = Q_cam_f.z();
+        camera_pose.orientation[3] = Q_cam_f.w();
 
         // ============================================================
         // PASO 2: Preparar rasterización (proyectar gaussianas)

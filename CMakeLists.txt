@@ -92,6 +92,7 @@ set_target_properties(GSSlam
 
 add_library(GSSlamNode SHARED
             src/GSSlamNode.cpp
+            src/GaussianSplattingViewer.cpp
 )
 
 ament_target_dependencies( GSSlamNode

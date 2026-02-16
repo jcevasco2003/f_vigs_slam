@@ -1,0 +1,922 @@
+[0.000000] (-) TimerEvent: {}
+[0.000338] (f_vigs_slam) JobQueued: {'identifier': 'f_vigs_slam', 'dependencies': OrderedDict()}
+[0.000474] (f_vigs_slam) JobStarted: {'identifier': 'f_vigs_slam'}
+[0.008674] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'cmake'}
+[0.011327] (f_vigs_slam) Command: {'cmd': ['/usr/bin/cmake', '/home/jorge/ros2_thesis_ws/src/f_vigs_slam', '-DCMAKE_INSTALL_PREFIX=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam'], 'cwd': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jorge', 'SSH_AGENT_PID': '99714', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/lib:/usr/local/cuda-12.3/lib64:/opt/ros/rolling/opt/zenoh_cpp_vendor/lib:/opt/ros/rolling/opt/gz_math_vendor/lib:/opt/ros/rolling/opt/gz_utils_vendor/lib:/opt/ros/rolling/opt/rviz_ogre_vendor/lib:/opt/ros/rolling/lib/x86_64-linux-gnu:/opt/ros/rolling/opt/gz_cmake_vendor/lib:/opt/ros/rolling/lib:/usr/local/cuda-11.8/lib64:', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/jorge', 'OLDPWD': '/home/jorge/ros2_thesis_ws/src', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'rolling', 'LOGNAME': 'jorge', 'NAME': 'DESKTOP-ECKJB30', 'WSL_INTEROP': '/run/WSL/286_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/usr/local/cuda-12.3/bin:/opt/ros/rolling/bin:/usr/local/cuda-11.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/d/NVIDIA/bin:/mnt/d/NVIDIA/libnvvp:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2022.3.0/:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Users/jorge/AppData/Local/Microsoft/WindowsApps:/mnt/d/Program Files/IntelliJ IDEA Community Edition 2024.3/bin:/mnt/d/Program Files (x86)/Microsoft VS Code/bin:/mnt/c/Users/jorge/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/jorge/.dotnet/tools:/mnt/c/Users/jorge/AppData/Roaming/TinyTeX/bin/windows:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'SSH_AUTH_SOCK': '/tmp/ssh-N68tmh1ZZQZX/agent.99713', 'AMENT_PREFIX_PATH': '/opt/ros/rolling', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/usr/local/lib/python3.10/site-packages:/opt/ros/rolling/opt/gz_math_vendor/lib/python:/opt/ros/rolling/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/rolling/opt/gz_math_vendor:/opt/ros/rolling/opt/gz_utils_vendor:/opt/ros/rolling/opt/gz_cmake_vendor:/opt/ros/rolling', 'WSLENV': ''}), 'shell': False}
+[0.098802] (-) TimerEvent: {}
+[0.160360] (f_vigs_slam) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.199180] (-) TimerEvent: {}
+[0.299777] (-) TimerEvent: {}
+[0.400499] (-) TimerEvent: {}
+[0.501075] (-) TimerEvent: {}
+[0.507648] (f_vigs_slam) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.602471] (-) TimerEvent: {}
+[0.703007] (-) TimerEvent: {}
+[0.768466] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.803386] (-) TimerEvent: {}
+[0.904009] (-) TimerEvent: {}
+[0.959863] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.969466] (f_vigs_slam) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.969869] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.970340] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.004469] (-) TimerEvent: {}
+[1.019335] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.104993] (-) TimerEvent: {}
+[1.206539] (-) TimerEvent: {}
+[1.220304] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.230619] (f_vigs_slam) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.230955] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.231466] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.307293] (-) TimerEvent: {}
+[1.409896] (-) TimerEvent: {}
+[1.510682] (-) TimerEvent: {}
+[1.613738] (-) TimerEvent: {}
+[1.718914] (-) TimerEvent: {}
+[1.820734] (-) TimerEvent: {}
+[1.922034] (-) TimerEvent: {}
+[2.023976] (-) TimerEvent: {}
+[2.125093] (-) TimerEvent: {}
+[2.228336] (-) TimerEvent: {}
+[2.329031] (-) TimerEvent: {}
+[2.429451] (-) TimerEvent: {}
+[2.529929] (-) TimerEvent: {}
+[2.561878] (f_vigs_slam) StdoutLine: {'line': b'-- The CUDA compiler identification is NVIDIA 12.3.52\n'}
+[2.632959] (-) TimerEvent: {}
+[2.672218] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CUDA compiler ABI info\n'}
+[2.733138] (-) TimerEvent: {}
+[2.833560] (-) TimerEvent: {}
+[2.934434] (-) TimerEvent: {}
+[3.037367] (-) TimerEvent: {}
+[3.137867] (-) TimerEvent: {}
+[3.252910] (-) TimerEvent: {}
+[3.356390] (-) TimerEvent: {}
+[3.459216] (-) TimerEvent: {}
+[3.563113] (-) TimerEvent: {}
+[3.666407] (-) TimerEvent: {}
+[3.767017] (-) TimerEvent: {}
+[3.867701] (-) TimerEvent: {}
+[3.871694] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CUDA compiler ABI info - done\n'}
+[3.903033] (f_vigs_slam) StdoutLine: {'line': b'-- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc - skipped\n'}
+[3.968201] (-) TimerEvent: {}
+[3.981200] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CUDA compile features\n'}
+[3.981666] (f_vigs_slam) StdoutLine: {'line': b'-- Detecting CUDA compile features - done\n'}
+[3.986311] (f_vigs_slam) StdoutLine: {'line': b'-- Found ament_cmake: 2.8.4 (/opt/ros/rolling/share/ament_cmake/cmake)\n'}
+[4.070468] (-) TimerEvent: {}
+[4.149855] (f_vigs_slam) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[4.171252] (-) TimerEvent: {}
+[4.263011] (f_vigs_slam) StdoutLine: {'line': b'-- Found rclcpp: 30.1.3 (/opt/ros/rolling/share/rclcpp/cmake)\n'}
+[4.271447] (-) TimerEvent: {}
+[4.351012] (f_vigs_slam) StdoutLine: {'line': b'-- Found rosidl_generator_c: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_c/cmake)\n'}
+[4.360470] (f_vigs_slam) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_cpp/cmake)\n'}
+[4.372219] (-) TimerEvent: {}
+[4.373896] (f_vigs_slam) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.388888] (f_vigs_slam) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.470830] (f_vigs_slam) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.9.1 (/opt/ros/rolling/share/rmw_implementation_cmake/cmake)\n'}
+[4.472330] (-) TimerEvent: {}
+[4.473980] (f_vigs_slam) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 9.4.4 (/opt/ros/rolling/share/rmw_fastrtps_cpp/cmake)\n'}
+[4.572561] (f_vigs_slam) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  \n'}
+[4.572795] (-) TimerEvent: {}
+[4.585795] (f_vigs_slam) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[4.663516] (f_vigs_slam) StdoutLine: {'line': b'-- Found sensor_msgs: 5.9.1 (/opt/ros/rolling/share/sensor_msgs/cmake)\n'}
+[4.673318] (-) TimerEvent: {}
+[4.730580] (f_vigs_slam) StdoutLine: {'line': b'-- Found cv_bridge: 4.1.0 (/opt/ros/rolling/share/cv_bridge/cmake)\n'}
+[4.734276] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:86 (find_package):\n'}
+[4.734525] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake\n'}
+[4.734613] (f_vigs_slam) StderrLine: {'line': b'  --help-policy CMP0146" for policy details.  Use the cmake_policy command to\n'}
+[4.734693] (f_vigs_slam) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[4.734770] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[4.734877] (f_vigs_slam) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[4.734955] (f_vigs_slam) StderrLine: {'line': b'  /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:108 (find_host_package)\n'}
+[4.735044] (f_vigs_slam) StderrLine: {'line': b'  /opt/ros/rolling/share/cv_bridge/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)\n'}
+[4.735135] (f_vigs_slam) StderrLine: {'line': b'  /opt/ros/rolling/share/cv_bridge/cmake/cv_bridgeConfig.cmake:41 (include)\n'}
+[4.735211] (f_vigs_slam) StderrLine: {'line': b'  CMakeLists.txt:24 (find_package)\n'}
+[4.735288] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[4.735364] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[4.755045] (f_vigs_slam) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[4.773520] (-) TimerEvent: {}
+[4.874401] (-) TimerEvent: {}
+[4.903694] (f_vigs_slam) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[4.904850] (f_vigs_slam) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[4.976896] (f_vigs_slam) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda-12.3 (found suitable exact version "12.3") \n'}
+[4.977146] (-) TimerEvent: {}
+[5.009651] (f_vigs_slam) StdoutLine: {'line': b'-- Found nav_msgs: 5.9.1 (/opt/ros/rolling/share/nav_msgs/cmake)\n'}
+[5.041306] (f_vigs_slam) StdoutLine: {'line': b'-- Found image_transport: 6.4.3 (/opt/ros/rolling/share/image_transport/cmake)\n'}
+[5.065541] (f_vigs_slam) StdoutLine: {'line': b'-- Found image_geometry: 4.1.0 (/opt/ros/rolling/share/image_geometry/cmake)\n'}
+[5.070845] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2: 0.45.3 (/opt/ros/rolling/share/tf2/cmake)\n'}
+[5.075530] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2_ros: 0.45.3 (/opt/ros/rolling/share/tf2_ros/cmake)\n'}
+[5.077428] (-) TimerEvent: {}
+[5.179274] (-) TimerEvent: {}
+[5.197613] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2_eigen: 0.45.3 (/opt/ros/rolling/share/tf2_eigen/cmake)\n'}
+[5.206805] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2_geometry_msgs: 0.45.3 (/opt/ros/rolling/share/tf2_geometry_msgs/cmake)\n'}
+[5.214111] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:32 (find_package):\n'}
+[5.214344] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake\n'}
+[5.214431] (f_vigs_slam) StderrLine: {'line': b'  --help-policy CMP0146" for policy details.  Use the cmake_policy command to\n'}
+[5.214510] (f_vigs_slam) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[5.214586] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.214691] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[5.214770] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.261823] (f_vigs_slam) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda-12.3 (found version "12.3") \n'}
+[5.279633] (-) TimerEvent: {}
+[5.288886] (f_vigs_slam) StdoutLine: {'line': b'-- Found OpenCV: /usr/local (found suitable version "4.8.0", minimum required is "4") \n'}
+[5.294395] (f_vigs_slam) StdoutLine: {'line': b'-- Found required Ceres dependency: Eigen version 3.4.0 in /usr/include/eigen3\n'}
+[5.342041] (f_vigs_slam) StdoutLine: {'line': b'-- Found required Ceres dependency: glog\n'}
+[5.342705] (f_vigs_slam) StdoutLine: {'line': b'-- Found required Ceres dependency: gflags\n'}
+[5.343204] (f_vigs_slam) StdoutLine: {'line': b'-- Found Ceres version: 2.0.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SchurSpecializations, Multithreading]\n'}
+[5.344819] (f_vigs_slam) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):\n'}
+[5.345030] (f_vigs_slam) StderrLine: {'line': b'  ament_target_dependencies() is deprecated.  Use target_link_libraries()\n'}
+[5.345121] (f_vigs_slam) StderrLine: {'line': b'  with modern CMake targets instead.  Try replacing this call with:\n'}
+[5.345197] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.345271] (f_vigs_slam) StderrLine: {'line': b'    target_link_libraries(GSSlamNode PUBLIC\n'}
+[5.345344] (f_vigs_slam) StderrLine: {'line': b'      ${nav_msgs_TARGETS}\n'}
+[5.345416] (f_vigs_slam) StderrLine: {'line': b'      ${sensor_msgs_TARGETS}\n'}
+[5.345489] (f_vigs_slam) StderrLine: {'line': b'      cv_bridge::cv_bridge\n'}
+[5.345560] (f_vigs_slam) StderrLine: {'line': b'      image_geometry::image_geometry\n'}
+[5.345631] (f_vigs_slam) StderrLine: {'line': b'      image_transport::image_transport\n'}
+[5.345700] (f_vigs_slam) StderrLine: {'line': b'      message_filters::message_filters\n'}
+[5.345770] (f_vigs_slam) StderrLine: {'line': b'      rclcpp::rclcpp\n'}
+[5.345872] (f_vigs_slam) StderrLine: {'line': b'      sensor_msgs::sensor_msgs_library\n'}
+[5.345947] (f_vigs_slam) StderrLine: {'line': b'      tf2::tf2\n'}
+[5.346019] (f_vigs_slam) StderrLine: {'line': b'      tf2_eigen::tf2_eigen\n'}
+[5.346091] (f_vigs_slam) StderrLine: {'line': b'      tf2_geometry_msgs::tf2_geometry_msgs\n'}
+[5.346161] (f_vigs_slam) StderrLine: {'line': b'      tf2_ros::static_transform_broadcaster_node\n'}
+[5.346232] (f_vigs_slam) StderrLine: {'line': b'      tf2_ros::tf2_ros\n'}
+[5.346303] (f_vigs_slam) StderrLine: {'line': b'    )\n'}
+[5.346374] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.346446] (f_vigs_slam) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[5.346516] (f_vigs_slam) StderrLine: {'line': b'  CMakeLists.txt:98 (ament_target_dependencies)\n'}
+[5.346588] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.346658] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.347443] (f_vigs_slam) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):\n'}
+[5.347563] (f_vigs_slam) StderrLine: {'line': b'  ament_target_dependencies() is deprecated.  Use target_link_libraries()\n'}
+[5.347642] (f_vigs_slam) StderrLine: {'line': b'  with modern CMake targets instead.  Try replacing this call with:\n'}
+[5.347726] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.347798] (f_vigs_slam) StderrLine: {'line': b'    target_link_libraries(gs_slam_node PUBLIC\n'}
+[5.347868] (f_vigs_slam) StderrLine: {'line': b'      rclcpp::rclcpp\n'}
+[5.347938] (f_vigs_slam) StderrLine: {'line': b'    )\n'}
+[5.348039] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.348116] (f_vigs_slam) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[5.348188] (f_vigs_slam) StderrLine: {'line': b'  CMakeLists.txt:158 (ament_target_dependencies)\n'}
+[5.348260] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.348330] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.349637] (f_vigs_slam) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.20.3 (/opt/ros/rolling/share/ament_lint_auto/cmake)\n'}
+[5.380084] (-) TimerEvent: {}
+[5.480449] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[5.480679] (-) TimerEvent: {}
+[5.481163] (f_vigs_slam) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include;$<BUILD_INTERFACE:/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include>\n'}
+[5.481483] (f_vigs_slam) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[5.484823] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[5.485024] (f_vigs_slam) StdoutLine: {'line': b"-- Configured 'flake8' exclude dirs and/or files: \n"}
+[5.490288] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[5.493488] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[5.513820] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[5.514027] (f_vigs_slam) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[5.517340] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[5.519527] (f_vigs_slam) StdoutLine: {'line': b'-- Configuring done (5.5s)\n'}
+[5.542438] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) in CMakeLists.txt:\n'}
+[5.542668] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,\n'}
+[5.542762] (f_vigs_slam) StderrLine: {'line': b'  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"\n'}
+[5.542839] (f_vigs_slam) StderrLine: {'line': b'  for policy details.  Use the cmake_policy command to set the policy and\n'}
+[5.542912] (f_vigs_slam) StderrLine: {'line': b'  suppress this warning.\n'}
+[5.542984] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.543056] (f_vigs_slam) StderrLine: {'line': b'  CUDA_ARCHITECTURES is empty for target "GSSlam".\n'}
+[5.543128] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[5.543199] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.568022] (f_vigs_slam) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[5.571381] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) in CMakeLists.txt:\n'}
+[5.571550] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,\n'}
+[5.571632] (f_vigs_slam) StderrLine: {'line': b'  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"\n'}
+[5.571714] (f_vigs_slam) StderrLine: {'line': b'  for policy details.  Use the cmake_policy command to set the policy and\n'}
+[5.571786] (f_vigs_slam) StderrLine: {'line': b'  suppress this warning.\n'}
+[5.571856] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.571926] (f_vigs_slam) StderrLine: {'line': b'  CUDA_ARCHITECTURES is empty for target "GSSlam".\n'}
+[5.571995] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[5.572064] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.577736] (f_vigs_slam) StdoutLine: {'line': b'-- Build files have been written to: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam\n'}
+[5.581068] (-) TimerEvent: {}
+[5.592621] (f_vigs_slam) CommandEnded: {'returncode': 0}
+[5.593443] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'build'}
+[5.594409] (f_vigs_slam) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', '--', '-j6', '-l6'], 'cwd': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jorge', 'SSH_AGENT_PID': '99714', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/lib:/usr/local/cuda-12.3/lib64:/opt/ros/rolling/opt/zenoh_cpp_vendor/lib:/opt/ros/rolling/opt/gz_math_vendor/lib:/opt/ros/rolling/opt/gz_utils_vendor/lib:/opt/ros/rolling/opt/rviz_ogre_vendor/lib:/opt/ros/rolling/lib/x86_64-linux-gnu:/opt/ros/rolling/opt/gz_cmake_vendor/lib:/opt/ros/rolling/lib:/usr/local/cuda-11.8/lib64:', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/jorge', 'OLDPWD': '/home/jorge/ros2_thesis_ws/src', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'rolling', 'LOGNAME': 'jorge', 'NAME': 'DESKTOP-ECKJB30', 'WSL_INTEROP': '/run/WSL/286_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/usr/local/cuda-12.3/bin:/opt/ros/rolling/bin:/usr/local/cuda-11.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/d/NVIDIA/bin:/mnt/d/NVIDIA/libnvvp:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2022.3.0/:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Users/jorge/AppData/Local/Microsoft/WindowsApps:/mnt/d/Program Files/IntelliJ IDEA Community Edition 2024.3/bin:/mnt/d/Program Files (x86)/Microsoft VS Code/bin:/mnt/c/Users/jorge/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/jorge/.dotnet/tools:/mnt/c/Users/jorge/AppData/Roaming/TinyTeX/bin/windows:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'SSH_AUTH_SOCK': '/tmp/ssh-N68tmh1ZZQZX/agent.99713', 'AMENT_PREFIX_PATH': '/opt/ros/rolling', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/usr/local/lib/python3.10/site-packages:/opt/ros/rolling/opt/gz_math_vendor/lib/python:/opt/ros/rolling/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/rolling/opt/gz_math_vendor:/opt/ros/rolling/opt/gz_utils_vendor:/opt/ros/rolling/opt/gz_cmake_vendor:/opt/ros/rolling', 'WSLENV': ''}), 'shell': False}
+[5.665903] (f_vigs_slam) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o\x1b[0m\n'}
+[5.666408] (f_vigs_slam) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o\x1b[0m\n'}
+[5.666518] (f_vigs_slam) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o\x1b[0m\n'}
+[5.666601] (f_vigs_slam) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o\x1b[0m\n'}
+[5.666679] (f_vigs_slam) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o\x1b[0m\n'}
+[5.677019] (f_vigs_slam) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o\x1b[0m\n'}
+[5.681200] (-) TimerEvent: {}
+[5.781534] (-) TimerEvent: {}
+[5.881915] (-) TimerEvent: {}
+[5.982335] (-) TimerEvent: {}
+[6.082922] (-) TimerEvent: {}
+[6.183483] (-) TimerEvent: {}
+[6.284113] (-) TimerEvent: {}
+[6.384775] (-) TimerEvent: {}
+[6.485080] (-) TimerEvent: {}
+[6.585452] (-) TimerEvent: {}
+[6.685824] (-) TimerEvent: {}
+[6.786353] (-) TimerEvent: {}
+[6.888840] (-) TimerEvent: {}
+[6.989161] (-) TimerEvent: {}
+[7.089516] (-) TimerEvent: {}
+[7.189885] (-) TimerEvent: {}
+[7.292894] (-) TimerEvent: {}
+[7.393325] (-) TimerEvent: {}
+[7.493678] (-) TimerEvent: {}
+[7.594067] (-) TimerEvent: {}
+[7.694509] (-) TimerEvent: {}
+[7.797038] (-) TimerEvent: {}
+[7.897499] (-) TimerEvent: {}
+[7.998212] (-) TimerEvent: {}
+[8.105322] (-) TimerEvent: {}
+[8.205691] (-) TimerEvent: {}
+[8.306099] (-) TimerEvent: {}
+[8.413173] (-) TimerEvent: {}
+[8.513545] (-) TimerEvent: {}
+[8.613944] (-) TimerEvent: {}
+[8.714416] (-) TimerEvent: {}
+[8.816551] (-) TimerEvent: {}
+[8.927756] (-) TimerEvent: {}
+[9.029434] (-) TimerEvent: {}
+[9.132926] (-) TimerEvent: {}
+[9.233244] (-) TimerEvent: {}
+[9.333621] (-) TimerEvent: {}
+[9.434078] (-) TimerEvent: {}
+[9.534555] (-) TimerEvent: {}
+[9.635070] (-) TimerEvent: {}
+[9.735657] (-) TimerEvent: {}
+[9.836301] (-) TimerEvent: {}
+[9.937009] (-) TimerEvent: {}
+[10.037444] (-) TimerEvent: {}
+[10.137949] (-) TimerEvent: {}
+[10.238505] (-) TimerEvent: {}
+[10.339412] (-) TimerEvent: {}
+[10.440257] (-) TimerEvent: {}
+[10.541061] (-) TimerEvent: {}
+[10.641614] (-) TimerEvent: {}
+[10.742220] (-) TimerEvent: {}
+[10.843724] (-) TimerEvent: {}
+[10.945044] (-) TimerEvent: {}
+[11.045946] (-) TimerEvent: {}
+[11.146677] (-) TimerEvent: {}
+[11.247439] (-) TimerEvent: {}
+[11.348231] (-) TimerEvent: {}
+[11.448782] (-) TimerEvent: {}
+[11.549683] (-) TimerEvent: {}
+[11.650746] (-) TimerEvent: {}
+[11.751468] (-) TimerEvent: {}
+[11.780125] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(61)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01minstance_counter_screen_\x1b[0m" is undefined\n'}
+[11.780369] (f_vigs_slam) StderrLine: {'line': b'          instance_counter_screen_.resize(1);\n'}
+[11.780464] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[11.780544] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.819798] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(249)\x1b[0m: \x1b[01;31merror\x1b[0m: no suitable constructor exists to convert from "uint32_t" to "f_vigs_slam::CameraPose"\n'}
+[11.820016] (f_vigs_slam) StderrLine: {'line': b'              static_cast<uint32_t>(gauss_init_size_px_),\n'}
+[11.820113] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[11.820190] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.821117] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(251)\x1b[0m: \x1b[01;31merror\x1b[0m: too few arguments in function call\n'}
+[11.821226] (f_vigs_slam) StderrLine: {'line': b'              gauss_init_opacity_);\n'}
+[11.821302] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[11.821375] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.824504] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(377)\x1b[0m: \x1b[01;31merror\x1b[0m: argument of type "float2 *" is incompatible with parameter of type "int"\n'}
+[11.824687] (f_vigs_slam) StderrLine: {'line': b'           thrust::raw_pointer_cast(p_hats_.data()),\n'}
+[11.824808] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[11.824889] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.824994] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(383)\x1b[0m: \x1b[01;31merror\x1b[0m: too many arguments in function call\n'}
+[11.825096] (f_vigs_slam) StderrLine: {'line': b'           3.0f);\n'}
+[11.825171] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[11.825244] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.825318] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(389)\x1b[0m: \x1b[01;31merror\x1b[0m: namespace \x1b[01m"thrust"\x1b[0m has no member "\x1b[01msort_by_key\x1b[0m"\n'}
+[11.825395] (f_vigs_slam) StderrLine: {'line': b'          thrust::sort_by_key(\n'}
+[11.825467] (f_vigs_slam) StderrLine: {'line': b'                  ^\n'}
+[11.825539] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.828111] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(453)\x1b[0m: \x1b[01;31merror\x1b[0m: argument of type "float2 *" is incompatible with parameter of type "int"\n'}
+[11.828299] (f_vigs_slam) StderrLine: {'line': b'           thrust::raw_pointer_cast(p_hats_.data()),\n'}
+[11.828378] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[11.828451] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.828525] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(457)\x1b[0m: \x1b[01;31merror\x1b[0m: too many arguments in function call\n'}
+[11.828598] (f_vigs_slam) StderrLine: {'line': b'           num_tiles_.y);\n'}
+[11.828672] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[11.828745] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.851622] (-) TimerEvent: {}
+[11.952721] (-) TimerEvent: {}
+[11.985179] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(500)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mtranslation\x1b[0m"\n'}
+[11.985416] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.translation[0] = cam_trans.x();\n'}
+[11.985517] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.985597] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.985676] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(501)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mtranslation\x1b[0m"\n'}
+[11.985754] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.translation[1] = cam_trans.y();\n'}
+[11.985839] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.985913] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.985985] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(502)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mtranslation\x1b[0m"\n'}
+[11.986067] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.translation[2] = cam_trans.z();\n'}
+[11.986139] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.986211] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.986285] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(503)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mrotation\x1b[0m"\n'}
+[11.986359] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.rotation[0] = cam_rot.x();\n'}
+[11.986431] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.986537] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.986617] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(504)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mrotation\x1b[0m"\n'}
+[11.986693] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.rotation[1] = cam_rot.y();\n'}
+[11.986765] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.986837] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.986909] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(505)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mrotation\x1b[0m"\n'}
+[11.986982] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.rotation[2] = cam_rot.z();\n'}
+[11.987055] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.987126] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[11.987200] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(506)\x1b[0m: \x1b[01;31merror\x1b[0m: class \x1b[01m"f_vigs_slam::CameraPose"\x1b[0m has no member "\x1b[01mrotation\x1b[0m"\n'}
+[11.987275] (f_vigs_slam) StderrLine: {'line': b'          current_pose_.rotation[3] = cam_rot.w();\n'}
+[11.987346] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[11.987416] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.052863] (-) TimerEvent: {}
+[12.154135] (-) TimerEvent: {}
+[12.155084] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1045)\x1b[0m: \x1b[01;31merror\x1b[0m: argument of type "float2 *" is incompatible with parameter of type "const float3 *"\n'}
+[12.155293] (f_vigs_slam) StderrLine: {'line': b'              thrust::raw_pointer_cast(positions_2d_.data()),\n'}
+[12.155383] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.155461] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.172044] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1140)\x1b[0m: \x1b[01;31merror\x1b[0m: namespace \x1b[01m"thrust"\x1b[0m has no member "\x1b[01msort_by_key\x1b[0m"\n'}
+[12.172268] (f_vigs_slam) StderrLine: {'line': b'          thrust::sort_by_key(\n'}
+[12.172357] (f_vigs_slam) StderrLine: {'line': b'                  ^\n'}
+[12.172438] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.174368] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1193)\x1b[0m: \x1b[01;31merror\x1b[0m: argument of type "float2 *" is incompatible with parameter of type "const float3 *"\n'}
+[12.174571] (f_vigs_slam) StderrLine: {'line': b'              thrust::raw_pointer_cast(positions_2d_.data()),\n'}
+[12.174659] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.174739] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.175729] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1229)\x1b[0m: \x1b[01;31merror\x1b[0m: namespace \x1b[01m"thrust"\x1b[0m has no member "\x1b[01msort_by_key\x1b[0m"\n'}
+[12.175925] (f_vigs_slam) StderrLine: {'line': b'          thrust::sort_by_key(\n'}
+[12.176055] (f_vigs_slam) StderrLine: {'line': b'                  ^\n'}
+[12.176133] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.176303] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1256)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.176436] (f_vigs_slam) StderrLine: {'line': b'      float GaussianSplattingSlam::computeCovisibilityRatio(GaussianSplattingKeyframe &keyframe)\n'}
+[12.176525] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[12.176933] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.177038] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1280)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.177154] (f_vigs_slam) StderrLine: {'line': b'          cudaMemset(d_frameVis, 0, nbGaussians * sizeof(unsigned char));\n'}
+[12.177234] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.177307] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.177380] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1280)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01md_frameVis\x1b[0m" is undefined\n'}
+[12.177494] (f_vigs_slam) StderrLine: {'line': b'          cudaMemset(d_frameVis, 0, nbGaussians * sizeof(unsigned char));\n'}
+[12.177574] (f_vigs_slam) StderrLine: {'line': b'                     ^\n'}
+[12.177648] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.177722] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1280)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mnbGaussians\x1b[0m" is undefined\n'}
+[12.177796] (f_vigs_slam) StderrLine: {'line': b'          cudaMemset(d_frameVis, 0, nbGaussians * sizeof(unsigned char));\n'}
+[12.177868] (f_vigs_slam) StderrLine: {'line': b'                                    ^\n'}
+[12.177942] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.178016] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1280)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.178090] (f_vigs_slam) StderrLine: {'line': b'          cudaMemset(d_frameVis, 0, nbGaussians * sizeof(unsigned char));\n'}
+[12.178164] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[12.178250] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.178325] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1283)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.178399] (f_vigs_slam) StderrLine: {'line': b'          prepareRasterization(\n'}
+[12.178471] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.178562] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.178653] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1284)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mkeyframe\x1b[0m" is undefined\n'}
+[12.178730] (f_vigs_slam) StderrLine: {'line': b'              keyframe.getCameraPose(),\n'}
+[12.178802] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.178875] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.185028] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1285)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.185256] (f_vigs_slam) StderrLine: {'line': b'              keyframe.getCameraParams(),\n'}
+[12.185343] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.185420] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.185496] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1290)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.185584] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansVisibility_kernel<<<\n'}
+[12.185657] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.185751] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.185840] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1290)\x1b[0m: \x1b[01;31merror\x1b[0m: declaration is incompatible with \x1b[01m"void f_vigs_slam::computeGaussiansVisibility_kernel(unsigned char *, const uint2 *, const uint32_t *, const float3 *, const float3 *, const float *, uint2, uint32_t, uint32_t)"\x1b[0m\x1b[32m (declared at line 396 of /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSCudaKernels.cuh)\x1b[0m\n'}
+[12.185921] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansVisibility_kernel<<<\n'}
+[12.185994] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.186066] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.186139] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1290)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.186211] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansVisibility_kernel<<<\n'}
+[12.186282] (f_vigs_slam) StderrLine: {'line': b'                                           ^\n'}
+[12.186354] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.186428] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1306)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.186502] (f_vigs_slam) StderrLine: {'line': b'          prepareRasterization(\n'}
+[12.186575] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.186646] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.186718] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1306)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"f_vigs_slam::prepareRasterization"\x1b[0m has already been defined\n'}
+[12.186794] (f_vigs_slam) StderrLine: {'line': b'          prepareRasterization(\n'}
+[12.186902] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.186978] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.187052] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1307)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mcameraPose\x1b[0m" is undefined\n'}
+[12.187147] (f_vigs_slam) StderrLine: {'line': b'              cameraPose,\n'}
+[12.187221] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.187293] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.187365] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1308)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mcameraParams\x1b[0m" is undefined\n'}
+[12.187438] (f_vigs_slam) StderrLine: {'line': b'              cameraParams[0],\n'}
+[12.187511] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.187582] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.187657] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1309)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mpyrColor\x1b[0m" is undefined\n'}
+[12.187729] (f_vigs_slam) StderrLine: {'line': b'              pyrColor[0].cols,\n'}
+[12.187801] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.187872] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.187978] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1308)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.188059] (f_vigs_slam) StderrLine: {'line': b'              cameraParams[0],\n'}
+[12.188133] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.188205] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.188278] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1313)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.188360] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansVisibility_kernel<<<\n'}
+[12.188433] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.188505] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.188577] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1313)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"f_vigs_slam::computeGaussiansVisibility_kernel"\x1b[0m has already been defined\n'}
+[12.188657] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansVisibility_kernel<<<\n'}
+[12.188800] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.188907] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.188996] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1313)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.189106] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansVisibility_kernel<<<\n'}
+[12.189180] (f_vigs_slam) StderrLine: {'line': b'                                           ^\n'}
+[12.189253] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.189326] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1329)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.189414] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansCovisibility_kernel<<<\n'}
+[12.189488] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.189560] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.189633] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1329)\x1b[0m: \x1b[01;31merror\x1b[0m: declaration is incompatible with \x1b[01m"void f_vigs_slam::computeGaussiansCovisibility_kernel(uint32_t *, uint32_t *, unsigned char *, unsigned char *, uint32_t)"\x1b[0m\x1b[32m (declared at line 428 of /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSCudaKernels.cuh)\x1b[0m\n'}
+[12.189710] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansCovisibility_kernel<<<\n'}
+[12.189782] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.189853] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.189926] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1329)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.189999] (f_vigs_slam) StderrLine: {'line': b'          computeGaussiansCovisibility_kernel<<<\n'}
+[12.190071] (f_vigs_slam) StderrLine: {'line': b'                                             ^\n'}
+[12.190178] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.190255] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1341)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.190328] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visInter, d_visInter, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.190401] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.190473] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.190545] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1341)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mh_visInter\x1b[0m" is undefined\n'}
+[12.190616] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visInter, d_visInter, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.190687] (f_vigs_slam) StderrLine: {'line': b'                      ^\n'}
+[12.190757] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.190829] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1341)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01md_visInter\x1b[0m" is undefined\n'}
+[12.190903] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visInter, d_visInter, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.190985] (f_vigs_slam) StderrLine: {'line': b'                                  ^\n'}
+[12.191059] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.191131] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1341)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.191205] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visInter, d_visInter, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.191314] (f_vigs_slam) StderrLine: {'line': b'                                  ^\n'}
+[12.191388] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.191460] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1342)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.191533] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.191605] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.191677] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.191750] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1342)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"f_vigs_slam::cudaMemcpy"\x1b[0m has already been defined\n'}
+[12.191826] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.191898] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.191969] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.192041] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1342)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mh_visUnion\x1b[0m" is undefined\n'}
+[12.192114] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.192185] (f_vigs_slam) StderrLine: {'line': b'                      ^\n'}
+[12.192257] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.192350] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1342)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01md_visUnion\x1b[0m" is undefined\n'}
+[12.192438] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.192513] (f_vigs_slam) StderrLine: {'line': b'                                  ^\n'}
+[12.192584] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.192655] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1342)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.192728] (f_vigs_slam) StderrLine: {'line': b'          cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);\n'}
+[12.192801] (f_vigs_slam) StderrLine: {'line': b'                                  ^\n'}
+[12.192873] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.192945] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1345)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.199270] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_visUnion);\n'}
+[12.199358] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.199432] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.199505] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1346)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.199578] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_visInter);\n'}
+[12.199658] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.199729] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.199800] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1346)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"f_vigs_slam::cudaFree"\x1b[0m has already been defined\n'}
+[12.199885] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_visInter);\n'}
+[12.200005] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.200110] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.200185] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1347)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.200260] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_keyframeVis);\n'}
+[12.200332] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.200404] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.200476] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1347)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"f_vigs_slam::cudaFree"\x1b[0m has already been defined\n'}
+[12.200557] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_keyframeVis);\n'}
+[12.200629] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.200702] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.200795] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1347)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01md_keyframeVis\x1b[0m" is undefined\n'}
+[12.200868] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_keyframeVis);\n'}
+[12.200940] (f_vigs_slam) StderrLine: {'line': b'                   ^\n'}
+[12.201026] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.201099] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1348)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.201349] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_frameVis);\n'}
+[12.201523] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.201608] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.201683] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1348)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"f_vigs_slam::cudaFree"\x1b[0m has already been defined\n'}
+[12.201758] (f_vigs_slam) StderrLine: {'line': b'          cudaFree(d_frameVis);\n'}
+[12.201830] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.201901] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.201973] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1352)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a declaration\n'}
+[12.202046] (f_vigs_slam) StderrLine: {'line': b'          if (h_visUnion == 0)\n'}
+[12.202118] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.202191] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.202309] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1355)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a declaration\n'}
+[12.202384] (f_vigs_slam) StderrLine: {'line': b'          return h_visInter / static_cast<float>(h_visUnion);\n'}
+[12.202457] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.202603] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.202683] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1358)\x1b[0m: \x1b[01;31merror\x1b[0m: incomplete type is not allowed\n'}
+[12.202823] (f_vigs_slam) StderrLine: {'line': b'      void GSSlam::initWarping(const CameraPose &camera_pose)\n'}
+[12.202898] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[12.202969] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.203041] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1358)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.203126] (f_vigs_slam) StderrLine: {'line': b'      void GSSlam::initWarping(const CameraPose &camera_pose)\n'}
+[12.203198] (f_vigs_slam) StderrLine: {'line': b'                 ^\n'}
+[12.203269] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.203369] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1394)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mnb_pyr_levels_\x1b[0m" is undefined\n'}
+[12.203449] (f_vigs_slam) StderrLine: {'line': b'          std::vector<cv::Mat> pyr_depth_cpu(nb_pyr_levels_);\n'}
+[12.203521] (f_vigs_slam) StderrLine: {'line': b'                                             ^\n'}
+[12.203594] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.203742] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1396)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mpyr_color_cpu\x1b[0m" is undefined\n'}
+[12.203952] (f_vigs_slam) StderrLine: {'line': b'          pyr_color_cpu[0] = rgb_bgr;\n'}
+[12.204057] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.204130] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.204201] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1396)\x1b[0m: \x1b[01;31merror\x1b[0m: invalid specifier for structured binding declaration\n'}
+[12.204274] (f_vigs_slam) StderrLine: {'line': b'          pyr_color_cpu[0] = rgb_bgr;\n'}
+[12.204344] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.204426] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.204518] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1396)\x1b[0m: \x1b[01;31merror\x1b[0m: expected an identifier\n'}
+[12.204592] (f_vigs_slam) StderrLine: {'line': b'          pyr_color_cpu[0] = rgb_bgr;\n'}
+[12.204664] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[12.204849] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.204930] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1396)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a "]"\n'}
+[12.209534] (f_vigs_slam) StderrLine: {'line': b'          pyr_color_cpu[0] = rgb_bgr;\n'}
+[12.209638] (f_vigs_slam) StderrLine: {'line': b'                           ^\n'}
+[12.209720] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.209796] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1396)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mrgb_bgr\x1b[0m" is undefined\n'}
+[12.209871] (f_vigs_slam) StderrLine: {'line': b'          pyr_color_cpu[0] = rgb_bgr;\n'}
+[12.209974] (f_vigs_slam) StderrLine: {'line': b'                             ^\n'}
+[12.210052] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.210125] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1397)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"pyr_depth_cpu"\x1b[0m is not a type name\n'}
+[12.210297] (f_vigs_slam) StderrLine: {'line': b'          pyr_depth_cpu[0] = depth_float;\n'}
+[12.210433] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.210509] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.210581] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1397)\x1b[0m: \x1b[01;31merror\x1b[0m: invalid specifier for structured binding declaration\n'}
+[12.210654] (f_vigs_slam) StderrLine: {'line': b'          pyr_depth_cpu[0] = depth_float;\n'}
+[12.210724] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.210795] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.210867] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1397)\x1b[0m: \x1b[01;31merror\x1b[0m: expected an identifier\n'}
+[12.210940] (f_vigs_slam) StderrLine: {'line': b'          pyr_depth_cpu[0] = depth_float;\n'}
+[12.211012] (f_vigs_slam) StderrLine: {'line': b'                        ^\n'}
+[12.211131] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.211205] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1397)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a "]"\n'}
+[12.211279] (f_vigs_slam) StderrLine: {'line': b'          pyr_depth_cpu[0] = depth_float;\n'}
+[12.211350] (f_vigs_slam) StderrLine: {'line': b'                           ^\n'}
+[12.211422] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.211492] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1397)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mdepth_float\x1b[0m" is undefined\n'}
+[12.211572] (f_vigs_slam) StderrLine: {'line': b'          pyr_depth_cpu[0] = depth_float;\n'}
+[12.211642] (f_vigs_slam) StderrLine: {'line': b'                             ^\n'}
+[12.211711] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.211781] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1399)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a declaration\n'}
+[12.211852] (f_vigs_slam) StderrLine: {'line': b'          for (int i = 1; i < nb_pyr_levels_; i++) {\n'}
+[12.211923] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.211995] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.212064] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1418)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.212174] (f_vigs_slam) StderrLine: {'line': b'          depth_gpu_ = pyr_depth_[0];\n'}
+[12.212252] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.212328] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.212400] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1418)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mpyr_depth_\x1b[0m" is undefined\n'}
+[12.212474] (f_vigs_slam) StderrLine: {'line': b'          depth_gpu_ = pyr_depth_[0];\n'}
+[12.212546] (f_vigs_slam) StderrLine: {'line': b'                       ^\n'}
+[12.212618] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.212692] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1419)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a declaration\n'}
+[12.212765] (f_vigs_slam) StderrLine: {'line': b'      }\n'}
+[12.212837] (f_vigs_slam) StderrLine: {'line': b'      ^\n'}
+[12.212908] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.217331] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1444)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.217420] (f_vigs_slam) StderrLine: {'line': b'          rendered_rgb_gpu_.download(rendered_rgb_cpu);\n'}
+[12.217492] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.217563] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.217634] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1444)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.217706] (f_vigs_slam) StderrLine: {'line': b'          rendered_rgb_gpu_.download(rendered_rgb_cpu);\n'}
+[12.217776] (f_vigs_slam) StderrLine: {'line': b'                           ^\n'}
+[12.217847] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.217917] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1445)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.217988] (f_vigs_slam) StderrLine: {'line': b'          rendered_depth_gpu_.download(rendered_depth_cpu);\n'}
+[12.218059] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.218128] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.218218] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1445)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.218318] (f_vigs_slam) StderrLine: {'line': b'          rendered_depth_gpu_.download(rendered_depth_cpu);\n'}
+[12.218391] (f_vigs_slam) StderrLine: {'line': b'                             ^\n'}
+[12.218462] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.218535] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1449)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.218607] (f_vigs_slam) StderrLine: {'line': b'          rendered_rgb_cpu.convertTo(rendered_rgb_f, \n'}
+[12.218678] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.218749] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.218820] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1449)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.218890] (f_vigs_slam) StderrLine: {'line': b'          rendered_rgb_cpu.convertTo(rendered_rgb_f, \n'}
+[12.218961] (f_vigs_slam) StderrLine: {'line': b'                          ^\n'}
+[12.219033] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.219105] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1450)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.219178] (f_vigs_slam) StderrLine: {'line': b'          rgb_bgr.convertTo(rgb_gt_f, \n'}
+[12.219250] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.219352] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.219431] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1450)\x1b[0m: \x1b[01;31merror\x1b[0m: expected a ";"\n'}
+[12.225241] (f_vigs_slam) StderrLine: {'line': b'          rgb_bgr.convertTo(rgb_gt_f, \n'}
+[12.225345] (f_vigs_slam) StderrLine: {'line': b'                 ^\n'}
+[12.225424] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.225498] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1453)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.225583] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_rgb_f, rgb_gt_f, residual_rgb_f);\n'}
+[12.225733] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.225812] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.226046] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1453)\x1b[0m: \x1b[01;31merror\x1b[0m: declaration is incompatible with \x1b[01m"void cv::subtract(cv::InputArray, cv::InputArray, cv::OutputArray, cv::InputArray, int)"\x1b[0m\x1b[32m (declared at line 401 of /usr/local/include/opencv4/opencv2/core.hpp)\x1b[0m\n'}
+[12.226131] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_rgb_f, rgb_gt_f, residual_rgb_f);\n'}
+[12.226205] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.226277] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.226347] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1453)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.226421] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_rgb_f, rgb_gt_f, residual_rgb_f);\n'}
+[12.226515] (f_vigs_slam) StderrLine: {'line': b'                                       ^\n'}
+[12.226589] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.226660] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1453)\x1b[0m: \x1b[01;31merror\x1b[0m: no suitable conversion function from "cv::Mat" to "int" exists\n'}
+[12.226855] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_rgb_f, rgb_gt_f, residual_rgb_f);\n'}
+[12.226939] (f_vigs_slam) StderrLine: {'line': b'                       ^\n'}
+[12.227037] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.227127] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1456)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.227202] (f_vigs_slam) StderrLine: {'line': b'          cv::cvtColor(residual_rgb_f, residual_rgb_gray_f, cv::COLOR_BGR2GRAY);\n'}
+[12.227276] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.227349] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.227420] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1456)\x1b[0m: \x1b[01;31merror\x1b[0m: declaration is incompatible with \x1b[01m"void cv::cvtColor(cv::InputArray, cv::OutputArray, int, int)"\x1b[0m\x1b[32m (declared at line 3695 of /usr/local/include/opencv4/opencv2/imgproc.hpp)\x1b[0m\n'}
+[12.227511] (f_vigs_slam) StderrLine: {'line': b'          cv::cvtColor(residual_rgb_f, residual_rgb_gray_f, cv::COLOR_BGR2GRAY);\n'}
+[12.227584] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.227657] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.227729] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1456)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.227803] (f_vigs_slam) StderrLine: {'line': b'          cv::cvtColor(residual_rgb_f, residual_rgb_gray_f, cv::COLOR_BGR2GRAY);\n'}
+[12.227966] (f_vigs_slam) StderrLine: {'line': b'                                       ^\n'}
+[12.228173] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.228283] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1456)\x1b[0m: \x1b[01;31merror\x1b[0m: no suitable conversion function from "cv::Mat" to "int" exists\n'}
+[12.228359] (f_vigs_slam) StderrLine: {'line': b'          cv::cvtColor(residual_rgb_f, residual_rgb_gray_f, cv::COLOR_BGR2GRAY);\n'}
+[12.228430] (f_vigs_slam) StderrLine: {'line': b'                       ^\n'}
+[12.228506] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.228578] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1459)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.228653] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_depth_cpu, depth_float, residual_depth_f);\n'}
+[12.228726] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.228821] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.228896] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1459)\x1b[0m: \x1b[01;31merror\x1b[0m: variable \x1b[01m"cv::subtract"\x1b[0m has already been defined\n'}
+[12.229114] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_depth_cpu, depth_float, residual_depth_f);\n'}
+[12.229214] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.229301] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.229374] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1459)\x1b[0m: \x1b[01;31merror\x1b[0m: too many initializer values\n'}
+[12.229447] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_depth_cpu, depth_float, residual_depth_f);\n'}
+[12.229517] (f_vigs_slam) StderrLine: {'line': b'                                           ^\n'}
+[12.229588] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.233090] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1459)\x1b[0m: \x1b[01;31merror\x1b[0m: no suitable conversion function from "cv::Mat" to "int" exists\n'}
+[12.233198] (f_vigs_slam) StderrLine: {'line': b'          cv::subtract(rendered_depth_cpu, depth_float, residual_depth_f);\n'}
+[12.233275] (f_vigs_slam) StderrLine: {'line': b'                       ^\n'}
+[12.233358] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.233434] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1463)\x1b[0m: \x1b[01;31merror\x1b[0m: this declaration has no storage class or type specifier\n'}
+[12.233523] (f_vigs_slam) StderrLine: {'line': b'          cv::addWeighted(residual_rgb_gray_f, 1.0, residual_depth_f, depth_weight, 0.0, error_map_cpu);\n'}
+[12.233618] (f_vigs_slam) StderrLine: {'line': b'          ^\n'}
+[12.233707] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.233781] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1463)\x1b[0m: \x1b[01;31merror\x1b[0m: declaration is incompatible with \x1b[01m"void cv::addWeighted(cv::InputArray, double, cv::InputArray, double, double, cv::OutputArray, int)"\x1b[0m\x1b[32m (declared at line 507 of /usr/local/include/opencv4/opencv2/core.hpp)\x1b[0m\n'}
+[12.233866] (f_vigs_slam) StderrLine: {'line': b'          cv::addWeighted(residual_rgb_gray_f, 1.0, residual_depth_f, depth_weight, 0.0, error_map_cpu);\n'}
+[12.233940] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[12.234011] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[12.234081] (f_vigs_slam) StderrLine: {'line': b'Error limit reached.\n'}
+[12.234153] (f_vigs_slam) StderrLine: {'line': b'100 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu".\n'}
+[12.234224] (f_vigs_slam) StderrLine: {'line': b'Compilation terminated.\n'}
+[12.254459] (-) TimerEvent: {}
+[12.278892] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:77: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o] Error 4\n'}
+[12.279416] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[12.354993] (-) TimerEvent: {}
+[12.455957] (-) TimerEvent: {}
+[12.556545] (-) TimerEvent: {}
+[12.657570] (-) TimerEvent: {}
+[12.758729] (-) TimerEvent: {}
+[12.859401] (-) TimerEvent: {}
+[12.962447] (-) TimerEvent: {}
+[13.063829] (-) TimerEvent: {}
+[13.167272] (-) TimerEvent: {}
+[13.270085] (-) TimerEvent: {}
+[13.373413] (-) TimerEvent: {}
+[13.474039] (-) TimerEvent: {}
+[13.578518] (-) TimerEvent: {}
+[13.681399] (-) TimerEvent: {}
+[13.785229] (-) TimerEvent: {}
+[13.887295] (-) TimerEvent: {}
+[13.989775] (-) TimerEvent: {}
+[14.090247] (-) TimerEvent: {}
+[14.190809] (-) TimerEvent: {}
+[14.291389] (-) TimerEvent: {}
+[14.392701] (-) TimerEvent: {}
+[14.493210] (-) TimerEvent: {}
+[14.594187] (-) TimerEvent: {}
+[14.695491] (-) TimerEvent: {}
+[14.796835] (-) TimerEvent: {}
+[14.897841] (-) TimerEvent: {}
+[15.001392] (-) TimerEvent: {}
+[15.101767] (-) TimerEvent: {}
+[15.202236] (-) TimerEvent: {}
+[15.307207] (-) TimerEvent: {}
+[15.412523] (-) TimerEvent: {}
+[15.513206] (-) TimerEvent: {}
+[15.618480] (-) TimerEvent: {}
+[15.719045] (-) TimerEvent: {}
+[15.820956] (-) TimerEvent: {}
+[15.921339] (-) TimerEvent: {}
+[16.023092] (-) TimerEvent: {}
+[16.123704] (-) TimerEvent: {}
+[16.225592] (-) TimerEvent: {}
+[16.326050] (-) TimerEvent: {}
+[16.426486] (-) TimerEvent: {}
+[16.527058] (-) TimerEvent: {}
+[16.628390] (-) TimerEvent: {}
+[16.729107] (-) TimerEvent: {}
+[16.831063] (-) TimerEvent: {}
+[16.931742] (-) TimerEvent: {}
+[17.032659] (-) TimerEvent: {}
+[17.133066] (-) TimerEvent: {}
+[17.233824] (-) TimerEvent: {}
+[17.334370] (-) TimerEvent: {}
+[17.436249] (-) TimerEvent: {}
+[17.537032] (-) TimerEvent: {}
+[17.637646] (-) TimerEvent: {}
+[17.738134] (-) TimerEvent: {}
+[17.840150] (-) TimerEvent: {}
+[17.940914] (-) TimerEvent: {}
+[18.042807] (-) TimerEvent: {}
+[18.143404] (-) TimerEvent: {}
+[18.244457] (-) TimerEvent: {}
+[18.344874] (-) TimerEvent: {}
+[18.446858] (-) TimerEvent: {}
+[18.547824] (-) TimerEvent: {}
+[18.648949] (-) TimerEvent: {}
+[18.749364] (-) TimerEvent: {}
+[18.850373] (-) TimerEvent: {}
+[18.950861] (-) TimerEvent: {}
+[19.053507] (-) TimerEvent: {}
+[19.153926] (-) TimerEvent: {}
+[19.254426] (-) TimerEvent: {}
+[19.357348] (-) TimerEvent: {}
+[19.457835] (-) TimerEvent: {}
+[19.558542] (-) TimerEvent: {}
+[19.659447] (-) TimerEvent: {}
+[19.760821] (-) TimerEvent: {}
+[19.861947] (-) TimerEvent: {}
+[19.968083] (-) TimerEvent: {}
+[20.068882] (-) TimerEvent: {}
+[20.170722] (-) TimerEvent: {}
+[20.271328] (-) TimerEvent: {}
+[20.371826] (-) TimerEvent: {}
+[20.472498] (-) TimerEvent: {}
+[20.573599] (-) TimerEvent: {}
+[20.674142] (-) TimerEvent: {}
+[20.774642] (-) TimerEvent: {}
+[20.875237] (-) TimerEvent: {}
+[20.975875] (-) TimerEvent: {}
+[21.080648] (-) TimerEvent: {}
+[21.181251] (-) TimerEvent: {}
+[21.286101] (-) TimerEvent: {}
+[21.386625] (-) TimerEvent: {}
+[21.489645] (-) TimerEvent: {}
+[21.592047] (-) TimerEvent: {}
+[21.697332] (-) TimerEvent: {}
+[21.801802] (-) TimerEvent: {}
+[21.907151] (-) TimerEvent: {}
+[22.007769] (-) TimerEvent: {}
+[22.108634] (-) TimerEvent: {}
+[22.209104] (-) TimerEvent: {}
+[22.314429] (-) TimerEvent: {}
+[22.415526] (-) TimerEvent: {}
+[22.520790] (-) TimerEvent: {}
+[22.622273] (-) TimerEvent: {}
+[22.723698] (-) TimerEvent: {}
+[22.824429] (-) TimerEvent: {}
+[22.929761] (-) TimerEvent: {}
+[23.031951] (-) TimerEvent: {}
+[23.137154] (-) TimerEvent: {}
+[23.239187] (-) TimerEvent: {}
+[23.344441] (-) TimerEvent: {}
+[23.445036] (-) TimerEvent: {}
+[23.545499] (-) TimerEvent: {}
+[23.646076] (-) TimerEvent: {}
+[23.747037] (-) TimerEvent: {}
+[23.848877] (-) TimerEvent: {}
+[23.951585] (-) TimerEvent: {}
+[24.053528] (-) TimerEvent: {}
+[24.156682] (-) TimerEvent: {}
+[24.258284] (-) TimerEvent: {}
+[24.361067] (-) TimerEvent: {}
+[24.462742] (-) TimerEvent: {}
+[24.565566] (-) TimerEvent: {}
+[24.668071] (-) TimerEvent: {}
+[24.769547] (-) TimerEvent: {}
+[24.872434] (-) TimerEvent: {}
+[24.972980] (-) TimerEvent: {}
+[25.074128] (-) TimerEvent: {}
+[25.174615] (-) TimerEvent: {}
+[25.275549] (-) TimerEvent: {}
+[25.376688] (-) TimerEvent: {}
+[25.477122] (-) TimerEvent: {}
+[25.577561] (-) TimerEvent: {}
+[25.678554] (-) TimerEvent: {}
+[25.779247] (-) TimerEvent: {}
+[25.882690] (-) TimerEvent: {}
+[25.983293] (-) TimerEvent: {}
+[26.086748] (-) TimerEvent: {}
+[26.187842] (-) TimerEvent: {}
+[26.291091] (-) TimerEvent: {}
+[26.394215] (-) TimerEvent: {}
+[26.497586] (-) TimerEvent: {}
+[26.600910] (-) TimerEvent: {}
+[26.703824] (-) TimerEvent: {}
+[26.806536] (-) TimerEvent: {}
+[26.907438] (-) TimerEvent: {}
+[27.008041] (-) TimerEvent: {}
+[27.108638] (-) TimerEvent: {}
+[27.211452] (-) TimerEvent: {}
+[27.311954] (-) TimerEvent: {}
+[27.414682] (-) TimerEvent: {}
+[27.515503] (-) TimerEvent: {}
+[27.618233] (-) TimerEvent: {}
+[27.718812] (-) TimerEvent: {}
+[27.821499] (-) TimerEvent: {}
+[27.922160] (-) TimerEvent: {}
+[28.024794] (-) TimerEvent: {}
+[28.126028] (-) TimerEvent: {}
+[28.229008] (-) TimerEvent: {}
+[28.331876] (-) TimerEvent: {}
+[28.434629] (-) TimerEvent: {}
+[28.537693] (-) TimerEvent: {}
+[28.640677] (-) TimerEvent: {}
+[28.744327] (-) TimerEvent: {}
+[28.847893] (-) TimerEvent: {}
+[28.951124] (-) TimerEvent: {}
+[29.054199] (-) TimerEvent: {}
+[29.155130] (-) TimerEvent: {}
+[29.258249] (-) TimerEvent: {}
+[29.361655] (-) TimerEvent: {}
+[29.464974] (-) TimerEvent: {}
+[29.568183] (-) TimerEvent: {}
+[29.671375] (-) TimerEvent: {}
+[29.771997] (-) TimerEvent: {}
+[29.872754] (-) TimerEvent: {}
+[29.977593] (-) TimerEvent: {}
+[30.082944] (-) TimerEvent: {}
+[30.184444] (-) TimerEvent: {}
+[30.289618] (-) TimerEvent: {}
+[30.392729] (-) TimerEvent: {}
+[30.493663] (-) TimerEvent: {}
+[30.594858] (-) TimerEvent: {}
+[30.695253] (-) TimerEvent: {}
+[30.798281] (-) TimerEvent: {}
+[30.903160] (-) TimerEvent: {}
+[31.008341] (-) TimerEvent: {}
+[31.112338] (-) TimerEvent: {}
+[31.217321] (-) TimerEvent: {}
+[31.321828] (-) TimerEvent: {}
+[31.426947] (-) TimerEvent: {}
+[31.527617] (-) TimerEvent: {}
+[31.628758] (-) TimerEvent: {}
+[31.732350] (-) TimerEvent: {}
+[31.833937] (-) TimerEvent: {}
+[31.934446] (-) TimerEvent: {}
+[32.036204] (-) TimerEvent: {}
+[32.136958] (-) TimerEvent: {}
+[32.238570] (-) TimerEvent: {}
+[32.339193] (-) TimerEvent: {}
+[32.441005] (-) TimerEvent: {}
+[32.541941] (-) TimerEvent: {}
+[32.643755] (-) TimerEvent: {}
+[32.749133] (-) TimerEvent: {}
+[32.854377] (-) TimerEvent: {}
+[32.954928] (-) TimerEvent: {}
+[33.059626] (-) TimerEvent: {}
+[33.164741] (-) TimerEvent: {}
+[33.267185] (-) TimerEvent: {}
+[33.367799] (-) TimerEvent: {}
+[33.478223] (-) TimerEvent: {}
+[33.579213] (-) TimerEvent: {}
+[33.689634] (-) TimerEvent: {}
+[33.791900] (-) TimerEvent: {}
+[33.902303] (-) TimerEvent: {}
+[34.002815] (-) TimerEvent: {}
+[34.103924] (-) TimerEvent: {}
+[34.205972] (-) TimerEvent: {}
+[34.308870] (-) TimerEvent: {}
+[34.410160] (-) TimerEvent: {}
+[34.512757] (-) TimerEvent: {}
+[34.615636] (-) TimerEvent: {}
+[34.716353] (-) TimerEvent: {}
+[34.819138] (-) TimerEvent: {}
+[34.920203] (-) TimerEvent: {}
+[35.023053] (-) TimerEvent: {}
+[35.125912] (-) TimerEvent: {}
+[35.229236] (-) TimerEvent: {}
+[35.332315] (-) TimerEvent: {}
+[35.435942] (-) TimerEvent: {}
+[35.536919] (-) TimerEvent: {}
+[35.639904] (-) TimerEvent: {}
+[35.742592] (-) TimerEvent: {}
+[35.843399] (-) TimerEvent: {}
+[35.946089] (-) TimerEvent: {}
+[36.047045] (-) TimerEvent: {}
+[36.147717] (-) TimerEvent: {}
+[36.248353] (-) TimerEvent: {}
+[36.350682] (-) TimerEvent: {}
+[36.451425] (-) TimerEvent: {}
+[36.553354] (-) TimerEvent: {}
+[36.654543] (-) TimerEvent: {}
+[36.755430] (-) TimerEvent: {}
+[36.856686] (-) TimerEvent: {}
+[36.947495] (f_vigs_slam) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2\n'}
+[36.947878] (f_vigs_slam) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[36.951197] (f_vigs_slam) CommandEnded: {'returncode': 2}
+[36.957323] (-) TimerEvent: {}
+[36.962519] (f_vigs_slam) JobEnded: {'identifier': 'f_vigs_slam', 'rc': 2}
+[36.964072] (-) EventReactorShutdown: {}

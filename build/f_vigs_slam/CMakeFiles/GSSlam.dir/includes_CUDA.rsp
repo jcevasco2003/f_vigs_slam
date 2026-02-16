@@ -1,0 +1,1 @@
+-I/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include -I"/usr/local/cuda/targets/x86_64-linux/include" -isystem /usr/local/include/opencv4 -isystem /usr/include/eigen3

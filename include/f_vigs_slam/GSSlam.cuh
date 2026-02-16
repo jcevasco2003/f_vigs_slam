@@ -1,7 +1,10 @@
 #pragma once
 
 #include <opencv2/core.hpp>
+#include <opencv2/core/cuda.hpp>
 #include <thrust/device_vector.h>
+#include "f_vigs_slam/GSCudaKernels.cuh"
+#include "f_vigs_slam/KeyframeSelector.hpp"
 #include "f_vigs_slam/RepresentationClasses.hpp"
 #include "f_vigs_slam/Preintegration.hpp"
 #include "f_vigs_slam/MarginalizationFactor.hpp"
@@ -9,12 +12,16 @@
 #include <atomic>
 #include <memory>
 #include <mutex>
+#include <string>
 #include <thread>
 
 // Definimos la clase que se encarga del codigo principal a optimizar en CUDA
 
 namespace f_vigs_slam
 {
+    class RgbdPoseCostFunction;
+    class ImuCostFunction;
+
     class GSSlam
     {
     public:
@@ -32,6 +39,7 @@ namespace f_vigs_slam
         inline void setGaussianIterations(int it) { gaussian_iterations_ = std::max(1, it); }
         inline void setEtaPose(float eta) { eta_pose_ = std::max(1e-5f, eta); }
         inline void setEtaGaussian(float eta) { eta_gaussian_ = std::max(1e-5f, eta); }
+        inline void setGaussianSamplingMethod(const std::string &method) { gaussian_sampling_method_ = method; }
 
         void initializeGaussiansFromRgbd(const cv::Mat &rgb,
                                          const cv::Mat &depth,
@@ -52,6 +60,12 @@ namespace f_vigs_slam
                        int width, int height);
         void rasterizeWithErrors(const cv::Mat &rgb_gt, const cv::Mat &depth_gt);
         void rasterizeFill(cv::cuda::GpuMat &rendered_rgb, cv::cuda::GpuMat &rendered_depth);
+
+        bool renderView(const CameraPose &camera_pose,
+                const IntrinsicParameters &intrinsics,
+                int width, int height,
+                cv::cuda::GpuMat &rendered_rgb,
+                cv::cuda::GpuMat &rendered_depth);
         
         // Optimización de pose visual multi-escala
         void optimizePose(int nb_iterations, float eta = 0.01f);
@@ -79,6 +93,9 @@ namespace f_vigs_slam
         inline const CameraPose& getCameraPose() const { return current_pose_; }
         inline const double* getImuPose() const { return P_cur_; }
         inline const double* getImuVelocity() const { return VB_cur_; }
+        inline bool hasIntrinsics() const { return intrinsics_set_; }
+        inline int getImageWidth() const { return pyr_color_.empty() ? 0 : pyr_color_[0].cols; }
+        inline int getImageHeight() const { return pyr_color_.empty() ? 0 : pyr_color_[0].rows; }
         
         // ===== IMU METHODS =====
         /**
@@ -155,8 +172,9 @@ namespace f_vigs_slam
         void updateCameraPoseFromImu();
 
         // ===== GAUSSIANAS Y DATOS =====
-        GaussiansData gaussians_;
+        Gaussians gaussians_;
         thrust::device_vector<uint32_t> instance_counter_;
+        thrust::device_vector<uint32_t> instance_counter_screen_;
 
         // ===== PARAMETROS INTRÍNSECOS =====
         IntrinsicParameters intrinsics_;
@@ -204,6 +222,7 @@ namespace f_vigs_slam
         // ===== GRADIENTES Y DATOS DE OPTIMIZACIÓN =====
         thrust::device_vector<float3> gaussian_gradients_;  // Gradientes de posición
         thrust::device_vector<float> opacity_gradients_;    // Gradientes de opacidad
+        thrust::device_vector<AdamStateGaussian3D> adam_states_;  // Estado Adam persistente por gaussiana
         
         // ===== ESTADO IMU =====
         bool imu_initialized_ = false;  // Flag de inicialización IMU
@@ -227,6 +246,7 @@ namespace f_vigs_slam
         int gaussian_iterations_ = 10;
         float eta_pose_ = 0.01f;
         float eta_gaussian_ = 0.002f;
+        std::string gaussian_sampling_method_ = "beta_binomial";
 
         // ===== CERES (reutilizable) =====
         ceres::Problem problem_;
@@ -250,16 +270,10 @@ namespace f_vigs_slam
         
         // ===== KEYFRAMES =====
         std::vector<KeyframeData> keyframes_;
+        KeyframeSelector keyframe_selector_;
         std::vector<uint32_t> keyframe_gaussian_counts_;  // Número de gaussianas por keyframe
         int current_keyframe_idx_ = 0;
         float covisibility_threshold_ = 0.6f;
-        
-        // ===== FACTORES DE OPTIMIZACIÓN (CERES) =====
-        ceres::CostFunction* imu_cost_ = nullptr;  // Factor IMU preintegrado
-        ceres::CostFunction* marg_cost_ = nullptr;  // Prior marginalizado
-        
-        // Info de marginalización para siguiente keyframe
-        MarginalizationInfo* marginalization_info_ = nullptr;
         
         // ===== CONTADORES =====
         int nb_images_processed_ = 0;
@@ -269,5 +283,5 @@ namespace f_vigs_slam
         std::thread optimize_thread_;
         std::atomic<bool> stop_optimization_{false};
         std::mutex optimization_mutex_;
-    }
+    };
 }

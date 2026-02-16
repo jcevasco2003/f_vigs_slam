@@ -86,7 +86,7 @@ namespace f_vigs_slam
         // Aproximación de primer orden: log(q) = 2 * [qx, qy, qz] + error despreciable
         xi_minus_xj[3] = 2.0 * (-qi_w * qj_xyz.x() + qi_xyz.x() * qi_w - qi_xyz.y() * qj_xyz.z() + qi_xyz.z() * qj_xyz.y());
         xi_minus_xj[4] = 2.0 * (-qi_w * qj_xyz.y() + qi_xyz.x() * qj_xyz.z() + qi_xyz.y() * qi_w - qi_xyz.z() * qj_xyz.x());
-        xi_minus_xj[5] = 2.0 * (-qi_w * qj_xyz.z() - qi_xyz.x() * qj_xyz.y() + qi_xyz.y() * qj_xyz.x() + qi_xyz.z() * qi_w());
+        xi_minus_xj[5] = 2.0 * (-qi_w * qj_xyz.z() - qi_xyz.x() * qj_xyz.y() + qi_xyz.y() * qj_xyz.x() + qi_xyz.z() * qi_w);
     }
 
     Eigen::MatrixXd PoseLocalParameterization::boxMinusJacobianLeft(double const *xi, double const *xj) const

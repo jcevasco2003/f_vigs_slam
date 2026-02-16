@@ -1,0 +1,4 @@
+source;share/f_vigs_slam/local_setup.bash
+source;share/f_vigs_slam/local_setup.dsv
+source;share/f_vigs_slam/local_setup.sh
+source;share/f_vigs_slam/local_setup.zsh

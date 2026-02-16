@@ -2517,6 +2517,63 @@ namespace f_vigs_slam
         delta_gaussians_3d[idx] = delta_3d;
     }
 
+    __inline__ __device__ float adamStep(float &m,
+                                         float &v,
+                                         float grad,
+                                         const float eta,
+                                         const float alpha1,
+                                         const float beta1,
+                                         const float beta1t,
+                                         const float alpha2,
+                                         const float beta2,
+                                         const float beta2t,
+                                         const float epsilon)
+    {
+        // Actualizamos momento y varianza
+        m = alpha1 * grad + beta1 * m;
+        v = alpha2 * grad * grad + beta2 * v;
+        
+        // Aplicamos la correccion
+        float m_hat = beta1t * m;
+        float v_hat = beta2t * v;
+        
+        // Devolvemos el siguiente paso
+        return eta * m_hat * __frsqrt_rn(v_hat + epsilon);
+    }
+
+    __inline__ __device__ float3 adamStep(float3 &m,
+                                          float3 &v,
+                                          float3 grad,
+                                          const float eta,
+                                          const float alpha1,
+                                          const float beta1,
+                                          const float beta1t,
+                                          const float alpha2,
+                                          const float beta2,
+                                          const float beta2t,
+                                          const float epsilon)
+    {
+        float3 res;
+        
+        res.x = adamStep(m.x, v.x, grad.x,
+                        eta,
+                        alpha1, beta1, beta1t,
+                        alpha2, beta2, beta2t,
+                        epsilon);
+        res.y = adamStep(m.y, v.y, grad.y,
+                        eta,
+                        alpha1, beta1, beta1t,
+                        alpha2, beta2, beta2t,
+                        epsilon);
+        res.z = adamStep(m.z, v.z, grad.z,
+                        eta,
+                        alpha1, beta1, beta1t,
+                        alpha2, beta2, beta2t,
+                        epsilon);
+        
+        return res;
+    }
+
     __global__ void updateGaussiansParametersAdam_kernel(
         float3 *positions,
         float3 *scales,
@@ -2536,18 +2593,90 @@ namespace f_vigs_slam
             return;
         }
 
-        (void)positions;
-        (void)scales;
-        (void)orientations;
-        (void)colors;
-        (void)alphas;
-        (void)adam_states;
-        (void)deltas_3d;
-        (void)adam_eta;
-        (void)adam_beta1;
-        (void)adam_beta2;
-        (void)adam_eps;
-        // TODO: Apply Adam updates to gaussian parameters (see VIGS-Fusion).
+        DeltaGaussian3D delta = deltas_3d[idx];
+        if (delta.n == 0) {
+            return;  // Skip Gaussians with no gradient
+        }
+        
+        AdamStateGaussian3D adam_state = adam_states[idx];
+
+        // Avanzamos un paso
+        adam_state.k += 1.f;
+
+        // Hiperparametro alpha = 1 - beta
+        float alpha1 = 1.f - adam_beta1;
+        float alpha2 = 1.f - adam_beta2;
+
+        // Correccion de bias: 1 / (1 - beta^t)
+        float beta1t = __frcp_rn(1.f - __powf(adam_beta1, adam_state.k));
+        float beta2t = __frcp_rn(1.f - __powf(adam_beta2, adam_state.k));
+
+        // Cargamos parametros
+        float3 position = positions[idx];
+        float3 scale = scales[idx];
+        float4 orientation = orientations[idx];
+        float3 color = colors[idx];
+        float alpha = alphas[idx];
+
+        // La posicion se actualiza directamente
+        position += adamStep(adam_state.m_position,
+                            adam_state.v_position,
+                            delta.position,
+                            adam_eta,
+                            alpha1, adam_beta1, beta1t,
+                            alpha2, adam_beta2, beta2t,
+                            adam_eps);
+
+        // La orientacion se actualiza en el espacio tangente de SO(3) para mantener la normalizacion del cuaternion
+        float3 dq = adamStep(adam_state.m_orientation,
+                            adam_state.v_orientation,
+                            delta.orientation,
+                            adam_eta,
+                            alpha1, adam_beta1, beta1t,
+                            alpha2, adam_beta2, beta2t,
+                            adam_eps);
+        Eigen::Map<Eigen::Quaternionf> q_gauss((float *)&orientation);
+        q_gauss = q_gauss * Eigen::Quaternionf(1.f, 0.5f * dq.x, 0.5f * dq.y, 0.5f * dq.z);
+        q_gauss.normalize();
+
+        // La escala se actualiza directamente
+        scale += adamStep(adam_state.m_scale,
+                         adam_state.v_scale,
+                         delta.scale,
+                         adam_eta,
+                         alpha1, adam_beta1, beta1t,
+                         alpha2, adam_beta2, beta2t,
+                         adam_eps);
+
+        // El color se actualiza directamente
+        color += adamStep(adam_state.m_color,
+                         adam_state.v_color,
+                         delta.color,
+                         adam_eta,
+                         alpha1, adam_beta1, beta1t,
+                         alpha2, adam_beta2, beta2t,
+                         adam_eps);
+
+        // La opacidad se actualiza en el espacio logit para mantenerla en el rango (0, 1)
+        float dalpha = adamStep(adam_state.m_alpha,
+                               adam_state.v_alpha,
+                               delta.alpha,
+                               adam_eta,
+                               alpha1, adam_beta1, beta1t,
+                               alpha2, adam_beta2, beta2t,
+                               adam_eps);
+        float alpha_s = __logf(alpha / (1.f - alpha)) + dalpha / (alpha - alpha * alpha);
+        alpha = max(0.01f, min(0.99f, 1.f / (1.f + __expf(-alpha_s))));
+
+        //Actualizamos los parametros y clampeamos para mantener valores utiles e interpretables
+        positions[idx] = position;
+        scales[idx] = max(make_float3(0.001f), scale);
+        orientations[idx] = orientation;
+        colors[idx] = min(make_float3(1.f, 1.f, 1.f), max(make_float3(0.f, 0.f, 0.f), color));
+        alphas[idx] = alpha;
+
+
+        adam_states[idx] = adam_state;
     }
 
 }
