@@ -1,0 +1,19 @@
+[0.013s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.123s] [  6%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o[0m
+[0.127s] [ 13%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o[0m
+[6.490s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh(188)[0m: [01;31merror[0m: "[01misInitialized[0m" has already been declared in the current scope
+[6.490s]           bool isInitialized;
+[6.490s]                ^
+[6.490s] 
+[6.965s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh(188)[0m: [01;31merror[0m: "[01misInitialized[0m" has already been declared in the current scope
+[6.965s]           bool isInitialized;
+[6.965s]                ^
+[6.965s] 
+[7.231s] 1 error detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/RgbdPoseCost.cu".
+[7.345s] gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:107: CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o] Error 2
+[7.345s] gmake[2]: *** Waiting for unfinished jobs....
+[8.033s] 1 error detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu".
+[8.150s] gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:77: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o] Error 2
+[8.151s] gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+[8.151s] gmake: *** [Makefile:146: all] Error 2
+[8.154s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

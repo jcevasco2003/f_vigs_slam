@@ -30,13 +30,14 @@ namespace f_vigs_slam
 
             tf_buffer_ = std::make_unique<tf2_ros::Buffer>(this->get_clock());
             tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+            tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(this);
 
             // Declaramos parametros y topicos del nodo, luego los leemos
             this->declare_parameter<std::string>("imu_topic", "imu");
             this->declare_parameter<std::string>("depth_topic", "image_depth");
             this->declare_parameter<std::string>("color_topic", "image_color");
             this->declare_parameter<std::string>("camera_info_topic", "camera_info");
-            this->declare_parameter<std::string>("imu_preint_topic", "imu_preint");
+            this->declare_parameter<std::string>("imu_preint_topic", "");
             this->declare_parameter<std::string>("world_frame_id", "world");
 
             this->declare_parameter<double>("acc_n", 0.1);
@@ -51,6 +52,7 @@ namespace f_vigs_slam
             auto imu_preint_topic = this->get_parameter("imu_preint_topic").as_string();
             if (imu_preint_topic.empty()) {
                 imu_preint_topic = imu_topic;
+                RCLCPP_INFO(this->get_logger(), "Using imu_topic '%s' for IMU subscription", imu_preint_topic.c_str());
             }
             world_frame_id_ = this->get_parameter("world_frame_id").as_string();
 
@@ -89,20 +91,28 @@ namespace f_vigs_slam
 
             auto sensor_qos = rclcpp::SensorDataQoS();
             depth_sub_ = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(
-                this->shared_from_this(), depth_topic, sensor_qos);
+                this, depth_topic, sensor_qos);
             color_sub_ = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(
-                this->shared_from_this(), color_topic, sensor_qos);
+                this, color_topic, sensor_qos);
 
             // Para el algoritmo es necesario que las imagenes de color y profundidad
-            // esten sincronizadas
+            // esten sincronizadas. Increased queue from 10 to 50 for better timing tolerance
             rgbd_sync_ = std::make_shared<message_filters::Synchronizer<RGBDSyncPolicy>>(
-                RGBDSyncPolicy(10), *color_sub_, *depth_sub_);
+                RGBDSyncPolicy(50), *color_sub_, *depth_sub_);
             rgbd_sync_->registerCallback(
                 std::bind(&GSSlamNode::rgbdCallback, this, std::placeholders::_1, std::placeholders::_2));
 
             camera_info_sub_ = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-                camera_info_topic, rclcpp::QoS(10).transient_local(),
+                camera_info_topic, rclcpp::SensorDataQoS(),
                 std::bind(&GSSlamNode::cameraInfoCallback, this, std::placeholders::_1));
+
+            // Diagnostic subscribers to monitor individual RGB/Depth arrivals
+            color_diag_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
+                color_topic, rclcpp::SensorDataQoS(),
+                std::bind(&GSSlamNode::colorDiagCallback, this, std::placeholders::_1));
+            depth_diag_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
+                depth_topic, rclcpp::SensorDataQoS(),
+                std::bind(&GSSlamNode::depthDiagCallback, this, std::placeholders::_1));
 
             // Crear publishers de odometría
             odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("odom", 10);
@@ -143,8 +153,10 @@ namespace f_vigs_slam
 
     void GSSlamNode::cameraInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg)
     {
-        RCLCPP_DEBUG(this->get_logger(), "CameraInfo received: frame_id=%s",
-                     msg->header.frame_id.c_str());
+        RCLCPP_INFO(this->get_logger(), "CameraInfo received! frame_id=%s", msg->header.frame_id.c_str());
+        RCLCPP_INFO(this->get_logger(), "imu_frame_id_='%s', camera_frame_id_='%s'", 
+                    imu_frame_id_.c_str(), camera_frame_id_.c_str());
+        
         // Los parametros intrinsecos se representan en K con K =:
         // [fx  0 cx]
         // [ 0 fy cy]
@@ -160,20 +172,27 @@ namespace f_vigs_slam
 
         if (!imu_frame_id_.empty() && !camera_frame_id_.empty())
         {
+            RCLCPP_INFO(this->get_logger(), "Looking up transform from %s to %s", 
+                        imu_frame_id_.c_str(), camera_frame_id_.c_str());
             try
             {
+                // Use current timestamp with 0.5s timeout for TF lookup
                 auto t = tf_buffer_->lookupTransform(
                     imu_frame_id_, camera_frame_id_,
-                    tf2::TimePointZero);
+                    this->now(), tf2::Duration(std::chrono::milliseconds(500)));
 
                 tf2::fromMsg(t.transform.rotation, q_imu_cam_);    // rotate from camera to IMU
                 tf2::fromMsg(t.transform.translation, t_imu_cam_); // pos camera in imu frame
                 impl_->gs_core_.setImuToCamExtrinsics(t_imu_cam_, q_imu_cam_);
                 hasCameraInfo = true;
+                RCLCPP_INFO(this->get_logger(), "Transform found! hasCameraInfo=true");
             }
             catch (const tf2::TransformException &ex)
             {
+                RCLCPP_WARN(this->get_logger(), "Transform lookup failed: %s", ex.what());
                 RCLCPP_WARN(this->get_logger(), "No IMU->camera transform yet: %s", ex.what());
+                RCLCPP_WARN(this->get_logger(), "Ensure TF tree connects: world -> ... -> %s and world -> ... -> %s", 
+                            imu_frame_id_.c_str(), camera_frame_id_.c_str());
             }
         }
     }
@@ -183,8 +202,11 @@ namespace f_vigs_slam
         last_imu_callback_time_ = this->now();
         imu_frame_id_ = msg->header.frame_id;
 
-        RCLCPP_DEBUG(this->get_logger(), "IMU received: frame_id=%s ts=%u.%u",
-            msg->header.frame_id.c_str(), msg->header.stamp.sec, msg->header.stamp.nanosec);
+        static int imu_count = 0;
+        if (++imu_count % 50 == 0) {
+            RCLCPP_INFO(this->get_logger(), "IMU received: count=%d, frame_id=%s, hasCameraInfo=%d, nb_init_imu=%d",
+                imu_count, msg->header.frame_id.c_str(), hasCameraInfo, nb_init_imu_);
+        }
 
         Eigen::Vector3d raw_acc(msg->linear_acceleration.x,
                                 msg->linear_acceleration.y,
@@ -199,9 +221,10 @@ namespace f_vigs_slam
         {
             try
             {
+                // Use current timestamp with timeout for TF lookup
                 auto t = tf_buffer_->lookupTransform(
                     imu_frame_id_, camera_frame_id_,
-                    tf2::TimePointZero);
+                    this->now(), tf2::Duration(std::chrono::milliseconds(100)));
 
                 tf2::fromMsg(t.transform.rotation, q_imu_cam_);
                 tf2::fromMsg(t.transform.translation, t_imu_cam_);
@@ -210,12 +233,13 @@ namespace f_vigs_slam
             }
             catch (const tf2::TransformException &ex)
             {
-                RCLCPP_WARN(this->get_logger(), "No IMU->camera transform yet: %s", ex.what());
+                RCLCPP_DEBUG(this->get_logger(), "No IMU->camera transform yet: %s", ex.what());
             }
         }
 
         // Sin cámara no seguimos para mantener sincronía con RGBD
         if (!hasCameraInfo) {
+            RCLCPP_INFO_ONCE(this->get_logger(), "Waiting for camera info before processing IMU");
             return;
         }
 
@@ -318,6 +342,7 @@ namespace f_vigs_slam
 
         sensor_msgs::msg::Imu::SharedPtr imu_cache(new sensor_msgs::msg::Imu(*msg));
         imu_cache_preint_.add(imu_cache);
+        RCLCPP_DEBUG(this->get_logger(), "IMU added to cache");
 
         syncRgbdImu();
     }
@@ -328,19 +353,47 @@ namespace f_vigs_slam
                      msg->header.frame_id.c_str(), msg->header.stamp.sec, msg->header.stamp.nanosec);
     }
 
+    void GSSlamNode::colorDiagCallback(const sensor_msgs::msg::Image::SharedPtr msg)
+    {
+        auto now = this->now();
+        if (last_color_diag_time_.nanoseconds() == 0 || (now - last_color_diag_time_).seconds() > 1.0) {
+            RCLCPP_INFO(this->get_logger(), "[DIAG] Color image received: %ux%u, encoding=%s, stamp=%ld.%09ld",
+                msg->width, msg->height, msg->encoding.c_str(),
+                msg->header.stamp.sec, msg->header.stamp.nanosec);
+            last_color_diag_time_ = now;
+        }
+    }
+
+    void GSSlamNode::depthDiagCallback(const sensor_msgs::msg::Image::SharedPtr msg)
+    {
+        auto now = this->now();
+        if (last_depth_diag_time_.nanoseconds() == 0 || (now - last_depth_diag_time_).seconds() > 1.0) {
+            RCLCPP_INFO(this->get_logger(), "[DIAG] Depth image received: %ux%u, encoding=%s, stamp=%ld.%09ld",
+                msg->width, msg->height, msg->encoding.c_str(),
+                msg->header.stamp.sec, msg->header.stamp.nanosec);
+            last_depth_diag_time_ = now;
+        }
+    }
+
     void GSSlamNode::rgbdCallback(const std::shared_ptr<const sensor_msgs::msg::Image>& color,
                                   const std::shared_ptr<const sensor_msgs::msg::Image>& depth)
     {
-        if (!hasCameraInfo) return;
+        RCLCPP_INFO(this->get_logger(), "rgbdCallback called! hasCameraInfo=%d", hasCameraInfo);
+        
+        if (!hasCameraInfo) {
+            RCLCPP_INFO(this->get_logger(), "rgbdCallback: hasCameraInfo=false, returning");
+            return;
+        }
 
         // Guardamos tiempos de llegada
         last_rgbd_callback_time_ = this->now();
         last_rgb_stamp_ = rclcpp::Time(color->header.stamp);
         last_rgb_msg_ = color;
 
-        RCLCPP_DEBUG(this->get_logger(), "RGBD received: color %ux%u enc=%s | depth %ux%u enc=%s",
-            color->width, color->height, color->encoding.c_str(),
-            depth->width, depth->height, depth->encoding.c_str());
+        RCLCPP_INFO(this->get_logger(), "RGBD received: color %ux%u | depth %ux%u, stamp=%ld",
+            color->width, color->height,
+            depth->width, depth->height,
+            last_rgb_stamp_.nanoseconds());
 
         
         // TODO: pasar ambas imágenes sincronizadas al núcleo de SLAM
@@ -376,18 +429,55 @@ namespace f_vigs_slam
 
     void GSSlamNode::syncRgbdImu()
     {
-        if (isProcessing) return;
-        if (!imuInitialized || !hasCameraInfo) return;
-        if (last_rgb_stamp_.nanoseconds() == 0) return;
+        RCLCPP_INFO(this->get_logger(), "syncRgbdImu called");
+        
+        if (isProcessing) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: isProcessing=true");
+            return;
+        }
+        if (!imuInitialized || !hasCameraInfo) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: imuInitialized=%d, hasCameraInfo=%d", imuInitialized, hasCameraInfo);
+            return;
+        }
+        if (!impl_->gs_core_.getIsInitialized()) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: GSCore not initialized");
+            return;
+        }
+        if (last_rgb_stamp_.nanoseconds() == 0) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: last_rgb_stamp=0");
+            return;
+        }
 
-        if (last_rgb_stamp_ <= last_processed_rgbd_stamp_) return;
+        // Use strict < comparison to allow frames with same timestamp (can happen with batching)
+        // But warn about out-of-order delivery
+        if (last_rgb_stamp_ < last_processed_rgbd_stamp_) {
+            static rclcpp::Time last_warning = rclcpp::Time(0, 0, RCL_ROS_TIME);
+            auto now = this->now();
+            if ((now - last_warning).seconds() > 5.0) {
+                RCLCPP_WARN(this->get_logger(), "Out-of-order RGBD frames detected: current(%.3f) < last(%.3f)",
+                            last_rgb_stamp_.seconds(), last_processed_rgbd_stamp_.seconds());
+                last_warning = now;
+            }
+            return;
+        }
 
         rclcpp::Time last_imu_time(imu_cache_preint_.getLatestTime(), RCL_ROS_TIME);
-        if (last_imu_time.nanoseconds() == 0) return;
-        if (last_imu_time < last_rgb_stamp_) return;
+        if (last_imu_time.nanoseconds() == 0) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: no IMU data in cache");
+            return;
+        }
+        if (last_imu_time < last_rgb_stamp_) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: IMU data too old (last_imu_time < last_rgb_stamp)");
+            return;
+        }
 
         auto imu_interval = imu_cache_preint_.getInterval(last_processed_rgbd_stamp_, last_rgb_stamp_);
-        if (imu_interval.empty()) return;
+        if (imu_interval.empty()) {
+            RCLCPP_INFO(this->get_logger(), "syncRgbdImu: empty IMU interval");
+            return;
+        }
+        
+        RCLCPP_INFO(this->get_logger(), "syncRgbdImu: processing %zu IMU measurements", imu_interval.size());
 
         rclcpp::Time t_prev = last_processed_rgbd_stamp_.nanoseconds() == 0
             ? rclcpp::Time(imu_interval.front()->header.stamp, RCL_ROS_TIME)
@@ -428,11 +518,11 @@ namespace f_vigs_slam
         const double *pose = impl_->gs_core_.getImuPose();
         const double *velocity = impl_->gs_core_.getImuVelocity();
 
+        odom_msg_.header.stamp = last_rgb_stamp_;
+        odom_msg_.child_frame_id = last_rgb_msg_ ? last_rgb_msg_->header.frame_id : "camera_link";
+
         if (pose && velocity)
         {
-            odom_msg_.header.stamp = last_rgb_stamp_;
-            odom_msg_.child_frame_id = last_rgb_msg_ ? last_rgb_msg_->header.frame_id : "camera_link";
-
             odom_msg_.pose.pose.position.x = pose[0];
             odom_msg_.pose.pose.position.y = pose[1];
             odom_msg_.pose.pose.position.z = pose[2];
@@ -449,13 +539,29 @@ namespace f_vigs_slam
             odom_msg_.twist.twist.angular.x = velocity[3];
             odom_msg_.twist.twist.angular.y = velocity[4];
             odom_msg_.twist.twist.angular.z = velocity[5];
-
-            odom_pub_->publish(odom_msg_);
         }
         else
         {
             RCLCPP_WARN(this->get_logger(), "getImuPose() returned null pointer!");
         }
+
+        odom_pub_->publish(odom_msg_);
+        
+        RCLCPP_INFO(this->get_logger(), "Published odometry: pos=[%.3f, %.3f, %.3f]",
+                    odom_msg_.pose.pose.position.x,
+                    odom_msg_.pose.pose.position.y,
+                    odom_msg_.pose.pose.position.z);
+
+        // Publicar transformación TF correspondiente
+        geometry_msgs::msg::TransformStamped transform;
+        transform.header.stamp = odom_msg_.header.stamp;
+        transform.header.frame_id = odom_msg_.header.frame_id;
+        transform.child_frame_id = odom_msg_.child_frame_id;
+        transform.transform.translation.x = odom_msg_.pose.pose.position.x;
+        transform.transform.translation.y = odom_msg_.pose.pose.position.y;
+        transform.transform.translation.z = odom_msg_.pose.pose.position.z;
+        transform.transform.rotation = odom_msg_.pose.pose.orientation;
+        tf_broadcaster_->sendTransform(transform);
 
         auto remaining_imu = imu_cache_preint_.getInterval(last_processed_rgbd_stamp_, imu_cache_preint_.getLatestTime());
         if (!remaining_imu.empty())
@@ -552,6 +658,17 @@ namespace f_vigs_slam
             odom_msg_.twist.twist.angular.z = velocity[5];
             
             odom_pub_->publish(odom_msg_);
+            
+            // Publicar transformación TF correspondiente
+            geometry_msgs::msg::TransformStamped transform;
+            transform.header.stamp = odom_msg_.header.stamp;
+            transform.header.frame_id = odom_msg_.header.frame_id;
+            transform.child_frame_id = odom_msg_.child_frame_id;
+            transform.transform.translation.x = odom_msg_.pose.pose.position.x;
+            transform.transform.translation.y = odom_msg_.pose.pose.position.y;
+            transform.transform.translation.z = odom_msg_.pose.pose.position.z;
+            transform.transform.rotation = odom_msg_.pose.pose.orientation;
+            tf_broadcaster_->sendTransform(transform);
             
             RCLCPP_DEBUG(this->get_logger(), 
                         "Published odometry: pos=[%.3f, %.3f, %.3f] vel=[%.3f, %.3f, %.3f]",

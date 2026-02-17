@@ -1,0 +1,4 @@
+[ 60%] Built target GSSlam
+gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:532: CMakeFiles/GSSlamNode.dir/depend] Interrupt
+gmake[1]: *** [CMakeFiles/Makefile2:166: CMakeFiles/GSSlamNode.dir/all] Interrupt
+gmake: *** [Makefile:146: all] Interrupt

@@ -1,5 +1,7 @@
 #include <f_vigs_slam/GaussianSplattingViewer.hpp>
 #include <cmath>
+#include <iomanip>
+#include <chrono>
 
 namespace f_vigs_slam
 {
@@ -16,6 +18,13 @@ namespace f_vigs_slam
           prev_mouse_y_(0)
     {
         resetView();
+        // Create frames directory if it doesn't exist
+        try {
+            std::filesystem::create_directories(frames_dir_);
+            std::cout << "[GaussianSplattingViewer] Frames will be saved to: " << frames_dir_ << std::endl;
+        } catch (const std::exception& e) {
+            std::cerr << "[GaussianSplattingViewer] Error creating frames directory: " << e.what() << std::endl;
+        }
     }
 
     GaussianSplattingViewer::~GaussianSplattingViewer()
@@ -132,19 +141,33 @@ namespace f_vigs_slam
 
     void GaussianSplattingViewer::renderLoop()
     {
-        cv::namedWindow("Gaussian Splatting Viewer", cv::WINDOW_AUTOSIZE);
-        cv::setMouseCallback("Gaussian Splatting Viewer", mouseCallbackStatic, this);
+        try {
+            cv::namedWindow("Gaussian Splatting Viewer", cv::WINDOW_AUTOSIZE);
+            cv::setMouseCallback("Gaussian Splatting Viewer", mouseCallbackStatic, this);
+            gui_enabled_ = true;
+        } catch (const cv::Exception& e) {
+            gui_enabled_ = false;
+            std::cerr << "Warning: OpenCV GUI not available (no GTK support). Viewer disabled." << std::endl;
+            std::cerr << "  Error: " << e.what() << std::endl;
+            std::cerr << "  To enable viewer, recompile OpenCV with: -D WITH_GTK=ON" << std::endl;
+        }
 
         while (!stop_.load())
         {
             render();
-            int key = cv::waitKey(30);
-            if (key >= 0) {
-                keyCallback(key);
+            if (gui_enabled_) {
+                int key = cv::waitKey(30);
+                if (key >= 0) {
+                    keyCallback(key);
+                }
+            } else {
+                std::this_thread::sleep_for(std::chrono::milliseconds(30));
             }
         }
 
-        cv::destroyWindow("Gaussian Splatting Viewer");
+        if (gui_enabled_) {
+            cv::destroyWindow("Gaussian Splatting Viewer");
+        }
     }
 
     void GaussianSplattingViewer::render()
@@ -186,17 +209,61 @@ namespace f_vigs_slam
         if (render_type_ == RENDER_TYPE_RGB)
         {
             rendered_rgb_gpu_.download(rendered_rgb_);
-            cv::imshow("Gaussian Splatting Viewer", rendered_rgb_);
+            if (gui_enabled_) {
+                cv::imshow("Gaussian Splatting Viewer", rendered_rgb_);
+            }
+            // Save frame every 10 renders (adjust as needed)
+            if (frame_counter_ % 10 == 0) {
+                saveFrame(rendered_rgb_, "rgb");
+            }
         }
         else if (render_type_ == RENDER_TYPE_DEPTH)
         {
             rendered_depth_gpu_.download(rendered_depth_);
-            cv::imshow("Gaussian Splatting Viewer", 0.15 * rendered_depth_);
+            if (gui_enabled_) {
+                cv::imshow("Gaussian Splatting Viewer", 0.15 * rendered_depth_);
+            }
+            if (frame_counter_ % 10 == 0) {
+                saveFrame(0.15 * rendered_depth_, "depth");
+            }
         }
         else if (render_type_ == RENDER_TYPE_BLOBS)
         {
             rendered_rgb_gpu_.download(rendered_rgb_);
-            cv::imshow("Gaussian Splatting Viewer", rendered_rgb_);
+            if (gui_enabled_) {
+                cv::imshow("Gaussian Splatting Viewer", rendered_rgb_);
+            }
+            if (frame_counter_ % 10 == 0) {
+                saveFrame(rendered_rgb_, "blobs");
+            }
+        }
+        frame_counter_++;
+    }
+
+    void GaussianSplattingViewer::saveFrame(const cv::Mat &frame, const std::string &type)
+    {
+        if (frame.empty()) {
+            return;
+        }
+
+        try {
+            // Create subdirectory for this type
+            std::string subdir = frames_dir_ + "/" + type;
+            std::filesystem::create_directories(subdir);
+
+            // Generate filename with index
+            std::ostringstream oss;
+            oss << subdir << "/frame_" << std::setfill('0') << std::setw(6) << frame_counter_ << ".png";
+            std::string filename = oss.str();
+
+            // Save the frame
+            if (cv::imwrite(filename, frame)) {
+                std::cout << "[GaussianSplattingViewer] Saved: " << filename << std::endl;
+            } else {
+                std::cerr << "[GaussianSplattingViewer] Failed to save: " << filename << std::endl;
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "[GaussianSplattingViewer] Error saving frame: " << e.what() << std::endl;
         }
     }
 } // namespace f_vigs_slam

@@ -3,6 +3,7 @@
 
 CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp
+ /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/CudaMathOperations.cuh
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSCudaKernels.cuh
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp
@@ -594,6 +595,8 @@ CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o
  /opt/ros/rolling/include/tf2_ros/tf2_ros/buffer_interface.hpp
  /opt/ros/rolling/include/tf2_ros/tf2_ros/create_timer_interface.hpp
  /opt/ros/rolling/include/tf2_ros/tf2_ros/qos.hpp
+ /opt/ros/rolling/include/tf2_ros/tf2_ros/transform_broadcaster.h
+ /opt/ros/rolling/include/tf2_ros/tf2_ros/transform_broadcaster.hpp
  /opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.h
  /opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.hpp
  /opt/ros/rolling/include/tf2_ros/tf2_ros/visibility_control.hpp
@@ -2653,6 +2656,7 @@ CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o
 
 CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp
+ /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/CudaMathOperations.cuh
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSCudaKernels.cuh
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh
  /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GaussianSplattingViewer.hpp
@@ -2695,6 +2699,10 @@ CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o
  /usr/include/c++/12/bits/exception.h
  /usr/include/c++/12/bits/exception_defines.h
  /usr/include/c++/12/bits/exception_ptr.h
+ /usr/include/c++/12/bits/fs_dir.h
+ /usr/include/c++/12/bits/fs_fwd.h
+ /usr/include/c++/12/bits/fs_ops.h
+ /usr/include/c++/12/bits/fs_path.h
  /usr/include/c++/12/bits/functexcept.h
  /usr/include/c++/12/bits/functional_hash.h
  /usr/include/c++/12/bits/hash_bytes.h
@@ -2784,6 +2792,7 @@ CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o
  /usr/include/c++/12/climits
  /usr/include/c++/12/clocale
  /usr/include/c++/12/cmath
+ /usr/include/c++/12/codecvt
  /usr/include/c++/12/compare
  /usr/include/c++/12/complex
  /usr/include/c++/12/cstddef
@@ -2805,6 +2814,7 @@ CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o
  /usr/include/c++/12/ext/numeric_traits.h
  /usr/include/c++/12/ext/string_conversions.h
  /usr/include/c++/12/ext/type_traits.h
+ /usr/include/c++/12/filesystem
  /usr/include/c++/12/functional
  /usr/include/c++/12/initializer_list
  /usr/include/c++/12/iomanip

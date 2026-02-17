@@ -94,6 +94,7 @@ namespace f_vigs_slam
         inline const double* getImuPose() const { return P_cur_; }
         inline const double* getImuVelocity() const { return VB_cur_; }
         inline bool hasIntrinsics() const { return intrinsics_set_; }
+        inline bool getIsInitialized() const { return isInitialized; }
         inline int getImageWidth() const { return pyr_color_.empty() ? 0 : pyr_color_[0].cols; }
         inline int getImageHeight() const { return pyr_color_.empty() ? 0 : pyr_color_[0].rows; }
         

@@ -654,6 +654,12 @@ CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o : /home/jorge/ros2_t
     /usr/include/c++/12/thread \
     /usr/include/c++/12/bits/std_thread.h \
     /usr/include/c++/12/bits/this_thread_sleep.h \
+    /usr/include/c++/12/filesystem \
+    /usr/include/c++/12/bits/fs_fwd.h \
+    /usr/include/c++/12/bits/fs_path.h \
+    /usr/include/c++/12/codecvt \
+    /usr/include/c++/12/bits/fs_dir.h \
+    /usr/include/c++/12/bits/fs_ops.h \
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh \
     /usr/local/cuda/targets/x86_64-linux/include/thrust/device_vector.h \
     /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/config.h \

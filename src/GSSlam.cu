@@ -131,9 +131,10 @@ namespace f_vigs_slam
 
         options_.linear_solver_type = ceres::DENSE_QR;
         options_.minimizer_progress_to_stdout = false;
-        options_.function_tolerance = 1e-6;
-        options_.gradient_tolerance = 1e-10;
-        options_.parameter_tolerance = 1e-8;
+        // Relajamos tolerancia
+        options_.function_tolerance = 1e-5;    // por defecto 1e-6
+        options_.gradient_tolerance = 1e-9;    // por defecto 1e-10
+        options_.parameter_tolerance = 1e-7;   // por defecto 1e-8
 
         isInitialized = true;
     }
@@ -361,12 +362,21 @@ namespace f_vigs_slam
         // ============================================================
         // PASO 5: Exclusive scan para obtener offsets
         // ============================================================
+        if (tile_counts_.empty() || tile_offsets_.empty() || tile_counts_.size() != static_cast<size_t>(n_Gaussians)) {
+            return;
+        }
+        
         thrust::exclusive_scan(
             tile_counts_.begin(),
             tile_counts_.end(),
             tile_offsets_.begin(),
             0u
         );
+        
+        if (n_Gaussians <= 0 || static_cast<size_t>(n_Gaussians - 1) >= tile_offsets_.size() || 
+            static_cast<size_t>(n_Gaussians - 1) >= tile_counts_.size()) {
+            return;
+        }
         
         uint32_t nb_instances = tile_offsets_[n_Gaussians - 1] + tile_counts_[n_Gaussians - 1];
         if (nb_instances == 0) return;
@@ -398,6 +408,19 @@ namespace f_vigs_slam
         // ============================================================
         // PASO 7: Ordenar por hash
         // ============================================================
+        // CRITICAL VALIDATION: Verificar que los iteradores son válidos
+        if (nb_instances > hashes_.size() || nb_instances > gaussian_indices_.size()) {
+            std::cerr << "ERROR: sort_by_key - Invalid size mismatch!" << std::endl;
+            std::cerr << "  nb_instances: " << nb_instances << std::endl;
+            std::cerr << "  hashes_.size(): " << hashes_.size() << std::endl;
+            std::cerr << "  gaussian_indices_.size(): " << gaussian_indices_.size() << std::endl;
+            return;
+        }
+        
+        if (nb_instances == 0) {
+            return;
+        }
+        
         thrust::sort_by_key(
             hashes_.begin(),
             hashes_.begin() + nb_instances,
@@ -431,6 +454,14 @@ namespace f_vigs_slam
         
         if (last_nb_instances_ == 0) return;
         
+        // Validar integridad de buffers críticos
+        if (gaussian_indices_.empty() || tile_ranges_.empty() || 
+            positions_2d_.empty() || covariances_2d_.empty() ||
+            depths_.empty() || p_hats_.empty()) {
+            std::cerr << "ERROR in rasterize(): Buffers vacios tras prepareRasterization()" << std::endl;
+            return;
+        }
+        
         // ============================================================
         // PASO 2: Asegurar que buffers de salida existen
         // ============================================================
@@ -451,6 +482,11 @@ namespace f_vigs_slam
         // ============================================================
         dim3 block(tile_size_.x, tile_size_.y);  // 16x16
         dim3 grid(num_tiles_.x, num_tiles_.y);
+        
+        if (grid.x == 0 || grid.y == 0) {
+            std::cerr << "ERROR in rasterize(): Invalid grid dimensions" << std::endl;
+            return;
+        }
         
         forwardPassTileKernel<<<grid, block>>>
         ((float3*)rendered_rgb_gpu_.ptr<uchar3>(),
@@ -821,24 +857,54 @@ namespace f_vigs_slam
             return;
         }
 
+        // CRITICAL VALIDATION: Verificar integridad de todos los buffers críticos
+        if (positions_2d_.empty() || depths_.empty() || inv_covariances_2d_.empty() ||
+            covariances_2d_.empty() || p_hats_.empty() || tile_ranges_.empty() || 
+            gaussian_indices_.empty() || tile_counts_.empty() || hashes_.empty()) {
+            std::cerr << "ERROR: Buffers vacios tras prepareRasterization()" << std::endl;
+            std::cerr << "  positions_2d_: " << positions_2d_.size() << std::endl;
+            std::cerr << "  depths_: " << depths_.size() << std::endl;
+            std::cerr << "  inv_covariances_2d_: " << inv_covariances_2d_.size() << std::endl;
+            std::cerr << "  tile_ranges_: " << tile_ranges_.size() << std::endl;
+            return;
+        }
+
+        // Verificar que todos los buffers tienen tamaño compatible
+        if (positions_2d_.size() != depths_.size() || 
+            positions_2d_.size() != inv_covariances_2d_.size()) {
+            std::cerr << "ERROR: Size mismatch en buffers de gaussianas: " 
+                      << positions_2d_.size() << ", " 
+                      << depths_.size() << ", "
+                      << inv_covariances_2d_.size() << std::endl;
+            return;
+        }
+
         // Paso 2: buckets por tile (prefix sum)
         int num_tiles_total = num_tiles_.x * num_tiles_.y;
-        if (num_tiles_total <= 0) {
+        if (num_tiles_total <= 0 || tile_ranges_.empty()) {
             return;
         }
 
         thrust::device_vector<uint32_t> bucket_offsets(num_tiles_total);
+        if (bucket_offsets.empty()) {
+            return;
+        }
+        
         perTileBucketCount<<<(num_tiles_total + 255) / 256, 256>>>(
             thrust::raw_pointer_cast(bucket_offsets.data()),
             thrust::raw_pointer_cast(tile_ranges_.data()),
             num_tiles_total);
+        cudaDeviceSynchronize();
 
         thrust::inclusive_scan(
             bucket_offsets.begin(),
             bucket_offsets.end(),
             bucket_offsets.begin());
 
-        uint32_t num_buckets = bucket_offsets.back();
+        uint32_t num_buckets = 0;
+        if (!bucket_offsets.empty()) {
+            num_buckets = bucket_offsets.back();
+        }
         if (num_buckets == 0) {
             return;
         }
@@ -1137,6 +1203,18 @@ namespace f_vigs_slam
             n_Gaussians);
         cudaDeviceSynchronize();
         
+        // CRITICAL VALIDATION: Verificar integridad antes de ordenar
+        if (states.size() != static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "ERROR in prune(): states size mismatch!" << std::endl;
+            std::cerr << "  states.size(): " << states.size() << std::endl;
+            std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
+            return;
+        }
+        if (gaussians_.positions.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "ERROR in prune(): positions capacity too small!" << std::endl;
+            return;
+        }
+        
         // Ordenar por estados (0 primero, 0xff al final)
         auto zip_begin = thrust::make_zip_iterator(thrust::make_tuple(
             gaussians_.positions.begin(),
@@ -1159,12 +1237,7 @@ namespace f_vigs_slam
         // Actualizar contador
         n_Gaussians -= nb_removed_host;
         
-        // Redimensionar arrays
-        gaussians_.positions.resize(n_Gaussians);
-        gaussians_.scales.resize(n_Gaussians);
-        gaussians_.orientations.resize(n_Gaussians);
-        gaussians_.colors.resize(n_Gaussians);
-        gaussians_.opacities.resize(n_Gaussians);
+        // Mantener capacidad para futuras densificaciones.
         
         if (nb_removed_host > 0) {
             std::cout << "Prune: eliminadas " << nb_removed_host << " gaussianas (quedan: " 
@@ -1227,6 +1300,18 @@ namespace f_vigs_slam
             n_Gaussians);
         cudaDeviceSynchronize();
         
+        // CRITICAL VALIDATION: Verificar integridad antes de ordenar
+        if (states.size() != static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "ERROR in removeOutliers(): states size mismatch!" << std::endl;
+            std::cerr << "  states.size(): " << states.size() << std::endl;
+            std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
+            return;
+        }
+        if (gaussians_.positions.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "ERROR in removeOutliers(): positions capacity too small!" << std::endl;
+            return;
+        }
+        
         // Ordenar por estados (0 primero, 0xff al final)
         auto zip_begin = thrust::make_zip_iterator(thrust::make_tuple(
             gaussians_.positions.begin(),
@@ -1249,12 +1334,7 @@ namespace f_vigs_slam
         // Actualizar contador
         n_Gaussians -= nb_removed_host;
         
-        // Redimensionar arrays
-        gaussians_.positions.resize(n_Gaussians);
-        gaussians_.scales.resize(n_Gaussians);
-        gaussians_.orientations.resize(n_Gaussians);
-        gaussians_.colors.resize(n_Gaussians);
-        gaussians_.opacities.resize(n_Gaussians);
+        // Mantener capacidad para futuras densificaciones.
         
         if (nb_removed_host > 0) {
             std::cout << "RemoveOutliers: eliminadas " << nb_removed_host << " gaussianas (quedan: " 
@@ -1307,14 +1387,6 @@ namespace f_vigs_slam
         cudaMemset(d_keyframeVis, 0, n_Gaussians * sizeof(unsigned char));
         cudaMemset(d_frameVis, 0, n_Gaussians * sizeof(unsigned char));
 
-        thrust::device_vector<float3> img_positions(n_Gaussians);
-        auto fill_img_positions = [&](const thrust::device_vector<float2> &pos2d,
-                                      const thrust::device_vector<float> &depths) {
-            auto begin = thrust::make_zip_iterator(thrust::make_tuple(pos2d.begin(), depths.begin()));
-            auto end = thrust::make_zip_iterator(thrust::make_tuple(pos2d.end(), depths.end()));
-            thrust::transform(begin, end, img_positions.begin(), ToFloat3());
-        };
-
         // Calculamos para el ultimo keyframe
         prepareRasterization(keyframe.getPose(), keyframe.getIntrinsics(),
                              keyframe.getWidth(), keyframe.getHeight());
@@ -1326,7 +1398,38 @@ namespace f_vigs_slam
             return 0.0f;
         }
 
-        fill_img_positions(positions_2d_, depths_);
+        // Validar que los buffers tienen datos válidos
+        if (positions_2d_.empty() || depths_.empty() || positions_2d_.size() != depths_.size()) {
+            cudaFree(d_visUnion);
+            cudaFree(d_visInter);
+            cudaFree(d_keyframeVis);
+            cudaFree(d_frameVis);
+            return 0.0f;
+        }
+
+        // Crear img_positions con el tamaño correcto (solo Gaussianas activas)
+        uint32_t valid_size = std::min(positions_2d_.size(), depths_.size());
+        if (valid_size == 0 || valid_size != inv_covariances_2d_.size() || gaussians_.opacities.size() < valid_size) {
+            // Si hay inconsistencia de tamaños, retornar
+            cudaFree(d_visUnion);
+            cudaFree(d_visInter);
+            cudaFree(d_keyframeVis);
+            cudaFree(d_frameVis);
+            return 0.0f;
+        }
+
+        thrust::device_vector<float3> img_positions(valid_size);
+        
+        // Crear zip iterator solo para elementos válidos
+        auto begin = thrust::make_zip_iterator(thrust::make_tuple(
+            positions_2d_.begin(), 
+            depths_.begin()
+        ));
+        auto end = thrust::make_zip_iterator(thrust::make_tuple(
+            positions_2d_.begin() + valid_size, 
+            depths_.begin() + valid_size
+        ));
+        thrust::transform(begin, end, img_positions.begin(), ToFloat3());
 
         computeGaussiansVisibility_kernel<<<
             dim3(num_tiles_.x, num_tiles_.y),
@@ -1353,7 +1456,38 @@ namespace f_vigs_slam
             return 0.0f;
         }
 
-        fill_img_positions(positions_2d_, depths_);
+        // Validar coherencia de buffers para el frame actual
+        if (positions_2d_.size() != depths_.size() || positions_2d_.size() != inv_covariances_2d_.size()) {
+            cudaFree(d_visUnion);
+            cudaFree(d_visInter);
+            cudaFree(d_keyframeVis);
+            cudaFree(d_frameVis);
+            return 0.0f;
+        }
+
+        // Rellenar img_positions para frame actual
+        uint32_t frame_valid_size = std::min(positions_2d_.size(), depths_.size());
+        if (frame_valid_size == 0 || frame_valid_size != inv_covariances_2d_.size() ||
+            gaussians_.opacities.size() < frame_valid_size) {
+            cudaFree(d_visUnion);
+            cudaFree(d_visInter);
+            cudaFree(d_keyframeVis);
+            cudaFree(d_frameVis);
+            return 0.0f;
+        }
+
+        if (img_positions.size() < frame_valid_size) {
+            img_positions.resize(frame_valid_size);
+        }
+        auto frame_begin = thrust::make_zip_iterator(thrust::make_tuple(
+            positions_2d_.begin(), 
+            depths_.begin()
+        ));
+        auto frame_end = thrust::make_zip_iterator(thrust::make_tuple(
+            positions_2d_.begin() + frame_valid_size, 
+            depths_.begin() + frame_valid_size
+        ));
+        thrust::transform(frame_begin, frame_end, img_positions.begin(), ToFloat3());
 
         computeGaussiansVisibility_kernel<<<
             dim3(num_tiles_.x, num_tiles_.y),
@@ -1448,13 +1582,21 @@ namespace f_vigs_slam
         }
 
         for (int i = 0; i < nb_pyr_levels_; i++) {
-            pyr_color_[i].upload(pyr_color_cpu[i]);
+            // Convertir color a float para Sobel
+            cv::Mat pyr_color_float;
+            printf("DEBUG: pyr_color_cpu[%d] type=%d (should be %d=CV_8UC3), converting to float\n", 
+                   i, pyr_color_cpu[i].type(), CV_8UC3);
+            pyr_color_cpu[i].convertTo(pyr_color_float, CV_32FC3, 1.0/255.0);
+            printf("DEBUG: pyr_color_float type=%d (should be %d=CV_32FC3)\n", 
+                   pyr_color_float.type(), CV_32FC3);
+            
+            pyr_color_[i].upload(pyr_color_float);
             pyr_depth_[i].upload(pyr_depth_cpu[i]);
 
             cv::Mat dx_cpu;
             cv::Mat dy_cpu;
-            cv::Sobel(pyr_color_cpu[i], dx_cpu, CV_32FC3, 1, 0, 3);
-            cv::Sobel(pyr_color_cpu[i], dy_cpu, CV_32FC3, 0, 1, 3);
+            cv::Sobel(pyr_color_float, dx_cpu, CV_32F, 1, 0, 3);
+            cv::Sobel(pyr_color_float, dy_cpu, CV_32F, 0, 1, 3);
             pyr_dx_[i].upload(dx_cpu);
             pyr_dy_[i].upload(dy_cpu);
         }
@@ -1726,15 +1868,21 @@ namespace f_vigs_slam
             // Verificar convergencia
             if (summary_.termination_type == ceres::CONVERGENCE)
             {
-                // Éxito
+                // Éxito - convergencia alcanzada
+                std::cerr << "INFO: Ceres converged at level " << level 
+                    << " in " << summary_.iterations.size() << " iterations" << std::endl;
             }
             else if (summary_.termination_type == ceres::NO_CONVERGENCE)
             {
-                std::cerr << "Warning: Ceres no convergió en nivel " << level << std::endl;
+                // Warning - sin convergencia pero puede seguir
+                std::cerr << "WARNING: Ceres NO_CONVERGENCE at level " << level 
+                    << ". Iterations: " << summary_.iterations.size() 
+                    << ", Final cost: " << summary_.final_cost << std::endl;
             }
             else if (summary_.termination_type == ceres::FAILURE)
             {
-                std::cerr << "Error: Ceres falló en nivel " << level << std::endl;
+                std::cerr << "ERROR: Ceres FAILURE at level " << level 
+                    << ": " << summary_.message << std::endl;
                 break;
             }
         }

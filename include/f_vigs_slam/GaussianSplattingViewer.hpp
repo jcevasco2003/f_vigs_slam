@@ -6,6 +6,8 @@
 #include <cuda_runtime.h>
 #include <atomic>
 #include <thread>
+#include <filesystem>
+#include <iostream>
 
 #include "f_vigs_slam/GSSlam.cuh"
 
@@ -27,6 +29,7 @@ namespace f_vigs_slam
         void renderLoop();
         void render();
         void resetView();
+        void saveFrame(const cv::Mat &frame, const std::string &type);
 
         GSSlam &gs_slam_;
 
@@ -54,6 +57,11 @@ namespace f_vigs_slam
 
         std::thread render_thread_;
         std::atomic<bool> stop_{false};
+        bool gui_enabled_ = true;
+
+        // Frame saving
+        int frame_counter_ = 0;
+        std::string frames_dir_ = "frames";
 
         enum {
             RENDER_TYPE_RGB = 0,
