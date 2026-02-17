@@ -1,0 +1,138 @@
+[0.000000] (-) TimerEvent: {}
+[0.000210] (f_vigs_slam) JobQueued: {'identifier': 'f_vigs_slam', 'dependencies': OrderedDict()}
+[0.000285] (f_vigs_slam) JobStarted: {'identifier': 'f_vigs_slam'}
+[0.008323] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'cmake'}
+[0.010184] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'build'}
+[0.010289] (f_vigs_slam) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', '--', '-j6', '-l6'], 'cwd': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jorge', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12.3/lib64:/opt/ros/rolling/opt/zenoh_cpp_vendor/lib:/opt/ros/rolling/opt/gz_math_vendor/lib:/opt/ros/rolling/opt/gz_utils_vendor/lib:/opt/ros/rolling/opt/rviz_ogre_vendor/lib:/opt/ros/rolling/lib/x86_64-linux-gnu:/opt/ros/rolling/opt/gz_cmake_vendor/lib:/opt/ros/rolling/lib:/usr/local/cuda-11.8/lib64:', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/jorge', 'OLDPWD': '/home/jorge/ros2_thesis_ws/src', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'rolling', 'LOGNAME': 'jorge', 'NAME': 'DESKTOP-ECKJB30', 'WSL_INTEROP': '/run/WSL/299_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/usr/local/cuda-12.3/bin:/opt/ros/rolling/bin:/usr/local/cuda-11.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/d/NVIDIA/bin:/mnt/d/NVIDIA/libnvvp:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2022.3.0/:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Users/jorge/AppData/Local/Microsoft/WindowsApps:/mnt/d/Program Files/IntelliJ IDEA Community Edition 2024.3/bin:/mnt/d/Program Files (x86)/Microsoft VS Code/bin:/mnt/c/Users/jorge/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/jorge/.dotnet/tools:/mnt/c/Users/jorge/AppData/Roaming/TinyTeX/bin/windows:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/rolling', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/rolling/opt/gz_math_vendor/lib/python:/opt/ros/rolling/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/rolling/opt/gz_math_vendor:/opt/ros/rolling/opt/gz_utils_vendor:/opt/ros/rolling/opt/gz_cmake_vendor:/opt/ros/rolling', 'WSLENV': ''}), 'shell': False}
+[0.100589] (-) TimerEvent: {}
+[0.137377] (f_vigs_slam) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o\x1b[0m\n'}
+[0.202798] (-) TimerEvent: {}
+[0.306019] (-) TimerEvent: {}
+[0.411754] (-) TimerEvent: {}
+[0.512169] (-) TimerEvent: {}
+[0.612616] (-) TimerEvent: {}
+[0.717486] (-) TimerEvent: {}
+[0.819816] (-) TimerEvent: {}
+[0.923757] (-) TimerEvent: {}
+[1.029104] (-) TimerEvent: {}
+[1.134435] (-) TimerEvent: {}
+[1.240698] (-) TimerEvent: {}
+[1.348361] (-) TimerEvent: {}
+[1.454679] (-) TimerEvent: {}
+[1.562325] (-) TimerEvent: {}
+[1.666768] (-) TimerEvent: {}
+[1.773975] (-) TimerEvent: {}
+[1.874703] (-) TimerEvent: {}
+[1.975403] (-) TimerEvent: {}
+[2.076763] (-) TimerEvent: {}
+[2.178157] (-) TimerEvent: {}
+[2.278877] (-) TimerEvent: {}
+[2.379640] (-) TimerEvent: {}
+[2.480507] (-) TimerEvent: {}
+[2.581507] (-) TimerEvent: {}
+[2.682864] (-) TimerEvent: {}
+[2.783616] (-) TimerEvent: {}
+[2.886291] (-) TimerEvent: {}
+[2.989558] (-) TimerEvent: {}
+[3.092042] (-) TimerEvent: {}
+[3.192629] (-) TimerEvent: {}
+[3.295223] (-) TimerEvent: {}
+[3.396108] (-) TimerEvent: {}
+[3.498541] (-) TimerEvent: {}
+[3.599724] (-) TimerEvent: {}
+[3.702491] (-) TimerEvent: {}
+[3.803720] (-) TimerEvent: {}
+[3.906114] (-) TimerEvent: {}
+[4.007501] (-) TimerEvent: {}
+[4.110519] (-) TimerEvent: {}
+[4.212144] (-) TimerEvent: {}
+[4.314622] (-) TimerEvent: {}
+[4.416615] (-) TimerEvent: {}
+[4.517652] (-) TimerEvent: {}
+[4.618249] (-) TimerEvent: {}
+[4.720503] (-) TimerEvent: {}
+[4.820989] (-) TimerEvent: {}
+[4.921882] (-) TimerEvent: {}
+[5.022397] (-) TimerEvent: {}
+[5.124783] (-) TimerEvent: {}
+[5.225364] (-) TimerEvent: {}
+[5.330551] (-) TimerEvent: {}
+[5.435679] (-) TimerEvent: {}
+[5.531404] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(251)\x1b[0m: \x1b[01;31merror\x1b[0m: no suitable constructor exists to convert from "uint32_t" to "f_vigs_slam::CameraPose"\n'}
+[5.531979] (f_vigs_slam) StderrLine: {'line': b'              static_cast<uint32_t>(gauss_init_size_px_),\n'}
+[5.532076] (f_vigs_slam) StderrLine: {'line': b'              ^\n'}
+[5.532155] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.532230] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(253)\x1b[0m: \x1b[01;31merror\x1b[0m: too few arguments in function call\n'}
+[5.532305] (f_vigs_slam) StderrLine: {'line': b'              gauss_init_opacity_);\n'}
+[5.532377] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[5.532448] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.535552] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(379)\x1b[0m: \x1b[01;31merror\x1b[0m: argument of type "float2 *" is incompatible with parameter of type "int"\n'}
+[5.535744] (-) TimerEvent: {}
+[5.535853] (f_vigs_slam) StderrLine: {'line': b'           thrust::raw_pointer_cast(p_hats_.data()),\n'}
+[5.535950] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[5.536028] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.536103] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(385)\x1b[0m: \x1b[01;31merror\x1b[0m: too many arguments in function call\n'}
+[5.536211] (f_vigs_slam) StderrLine: {'line': b'           3.0f);\n'}
+[5.536286] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[5.536360] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.538075] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(455)\x1b[0m: \x1b[01;31merror\x1b[0m: argument of type "float2 *" is incompatible with parameter of type "int"\n'}
+[5.538226] (f_vigs_slam) StderrLine: {'line': b'           thrust::raw_pointer_cast(p_hats_.data()),\n'}
+[5.538322] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[5.538413] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.538490] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(459)\x1b[0m: \x1b[01;31merror\x1b[0m: too many arguments in function call\n'}
+[5.538567] (f_vigs_slam) StderrLine: {'line': b'           num_tiles_.y);\n'}
+[5.538640] (f_vigs_slam) StderrLine: {'line': b'           ^\n'}
+[5.538713] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.640284] (-) TimerEvent: {}
+[5.745436] (-) TimerEvent: {}
+[5.850643] (-) TimerEvent: {}
+[5.854577] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1374)\x1b[0m: \x1b[01;31merror\x1b[0m: identifier "\x1b[01mGSS_BLOCK_SIZE\x1b[0m" is undefined\n'}
+[5.854782] (f_vigs_slam) StderrLine: {'line': b'              (n_Gaussians + GSS_BLOCK_SIZE - 1) / GSS_BLOCK_SIZE,\n'}
+[5.854864] (f_vigs_slam) StderrLine: {'line': b'                             ^\n'}
+[5.854966] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.857401] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1560)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.857696] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float3 [ int ]\n'}
+[5.857894] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.position[0] = static_cast<float>(P_cam.x());\n'}
+[5.858229] (f_vigs_slam) StderrLine: {'line': b'                              ^\n'}
+[5.858349] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.858443] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1561)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.858519] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float3 [ int ]\n'}
+[5.858592] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.position[1] = static_cast<float>(P_cam.y());\n'}
+[5.858664] (f_vigs_slam) StderrLine: {'line': b'                              ^\n'}
+[5.858735] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.858805] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1562)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.858875] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float3 [ int ]\n'}
+[5.858945] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.position[2] = static_cast<float>(P_cam.z());\n'}
+[5.859014] (f_vigs_slam) StderrLine: {'line': b'                              ^\n'}
+[5.859084] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.859154] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1565)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.859223] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float4 [ int ]\n'}
+[5.859292] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.orientation[0] = Q_cam_f.x();\n'}
+[5.859361] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[5.859429] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.859498] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1566)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.859568] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float4 [ int ]\n'}
+[5.859649] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.orientation[1] = Q_cam_f.y();\n'}
+[5.859719] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[5.859851] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.859929] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1567)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.860001] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float4 [ int ]\n'}
+[5.860072] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.orientation[2] = Q_cam_f.z();\n'}
+[5.860143] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[5.860221] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.860292] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[0m\x1b[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1568)\x1b[0m: \x1b[01;31merror\x1b[0m: no operator "\x1b[01m[]\x1b[0m" matches these operands\n'}
+[5.860362] (f_vigs_slam) StderrLine: {'line': b'            operand types are: float4 [ int ]\n'}
+[5.860432] (f_vigs_slam) StderrLine: {'line': b'          camera_pose.orientation[3] = Q_cam_f.w();\n'}
+[5.860501] (f_vigs_slam) StderrLine: {'line': b'                                 ^\n'}
+[5.860571] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.954469] (-) TimerEvent: {}
+[6.059817] (-) TimerEvent: {}
+[6.164945] (-) TimerEvent: {}
+[6.180943] (f_vigs_slam) StderrLine: {'line': b'14 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu".\n'}
+[6.268435] (-) TimerEvent: {}
+[6.283221] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:77: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o] Error 2\n'}
+[6.283685] (f_vigs_slam) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2\n'}
+[6.284003] (f_vigs_slam) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[6.286870] (f_vigs_slam) CommandEnded: {'returncode': 2}
+[6.296419] (f_vigs_slam) JobEnded: {'identifier': 'f_vigs_slam', 'rc': 2}
+[6.298518] (-) EventReactorShutdown: {}

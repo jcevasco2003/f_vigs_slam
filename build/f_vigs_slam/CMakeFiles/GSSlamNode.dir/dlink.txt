@@ -1,0 +1,1 @@
+/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -ccbin=/usr/bin/gcc-12 -w -Xcompiler=-fPIC -Wno-deprecated-gpu-targets -shared -dlink --options-file CMakeFiles/GSSlamNode.dir/deviceObjects1.rsp -o CMakeFiles/GSSlamNode.dir/cmake_device_link.o --options-file CMakeFiles/GSSlamNode.dir/deviceLinkLibs.rsp

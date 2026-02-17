@@ -1,0 +1,12 @@
+[  6%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o[0m
+[ 13%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o[0m
+[ 20%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o[0m
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1623)[0m: [01;31merror[0m: identifier "[01mgid[0m" is undefined
+                      depth_rendered = depths_gaussian[gid] + s_pHats[i].x * dx + s_pHats[i].y * dy;
+                                                       ^
+
+1 error detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu".
+gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:92: CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o] Error 2
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

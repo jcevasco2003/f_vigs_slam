@@ -1,0 +1,44 @@
+[0.197s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[1.354s] [ 53%] Built target GSSlam
+[1.626s] [ 61%] [32mBuilding CUDA object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o[0m
+[105.329s] [ 69%] [32m[1mLinking CUDA device code CMakeFiles/GSSlamNode.dir/cmake_device_link.o[0m
+[105.720s] [ 76%] [32m[1mLinking CXX shared library libGSSlamNode.so[0m
+[113.040s] [ 84%] Built target GSSlamNode
+[113.900s] [ 92%] [32mBuilding CXX object CMakeFiles/gs_slam_node.dir/src/gs_slam_node.cpp.o[0m
+[115.656s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:12[m[K,
+[115.656s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/gs_slam_node.cpp:2[m[K:
+[115.657s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/buffer.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning BUFFER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[115.657s]    40 |   #[01;35m[Kwarning[m[K BUFFER_HEADER_DEPRECATION
+[115.657s]       |    [01;35m[K^~~~~~~[m[K
+[115.713s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:13[m[K:
+[115.713s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning TRANSFORM_LISTENER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[115.714s]    40 |   #[01;35m[Kwarning[m[K TRANSFORM_LISTENER_HEADER_DEPRECATION
+[115.714s]       |    [01;35m[K^~~~~~~[m[K
+[123.020s] [100%] [32m[1mLinking CXX executable gs_slam_node[0m
+[128.199s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeGaussiansCovisibility_kernel(unsigned int*, unsigned int*, unsigned char*, unsigned char*, unsigned int)'
+[128.201s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::generateTileHashes_kernel(unsigned long*, unsigned int*, unsigned int const*, float2 const*, float3 const*, float const*, float2 const*, int, int, int, int, int, float)'
+[128.204s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::countTilesPerGaussian_kernel(unsigned int*, float2 const*, float3 const*, int, int, int, int, int, float)'
+[128.206s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeGaussiansVisibility_kernel(unsigned char*, uint2 const*, unsigned int const*, float3 const*, float3 const*, float const*, uint2, unsigned int, unsigned int)'
+[128.209s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::pruneGaussians_kernel(unsigned int*, unsigned char*, float3 const*, float const*, float, float, unsigned int)'
+[128.210s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::optimizeGaussiansForwardPass(uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float const*, float3 const*, float const*, unsigned int const*, unsigned int*, float*, float3*, float*, unsigned int*, unsigned int*, float3*, float*, float3*, float*, float3 const*, float const*, float3, uint2, int, int)'
+[128.213s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::optimizeGaussiansPerGaussianPass(uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float const*, float3 const*, float const*, unsigned int const*, unsigned int const*, float const*, float3 const*, unsigned int const*, unsigned int const*, float3 const*, float const*, float3 const*, float const*, f_vigs_slam::DeltaGaussian2D*, float, float, uint2, int, int, int)'
+[128.217s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::densifyGaussians_kernel(float3*, float3*, float4*, float3*, float*, unsigned int*, uchar3 const*, unsigned long, float const*, unsigned long, float4 const*, unsigned long, float const*, unsigned long, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)'
+[128.220s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::~KeyframeSelector()'
+[128.223s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::updateGaussiansParametersAdam_kernel(float3*, float3*, float4*, float3*, float*, f_vigs_slam::AdamStateGaussian3D*, f_vigs_slam::DeltaGaussian3D const*, float, float, float, float, int)'
+[128.224s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeOutliers_kernel(float*, float*, uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float const*, float const*, float const*, unsigned long, uint2, unsigned int, unsigned int)'
+[128.227s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeDensityMask_kernel(float*, uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float3 const*, float const*, float const*, unsigned long, uint2, unsigned int, unsigned int, unsigned long)'
+[128.231s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::getRgbdPoseJacobians(f_vigs_slam::PoseOptimizationRgbdData*, uint2 const*, unsigned int const*, float2 const*, float const*, float3 const*, float2 const*, float3 const*, float const*, float3 const*, float3 const*, float3 const*, float const*, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, float3, float, float, float, int, int, int, int)'
+[128.233s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::sample(int, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<float, std::allocator<float> > const&)'
+[128.235s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::forwardPassTileKernel(float3*, float*, unsigned int const*, uint2 const*, float2 const*, float3 const*, float3 const*, float const*, float const*, float2 const*, int, int, int, int)'
+[128.237s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeDeltaGaussians3D_kernel(f_vigs_slam::DeltaGaussian3D*, float3 const*, float3 const*, float4 const*, float3 const*, float const*, f_vigs_slam::DeltaGaussian2D const*, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, float, int)'
+[128.240s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::perTileBucketCount(unsigned int*, uint2 const*, int)'
+[128.242s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::KeyframeSelector()'
+[128.245s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeIndicesRanges_kernel(uint2*, unsigned long const*, unsigned int, int)'
+[128.247s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::projectGaussiansWorldToScreen_kernel(float2*, float3*, float3*, float*, float2*, float3 const*, float3 const*, float4 const*, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, int, int, int)'
+[128.249s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::initGaussiansFromRgbd_kernel(float3*, float3*, float4*, float3*, float*, unsigned int*, unsigned int, uchar3 const*, unsigned long, float const*, unsigned long, int, int, f_vigs_slam::IntrinsicParameters, f_vigs_slam::CameraPose, unsigned int, unsigned int, float, float)'
+[128.251s] /usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::removeOutliers_kernel(unsigned int*, unsigned char*, float const*, float const*, float, unsigned int)'
+[128.276s] collect2: error: ld returned 1 exit status
+[128.278s] gmake[2]: *** [CMakeFiles/gs_slam_node.dir/build.make:290: gs_slam_node] Error 1
+[128.279s] gmake[1]: *** [CMakeFiles/Makefile2:194: CMakeFiles/gs_slam_node.dir/all] Error 2
+[128.279s] gmake: *** [Makefile:146: all] Error 2
+[128.282s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

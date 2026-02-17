@@ -4,6 +4,7 @@
 #include <Eigen/Dense>
 #include <opencv2/core/cuda.hpp>
 #include "RepresentationClasses.hpp"
+#include "CudaMathOperations.cuh"
 
 namespace f_vigs_slam
 {
@@ -152,6 +153,7 @@ namespace f_vigs_slam
         const float2 *positions_2d,
         const float3 *covariances_2d,
         const float *depths,
+        const float2 *pHats,
         int width,
         int height,
         int n_gaussians,
@@ -264,6 +266,7 @@ namespace f_vigs_slam
         const float3 *colors,
         const float *alphas,
         const float *depths,
+        const float2 *pHats,
         int width,
         int height,
         int num_tiles_x,
@@ -483,9 +486,10 @@ namespace f_vigs_slam
      * @param totalAlpha        [OUT] Alpha total acumulado [nbGaussians]
      * @param ranges            [IN]  Rangos de índices por tile
      * @param indices           [IN]  Índices ordenados de gaussianas
-     * @param imgPositions      [IN]  Posiciones proyectadas (u, v, depth)
-     * @param imgSigmas         [IN]  Covarianzas 2D
-     * @param imgInvSigmas      [IN]  Covarianzas 2D invertidas
+    * @param positions_2d      [IN]  Posiciones proyectadas (u, v)
+    * @param inv_covariances_2d [IN] Covarianzas 2D invertidas
+    * @param depths            [IN]  Profundidades por gaussiana
+    * @param alphas            [IN]  Opacidades por gaussiana
      * @param pHats             [IN]  Coeficientes de variación de profundidad
     * @param depth             [IN]  Profundidad observada (puntero GPU)
     * @param depth_step        [IN]  Paso en bytes entre filas de depth
@@ -498,10 +502,11 @@ namespace f_vigs_slam
         float *totalAlpha,
         const uint2 *ranges,
         const uint32_t *indices,
-        const float3 *imgPositions,
-        const float3 *imgSigmas,
-        const float3 *imgInvSigmas,
+        const float2 *positions_2d,
+        const float3 *inv_covariances_2d,
         const float2 *pHats,
+        const float *depths,
+        const float *alphas,
         const float *depth,
         size_t depth_step,
         uint2 numTiles,
@@ -543,7 +548,7 @@ namespace f_vigs_slam
      * @param maskData   [OUT] Mask por pixel (float) en GPU
      * @param ranges     [IN]  Rangos de indices por tile
      * @param indices    [IN]  Indices ordenados de gaussianas
-     * @param imgPositions [IN] Posiciones proyectadas (u, v, depth)
+     * @param imgPositions [IN] Posiciones proyectadas (u, v)
      * @param imgInvSigmas [IN] Covarianzas 2D invertidas
      * @param pHats      [IN]  Coeficientes de variacion de profundidad
      * @param colors     [IN]  Colores RGB por gaussiana
@@ -559,12 +564,13 @@ namespace f_vigs_slam
         float *maskData,
         const uint2 *__restrict__ ranges,
         const uint32_t *__restrict__ indices,
-        const float3 *__restrict__ imgPositions,
+        const float2 *__restrict__ imgPositions,
         const float3 *__restrict__ imgInvSigmas,
         const float2 *__restrict__ pHats,
         const float3 *__restrict__ colors,
         const float *__restrict__ alphas,
         const float *__restrict__ depth,
+        const float *__restrict__ depths_gaussian,
         size_t depth_step,
         uint2 numTiles,
         uint32_t width,

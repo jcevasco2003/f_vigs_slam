@@ -1,0 +1,5 @@
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::sample_gumbel(int, int, std::vector<float, std::allocator<float> > const&)'
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/gs_slam_node.dir/build.make:290: gs_slam_node] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:194: CMakeFiles/gs_slam_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

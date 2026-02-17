@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <cub/cub.cuh>  // para reduce
 
+#define TILE_SIZE 16
+#define BLOCK_SIZE 256
+
 namespace f_vigs_slam
 {
     // Implementamos los kernels CUDA para operaciones paralelizables
@@ -1422,10 +1425,11 @@ namespace f_vigs_slam
         float *totalAlpha,
         const uint2 *ranges,
         const uint32_t *indices,
-        const float3 *imgPositions,
-        const float3 *imgSigmas,
-        const float3 *imgInvSigmas,
+        const float2 *positions_2d,
+        const float3 *inv_covariances_2d,
         const float2 *pHats,
+        const float *depths,
+        const float *alphas,
         const float *depth,
         size_t depth_step,
         uint2 numTiles,
@@ -1442,8 +1446,7 @@ namespace f_vigs_slam
 
         // Procesamos por batches
         int n = (int)(range.y - range.x);
-        __shared__ float3 s_positions[TILE_SIZE * TILE_SIZE];
-        __shared__ float3 s_sigmas[TILE_SIZE * TILE_SIZE];
+        __shared__ float2 s_positions[TILE_SIZE * TILE_SIZE];
         __shared__ float3 s_invSigmas[TILE_SIZE * TILE_SIZE];
         __shared__ float2 s_pHats[TILE_SIZE * TILE_SIZE];
         __shared__ uint32_t s_gids[TILE_SIZE * TILE_SIZE];
@@ -1466,18 +1469,17 @@ namespace f_vigs_slam
             {
                 uint32_t gid = indices[range.x + local_idx];
                 s_gids[tid] = gid;
-                s_positions[tid] = imgPositions[gid];
-                s_sigmas[tid] = imgSigmas[gid];
-                s_invSigmas[tid] = imgInvSigmas[gid];
+                s_positions[tid] = positions_2d[gid];
+                s_invSigmas[tid] = inv_covariances_2d[gid];
                 s_pHats[tid] = pHats[gid];
-                // Nota: necesitaremos alphas, se asume que se pasan o se recuperan
+                s_alphas[tid] = alphas[gid];
             }
             __syncthreads();
 
             int batch_count = min(block_size, n - base);
             for (int i = 0; i < batch_count; i++)
             {
-                float3 pos = s_positions[i];
+                float2 pos = s_positions[i];
                 float2 pHat = s_pHats[i];
                 uint32_t gid = s_gids[i];
 
@@ -1486,14 +1488,14 @@ namespace f_vigs_slam
                 float dy = py - pos.y;
 
                 // Calcular profundidad renderizada: d = z + pHat·(x-u, y-v)
-                float depth_rendered = pos.z + pHat.x * dx + pHat.y * dy;
+                float depth_rendered = depths[gid] + pHat.x * dx + pHat.y * dy;
 
                 // Evaluar gaussiana 2D para obtener alpha_i
                 float3 invSigma = s_invSigmas[i];
                 float gauss_val = evalGaussian2D(dx, dy, invSigma.x, invSigma.z, invSigma.y);
                 // Nota: alpha_i tendría que multiplicarse por alphas[gid], pero no lo tenemos en shared
                 // Por ahora usamos gauss_val directamente
-                float alpha_i = gauss_val;
+                float alpha_i = s_alphas[i] * gauss_val;
 
                 if (alpha_i < (1.0f / 255.0f) || depth_rendered <= 0.0f)
                 {
@@ -1543,12 +1545,13 @@ namespace f_vigs_slam
         float *maskData,
         const uint2 *__restrict__ ranges,
         const uint32_t *__restrict__ indices,
-        const float3 *__restrict__ imgPositions,
+        const float2 *__restrict__ imgPositions,
         const float3 *__restrict__ imgInvSigmas,
         const float2 *__restrict__ pHats,
         const float3 *__restrict__ colors,
         const float *__restrict__ alphas,
         const float *__restrict__ depth,
+        const float *__restrict__ depths_gaussian,
         size_t depth_step,
         uint2 numTiles,
         uint32_t width,
@@ -1575,11 +1578,12 @@ namespace f_vigs_slam
         
 
         // Shared memory para cargar gaussianas en batches
-        __shared__ float3 s_positions[TILE_SIZE * TILE_SIZE];
+        __shared__ float2 s_positions[TILE_SIZE * TILE_SIZE];
         __shared__ float3 s_invSigmas[TILE_SIZE * TILE_SIZE];
         __shared__ float2 s_pHats[TILE_SIZE * TILE_SIZE];
         __shared__ float3 s_colors[TILE_SIZE * TILE_SIZE];
         __shared__ float s_alphas[TILE_SIZE * TILE_SIZE];
+        __shared__ float s_depths[TILE_SIZE * TILE_SIZE];
 
         // Cargamos por batches
         for (int base = 0; base < n; base += TILE_SIZE * TILE_SIZE)
@@ -1593,6 +1597,7 @@ namespace f_vigs_slam
                 s_pHats[threadIdx.y * TILE_SIZE + threadIdx.x] = pHats[gid];
                 s_colors[threadIdx.y * TILE_SIZE + threadIdx.x] = colors[gid];
                 s_alphas[threadIdx.y * TILE_SIZE + threadIdx.x] = alphas[gid];
+                s_depths[threadIdx.y * TILE_SIZE + threadIdx.x] = depths_gaussian[gid];
             }
             __syncthreads();
 
@@ -1617,7 +1622,7 @@ namespace f_vigs_slam
                 {
                     // Guardamos la profundidad mediana al cruzar 0.5
                     T = prod_alpha;
-                    depth_rendered = s_positions[i].z + s_pHats[i].x * dx + s_pHats[i].y * dy;
+                    depth_rendered = s_depths[i] + s_pHats[i].x * dx + s_pHats[i].y * dy;
                 }
 
                 if (prod_alpha < 0.0001f)
@@ -1936,7 +1941,7 @@ namespace f_vigs_slam
         {
             int bIdx = i * TILE_SIZE + tId;
             
-            if (bIdx < bucketCount) bucketToTile[bucket_base + bIdx] = tileId;
+            if (bIdx < bucketCount) bucket_to_tile[bucket_base + bIdx] = tileId;
         }
 
         // Inicializamos params
@@ -1951,7 +1956,7 @@ namespace f_vigs_slam
         __shared__ float3 s_inv_covariances_2d[TILE_SIZE * TILE_SIZE];
         __shared__ float2 s_p_hats[TILE_SIZE * TILE_SIZE];
         __shared__ float3 s_colors[TILE_SIZE * TILE_SIZE];
-        __shared__ float3 s_depths[TILE_SIZE * TILE_SIZE];
+        __shared__ float s_depths[TILE_SIZE * TILE_SIZE];
         __shared__ float s_alphas[TILE_SIZE * TILE_SIZE];
         __shared__ uint32_t s_gids[TILE_SIZE * TILE_SIZE];
 
@@ -2670,7 +2675,7 @@ namespace f_vigs_slam
 
         //Actualizamos los parametros y clampeamos para mantener valores utiles e interpretables
         positions[idx] = position;
-        scales[idx] = max(make_float3(0.001f), scale);
+        scales[idx] = max(make_float3(0.001f, 0.001f, 0.001f), scale);
         orientations[idx] = orientation;
         colors[idx] = min(make_float3(1.f, 1.f, 1.f), max(make_float3(0.f, 0.f, 0.f), color));
         alphas[idx] = alpha;

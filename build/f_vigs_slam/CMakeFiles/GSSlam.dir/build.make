@@ -84,11 +84,26 @@ CMakeFiles/GSSlam.dir/src/GSSlam.cu.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CUDA source to assembly CMakeFiles/GSSlam.dir/src/GSSlam.cu.s"
 	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
 
+CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o: CMakeFiles/GSSlam.dir/flags.make
+CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o: CMakeFiles/GSSlam.dir/includes_CUDA.rsp
+CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu
+CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o"
+	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -ccbin=/usr/bin/gcc-12 $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o -MF CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o.d -x cu -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu -o CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o
+
+CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CUDA source to CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.i"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_PREPROCESSED_SOURCE
+
+CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CUDA source to assembly CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.s"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
+
 CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o: CMakeFiles/GSSlam.dir/flags.make
 CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o: CMakeFiles/GSSlam.dir/includes_CUDA.rsp
 CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/RgbdPoseCost.cu
 CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o"
 	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -ccbin=/usr/bin/gcc-12 $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o -MF CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o.d -x cu -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/RgbdPoseCost.cu -o CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o
 
 CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.i: cmake_force
@@ -102,7 +117,7 @@ CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.s: cmake_force
 CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o: CMakeFiles/GSSlam.dir/flags.make
 CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/Preintegration.cpp
 CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o -MF CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o.d -o CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/Preintegration.cpp
 
 CMakeFiles/GSSlam.dir/src/Preintegration.cpp.i: cmake_force
@@ -116,7 +131,7 @@ CMakeFiles/GSSlam.dir/src/Preintegration.cpp.s: cmake_force
 CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o: CMakeFiles/GSSlam.dir/flags.make
 CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/ImuCostFunction.cpp
 CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o -MF CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o.d -o CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/ImuCostFunction.cpp
 
 CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.i: cmake_force
@@ -130,7 +145,7 @@ CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.s: cmake_force
 CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o: CMakeFiles/GSSlam.dir/flags.make
 CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/PoseLocalParameterization.cpp
 CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o -MF CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o.d -o CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/PoseLocalParameterization.cpp
 
 CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.i: cmake_force
@@ -144,7 +159,7 @@ CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.s: cmake_force
 CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o: CMakeFiles/GSSlam.dir/flags.make
 CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/MarginalizationFactor.cpp
 CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o -MF CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o.d -o CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/MarginalizationFactor.cpp
 
 CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.i: cmake_force
@@ -155,24 +170,42 @@ CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/MarginalizationFactor.cpp -o CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.s
 
+CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o: CMakeFiles/GSSlam.dir/flags.make
+CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/KeyframeSelector.cpp
+CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o: CMakeFiles/GSSlam.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o -MF CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o.d -o CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/KeyframeSelector.cpp
+
+CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/KeyframeSelector.cpp > CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.i
+
+CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/KeyframeSelector.cpp -o CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.s
+
 # Object files for target GSSlam
 GSSlam_OBJECTS = \
 "CMakeFiles/GSSlam.dir/src/GSSlam.cu.o" \
+"CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o" \
 "CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o" \
 "CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o" \
 "CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o" \
 "CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o" \
-"CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o"
+"CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o" \
+"CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o"
 
 # External object files for target GSSlam
 GSSlam_EXTERNAL_OBJECTS =
 
 libGSSlam.so: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o
+libGSSlam.so: CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o
 libGSSlam.so: CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o
 libGSSlam.so: CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o
 libGSSlam.so: CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o
 libGSSlam.so: CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o
 libGSSlam.so: CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o
+libGSSlam.so: CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o
 libGSSlam.so: CMakeFiles/GSSlam.dir/build.make
 libGSSlam.so: /usr/local/lib/libopencv_gapi.so.4.8.0
 libGSSlam.so: /usr/local/lib/libopencv_stitching.so.4.8.0
@@ -236,7 +269,7 @@ libGSSlam.so: /usr/lib/x86_64-linux-gnu/libgflags.so.2.2.2
 libGSSlam.so: /usr/lib/x86_64-linux-gnu/liblapack.so
 libGSSlam.so: /usr/lib/x86_64-linux-gnu/libblas.so
 libGSSlam.so: CMakeFiles/GSSlam.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library libGSSlam.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX shared library libGSSlam.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GSSlam.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

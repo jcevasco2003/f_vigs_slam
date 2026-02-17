@@ -1,0 +1,35 @@
+In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:12[m[K,
+                 from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/gs_slam_node.cpp:2[m[K:
+[01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/buffer.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning BUFFER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+   40 |   #[01;35m[Kwarning[m[K BUFFER_HEADER_DEPRECATION
+      |    [01;35m[K^~~~~~~[m[K
+In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:13[m[K:
+[01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning TRANSFORM_LISTENER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+   40 |   #[01;35m[Kwarning[m[K TRANSFORM_LISTENER_HEADER_DEPRECATION
+      |    [01;35m[K^~~~~~~[m[K
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeGaussiansCovisibility_kernel(unsigned int*, unsigned int*, unsigned char*, unsigned char*, unsigned int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::generateTileHashes_kernel(unsigned long*, unsigned int*, unsigned int const*, float2 const*, float3 const*, float const*, float2 const*, int, int, int, int, int, float)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::countTilesPerGaussian_kernel(unsigned int*, float2 const*, float3 const*, int, int, int, int, int, float)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeGaussiansVisibility_kernel(unsigned char*, uint2 const*, unsigned int const*, float3 const*, float3 const*, float const*, uint2, unsigned int, unsigned int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::pruneGaussians_kernel(unsigned int*, unsigned char*, float3 const*, float const*, float, float, unsigned int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::optimizeGaussiansForwardPass(uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float const*, float3 const*, float const*, unsigned int const*, unsigned int*, float*, float3*, float*, unsigned int*, unsigned int*, float3*, float*, float3*, float*, float3 const*, float const*, float3, uint2, int, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::optimizeGaussiansPerGaussianPass(uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float const*, float3 const*, float const*, unsigned int const*, unsigned int const*, float const*, float3 const*, unsigned int const*, unsigned int const*, float3 const*, float const*, float3 const*, float const*, f_vigs_slam::DeltaGaussian2D*, float, float, uint2, int, int, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::densifyGaussians_kernel(float3*, float3*, float4*, float3*, float*, unsigned int*, uchar3 const*, unsigned long, float const*, unsigned long, float4 const*, unsigned long, float const*, unsigned long, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::~KeyframeSelector()'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::updateGaussiansParametersAdam_kernel(float3*, float3*, float4*, float3*, float*, f_vigs_slam::AdamStateGaussian3D*, f_vigs_slam::DeltaGaussian3D const*, float, float, float, float, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeOutliers_kernel(float*, float*, uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float const*, float const*, float const*, unsigned long, uint2, unsigned int, unsigned int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeDensityMask_kernel(float*, uint2 const*, unsigned int const*, float2 const*, float3 const*, float2 const*, float3 const*, float const*, float const*, unsigned long, uint2, unsigned int, unsigned int, unsigned long)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::getRgbdPoseJacobians(f_vigs_slam::PoseOptimizationRgbdData*, uint2 const*, unsigned int const*, float2 const*, float const*, float3 const*, float2 const*, float3 const*, float const*, float3 const*, float3 const*, float3 const*, float const*, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, float3, float, float, float, int, int, int, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::sample(int, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<float, std::allocator<float> > const&)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::forwardPassTileKernel(float3*, float*, unsigned int const*, uint2 const*, float2 const*, float3 const*, float3 const*, float const*, float const*, float2 const*, int, int, int, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeDeltaGaussians3D_kernel(f_vigs_slam::DeltaGaussian3D*, float3 const*, float3 const*, float4 const*, float3 const*, float const*, f_vigs_slam::DeltaGaussian2D const*, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, float, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::perTileBucketCount(unsigned int*, uint2 const*, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::KeyframeSelector::KeyframeSelector()'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::computeIndicesRanges_kernel(uint2*, unsigned long const*, unsigned int, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::projectGaussiansWorldToScreen_kernel(float2*, float3*, float3*, float*, float2*, float3 const*, float3 const*, float4 const*, f_vigs_slam::CameraPose, f_vigs_slam::IntrinsicParameters, int, int, int)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::initGaussiansFromRgbd_kernel(float3*, float3*, float4*, float3*, float*, unsigned int*, unsigned int, uchar3 const*, unsigned long, float const*, unsigned long, int, int, f_vigs_slam::IntrinsicParameters, f_vigs_slam::CameraPose, unsigned int, unsigned int, float, float)'
+/usr/bin/ld: libGSSlam.so: undefined reference to `f_vigs_slam::removeOutliers_kernel(unsigned int*, unsigned char*, float const*, float const*, float, unsigned int)'
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/gs_slam_node.dir/build.make:290: gs_slam_node] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:194: CMakeFiles/gs_slam_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

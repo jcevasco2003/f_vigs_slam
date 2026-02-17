@@ -1,0 +1,11 @@
+[0.012s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.150s] [  6%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o[0m
+[5.139s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1622)[0m: [01;31merror[0m: class [01m"float2"[0m has no member "[01mz[0m"
+[5.139s]                       depth_rendered = s_positions[i].z + s_pHats[i].x * dx + s_pHats[i].y * dy;
+[5.139s]                                                       ^
+[5.139s] 
+[5.971s] 1 error detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu".
+[6.069s] gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:92: CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o] Error 2
+[6.070s] gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+[6.070s] gmake: *** [Makefile:146: all] Error 2
+[6.073s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

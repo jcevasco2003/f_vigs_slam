@@ -23,7 +23,7 @@ namespace f_vigs_slam
     class KeyframeSelector
     {
     public:
-        KeyframeSelector();
+        KeyframeSelector(unsigned long seed = 0);
         ~KeyframeSelector();
         
         /**

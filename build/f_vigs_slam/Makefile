@@ -236,6 +236,30 @@ gs_slam_node/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gs_slam_node.dir/build.make CMakeFiles/gs_slam_node.dir/build
 .PHONY : gs_slam_node/fast
 
+src/GSCudaKernels.o: src/GSCudaKernels.cu.o
+.PHONY : src/GSCudaKernels.o
+
+# target to build an object file
+src/GSCudaKernels.cu.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o
+.PHONY : src/GSCudaKernels.cu.o
+
+src/GSCudaKernels.i: src/GSCudaKernels.cu.i
+.PHONY : src/GSCudaKernels.i
+
+# target to preprocess a source file
+src/GSCudaKernels.cu.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.i
+.PHONY : src/GSCudaKernels.cu.i
+
+src/GSCudaKernels.s: src/GSCudaKernels.cu.s
+.PHONY : src/GSCudaKernels.s
+
+# target to generate assembly for a file
+src/GSCudaKernels.cu.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.s
+.PHONY : src/GSCudaKernels.cu.s
+
 src/GSSlam.o: src/GSSlam.cu.o
 .PHONY : src/GSSlam.o
 
@@ -331,6 +355,30 @@ src/ImuCostFunction.s: src/ImuCostFunction.cpp.s
 src/ImuCostFunction.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.s
 .PHONY : src/ImuCostFunction.cpp.s
+
+src/KeyframeSelector.o: src/KeyframeSelector.cpp.o
+.PHONY : src/KeyframeSelector.o
+
+# target to build an object file
+src/KeyframeSelector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o
+.PHONY : src/KeyframeSelector.cpp.o
+
+src/KeyframeSelector.i: src/KeyframeSelector.cpp.i
+.PHONY : src/KeyframeSelector.i
+
+# target to preprocess a source file
+src/KeyframeSelector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.i
+.PHONY : src/KeyframeSelector.cpp.i
+
+src/KeyframeSelector.s: src/KeyframeSelector.cpp.s
+.PHONY : src/KeyframeSelector.s
+
+# target to generate assembly for a file
+src/KeyframeSelector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GSSlam.dir/build.make CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.s
+.PHONY : src/KeyframeSelector.cpp.s
 
 src/MarginalizationFactor.o: src/MarginalizationFactor.cpp.o
 .PHONY : src/MarginalizationFactor.o
@@ -470,6 +518,9 @@ help:
 	@echo "... GSSlam"
 	@echo "... GSSlamNode"
 	@echo "... gs_slam_node"
+	@echo "... src/GSCudaKernels.o"
+	@echo "... src/GSCudaKernels.i"
+	@echo "... src/GSCudaKernels.s"
 	@echo "... src/GSSlam.o"
 	@echo "... src/GSSlam.i"
 	@echo "... src/GSSlam.s"
@@ -482,6 +533,9 @@ help:
 	@echo "... src/ImuCostFunction.o"
 	@echo "... src/ImuCostFunction.i"
 	@echo "... src/ImuCostFunction.s"
+	@echo "... src/KeyframeSelector.o"
+	@echo "... src/KeyframeSelector.i"
+	@echo "... src/KeyframeSelector.s"
 	@echo "... src/MarginalizationFactor.o"
 	@echo "... src/MarginalizationFactor.i"
 	@echo "... src/MarginalizationFactor.s"

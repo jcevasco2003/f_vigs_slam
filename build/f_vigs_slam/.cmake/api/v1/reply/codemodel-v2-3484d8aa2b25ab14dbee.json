@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-752a5337a53abf6c3ca5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "f_vigs_slam",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "GSSlam::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GSSlam-063e33f5f26d68aeadd0.json",
+					"name" : "GSSlam",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GSSlamNode::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GSSlamNode-43acafef32ad0f81a3ae.json",
+					"name" : "GSSlamNode",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "f_vigs_slam_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-f_vigs_slam_uninstall-b49d588a0d332b713a7f.json",
+					"name" : "f_vigs_slam_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gs_slam_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gs_slam_node-6423d96e232612e8b40f.json",
+					"name" : "gs_slam_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-d03a21b22fe00d5beabc.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam",
+		"source" : "/home/jorge/ros2_thesis_ws/src/f_vigs_slam"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

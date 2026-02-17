@@ -9,6 +9,7 @@
 #include <thrust/fill.h>
 #include <thrust/host_vector.h>
 #include <thrust/sort.h>
+#include <thrust/transform.h>
 #include <algorithm>
 #include <stdexcept>
 #include <unordered_map>
@@ -23,6 +24,16 @@ namespace f_vigs_slam
 {
     namespace
     {
+        struct ToFloat3
+        {
+            __host__ __device__ float3 operator()(const thrust::tuple<float2, float> &t) const
+            {
+                float2 p = thrust::get<0>(t);
+                float z = thrust::get<1>(t);
+                return make_float3(p.x, p.y, z);
+            }
+        };
+
         Eigen::Matrix3d skewSymmetric(const Eigen::Vector3d &v)
         {
             Eigen::Matrix3d m;
@@ -375,6 +386,7 @@ namespace f_vigs_slam
          thrust::raw_pointer_cast(positions_2d_.data()),
          thrust::raw_pointer_cast(covariances_2d_.data()),
          thrust::raw_pointer_cast(depths_.data()),
+         thrust::raw_pointer_cast(p_hats_.data()),
          width,
          height,
          n_Gaussians,
@@ -450,6 +462,7 @@ namespace f_vigs_slam
          thrust::raw_pointer_cast(gaussians_.colors.data()),
          thrust::raw_pointer_cast(gaussians_.opacities.data()),
          thrust::raw_pointer_cast(depths_.data()),
+         thrust::raw_pointer_cast(p_hats_.data()),
          width,
          height,
          num_tiles_.x,
@@ -1042,6 +1055,7 @@ namespace f_vigs_slam
             thrust::raw_pointer_cast(gaussians_.colors.data()),
             thrust::raw_pointer_cast(gaussians_.opacities.data()),
             keyframe.depth_img.ptr<float>(),
+            thrust::raw_pointer_cast(depths_.data()),
             keyframe.depth_img.step,
             num_tiles_,
             width,
@@ -1185,9 +1199,10 @@ namespace f_vigs_slam
             thrust::raw_pointer_cast(tile_ranges_.data()),
             thrust::raw_pointer_cast(gaussian_indices_.data()),
             thrust::raw_pointer_cast(positions_2d_.data()),
-            thrust::raw_pointer_cast(covariances_2d_.data()),
             thrust::raw_pointer_cast(inv_covariances_2d_.data()),
             thrust::raw_pointer_cast(p_hats_.data()),
+            thrust::raw_pointer_cast(depths_.data()),
+            thrust::raw_pointer_cast(gaussians_.opacities.data()),
             pyr_depth_[0].ptr<float>(),
             pyr_depth_[0].step,
             num_tiles_,
@@ -1249,12 +1264,141 @@ namespace f_vigs_slam
     
     float GSSlam::computeCovisibilityRatio()
     {
-        if (n_Gaussians == 0 || keyframes_.empty()) {
+        if (n_Gaussians == 0 || keyframes_.empty() || pyr_color_.empty()) {
+            return 1.0f;
+        }
+
+        size_t keyframe_idx = static_cast<size_t>(current_keyframe_idx_);
+        if (current_keyframe_idx_ < 0 || keyframe_idx >= keyframes_.size()) {
+            keyframe_idx = keyframes_.size() - 1;
+        }
+        const KeyframeData &keyframe = keyframes_[keyframe_idx];
+        if (keyframe.color_img.empty() || keyframe.depth_img.empty()) {
+            return 1.0f;
+        }
+
+        const int frame_width = pyr_color_[0].cols;
+        const int frame_height = pyr_color_[0].rows;
+        if (frame_width <= 0 || frame_height <= 0) {
+            return 1.0f;
+        }
+
+        // Host
+        uint32_t h_visUnion = 0;
+        uint32_t h_visInter = 0;
+
+        // Device
+        uint32_t *d_visUnion = nullptr;
+        uint32_t *d_visInter = nullptr;
+        unsigned char *d_keyframeVis = nullptr;
+        unsigned char *d_frameVis = nullptr;
+
+        // Alocamos memoria en device
+        cudaMalloc(&d_visUnion, sizeof(uint32_t));
+        cudaMalloc(&d_visInter, sizeof(uint32_t));
+        cudaMalloc(&d_keyframeVis, n_Gaussians * sizeof(unsigned char));
+        cudaMalloc(&d_frameVis, n_Gaussians * sizeof(unsigned char));
+
+        // Llevamos los contadores al device
+        cudaMemcpy(d_visUnion, &h_visUnion, sizeof(uint32_t), cudaMemcpyHostToDevice);
+        cudaMemcpy(d_visInter, &h_visInter, sizeof(uint32_t), cudaMemcpyHostToDevice);
+
+        // Inicializamos visibilidades a 0
+        cudaMemset(d_keyframeVis, 0, n_Gaussians * sizeof(unsigned char));
+        cudaMemset(d_frameVis, 0, n_Gaussians * sizeof(unsigned char));
+
+        thrust::device_vector<float3> img_positions(n_Gaussians);
+        auto fill_img_positions = [&](const thrust::device_vector<float2> &pos2d,
+                                      const thrust::device_vector<float> &depths) {
+            auto begin = thrust::make_zip_iterator(thrust::make_tuple(pos2d.begin(), depths.begin()));
+            auto end = thrust::make_zip_iterator(thrust::make_tuple(pos2d.end(), depths.end()));
+            thrust::transform(begin, end, img_positions.begin(), ToFloat3());
+        };
+
+        // Calculamos para el ultimo keyframe
+        prepareRasterization(keyframe.getPose(), keyframe.getIntrinsics(),
+                             keyframe.getWidth(), keyframe.getHeight());
+        if (last_nb_instances_ == 0) {
+            cudaFree(d_visUnion);
+            cudaFree(d_visInter);
+            cudaFree(d_keyframeVis);
+            cudaFree(d_frameVis);
             return 0.0f;
         }
 
-        // TODO: Implementar covisibilidad real con kernels de visibilidad.
-        return 0.0f;
+        fill_img_positions(positions_2d_, depths_);
+
+        computeGaussiansVisibility_kernel<<<
+            dim3(num_tiles_.x, num_tiles_.y),
+            dim3(tile_size_.x, tile_size_.y)
+        >>>(
+            d_keyframeVis,
+            thrust::raw_pointer_cast(tile_ranges_.data()),
+            thrust::raw_pointer_cast(gaussian_indices_.data()),
+            thrust::raw_pointer_cast(img_positions.data()),
+            thrust::raw_pointer_cast(inv_covariances_2d_.data()),
+            thrust::raw_pointer_cast(gaussians_.opacities.data()),
+            num_tiles_,
+            keyframe.getWidth(),
+            keyframe.getHeight()
+        );
+
+        // Calculamos para el frame actual
+        prepareRasterization(current_pose_, intrinsics_, frame_width, frame_height);
+        if (last_nb_instances_ == 0) {
+            cudaFree(d_visUnion);
+            cudaFree(d_visInter);
+            cudaFree(d_keyframeVis);
+            cudaFree(d_frameVis);
+            return 0.0f;
+        }
+
+        fill_img_positions(positions_2d_, depths_);
+
+        computeGaussiansVisibility_kernel<<<
+            dim3(num_tiles_.x, num_tiles_.y),
+            dim3(tile_size_.x, tile_size_.y)
+        >>>(
+            d_frameVis,
+            thrust::raw_pointer_cast(tile_ranges_.data()),
+            thrust::raw_pointer_cast(gaussian_indices_.data()),
+            thrust::raw_pointer_cast(img_positions.data()),
+            thrust::raw_pointer_cast(inv_covariances_2d_.data()),
+            thrust::raw_pointer_cast(gaussians_.opacities.data()),
+            num_tiles_,
+            frame_width,
+            frame_height
+        );
+
+        // Calculamos la covisibilidad
+        const int covis_block_size = 256;
+        computeGaussiansCovisibility_kernel<<<
+            (n_Gaussians + covis_block_size - 1) / covis_block_size,
+            covis_block_size
+        >>>(
+            d_visInter,
+            d_visUnion,
+            d_keyframeVis,
+            d_frameVis,
+            n_Gaussians
+        );
+
+        // Copiamos resultados al host
+        cudaMemcpy(&h_visInter, d_visInter, sizeof(uint32_t), cudaMemcpyDeviceToHost);
+        cudaMemcpy(&h_visUnion, d_visUnion, sizeof(uint32_t), cudaMemcpyDeviceToHost);
+
+        // Liberamos memoria
+        cudaFree(d_visUnion);
+        cudaFree(d_visInter);
+        cudaFree(d_keyframeVis);
+        cudaFree(d_frameVis);
+
+        // Devolvemos el ratio
+
+        if (h_visUnion == 0)
+            return 0.0f; // Caso borde de division por cero
+
+        return h_visInter / static_cast<float>(h_visUnion);
     }
     
     void GSSlam::initWarping(const CameraPose &camera_pose)
@@ -1416,15 +1560,12 @@ namespace f_vigs_slam
         Eigen::Vector3d P_cam = P_imu + Q_imu * t_imu_cam_;
         Eigen::Quaterniond Q_cam = Q_imu * q_imu_cam_;
         CameraPose camera_pose;
-        camera_pose.position[0] = static_cast<float>(P_cam.x());
-        camera_pose.position[1] = static_cast<float>(P_cam.y());
-        camera_pose.position[2] = static_cast<float>(P_cam.z());
+        camera_pose.position = make_float3(static_cast<float>(P_cam.x()),
+                           static_cast<float>(P_cam.y()),
+                           static_cast<float>(P_cam.z()));
         
         Eigen::Quaternionf Q_cam_f = Q_cam.cast<float>();
-        camera_pose.orientation[0] = Q_cam_f.x();
-        camera_pose.orientation[1] = Q_cam_f.y();
-        camera_pose.orientation[2] = Q_cam_f.z();
-        camera_pose.orientation[3] = Q_cam_f.w();
+        camera_pose.orientation = make_float4(Q_cam_f.w(), Q_cam_f.x(), Q_cam_f.y(), Q_cam_f.z());
 
         // ============================================================
         // PASO 2: Preparar rasterización (proyectar gaussianas)

@@ -1,0 +1,307 @@
+[0.011s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.449s] -- Found ament_cmake: 2.8.4 (/opt/ros/rolling/share/ament_cmake/cmake)
+[1.256s] -- Found rclcpp: 30.1.3 (/opt/ros/rolling/share/rclcpp/cmake)
+[1.487s] -- Found rosidl_generator_c: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_c/cmake)
+[1.518s] -- Found rosidl_generator_cpp: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_cpp/cmake)
+[1.607s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.665s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.944s] -- Found rmw_implementation_cmake: 7.9.1 (/opt/ros/rolling/share/rmw_implementation_cmake/cmake)
+[1.967s] -- Found rmw_fastrtps_cpp: 9.4.4 (/opt/ros/rolling/share/rmw_fastrtps_cpp/cmake)
+[2.220s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[4.318s] -- Found sensor_msgs: 5.9.1 (/opt/ros/rolling/share/sensor_msgs/cmake)
+[4.480s] -- Found cv_bridge: 4.1.0 (/opt/ros/rolling/share/cv_bridge/cmake)
+[4.500s] [33mCMake Warning (dev) at /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:86 (find_package):
+[4.501s]   Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
+[4.501s]   --help-policy CMP0146" for policy details.  Use the cmake_policy command to
+[4.501s]   set the policy and suppress this warning.
+[4.501s] 
+[4.501s] Call Stack (most recent call first):
+[4.501s]   /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:108 (find_host_package)
+[4.501s]   /opt/ros/rolling/share/cv_bridge/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+[4.501s]   /opt/ros/rolling/share/cv_bridge/cmake/cv_bridgeConfig.cmake:41 (include)
+[4.501s]   CMakeLists.txt:24 (find_package)
+[4.501s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[4.501s] [0m
+[4.697s] -- Found CUDA: /usr/local/cuda-12.3 (found suitable exact version "12.3") 
+[4.808s] -- Found nav_msgs: 5.9.1 (/opt/ros/rolling/share/nav_msgs/cmake)
+[4.881s] -- Found image_transport: 6.4.3 (/opt/ros/rolling/share/image_transport/cmake)
+[4.958s] -- Found image_geometry: 4.1.0 (/opt/ros/rolling/share/image_geometry/cmake)
+[4.965s] -- Found tf2: 0.45.3 (/opt/ros/rolling/share/tf2/cmake)
+[4.980s] -- Found tf2_ros: 0.45.3 (/opt/ros/rolling/share/tf2_ros/cmake)
+[5.181s] -- Found tf2_eigen: 0.45.3 (/opt/ros/rolling/share/tf2_eigen/cmake)
+[5.200s] -- Found tf2_geometry_msgs: 0.45.3 (/opt/ros/rolling/share/tf2_geometry_msgs/cmake)
+[5.216s] [33mCMake Warning (dev) at CMakeLists.txt:32 (find_package):
+[5.216s]   Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
+[5.216s]   --help-policy CMP0146" for policy details.  Use the cmake_policy command to
+[5.216s]   set the policy and suppress this warning.
+[5.216s] 
+[5.217s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[5.217s] [0m
+[5.259s] -- Found CUDA: /usr/local/cuda-12.3 (found version "12.3") 
+[5.327s] -- Found required Ceres dependency: Eigen version 3.4.0 in /usr/include/eigen3
+[5.382s] -- Found required Ceres dependency: glog
+[5.383s] -- Found required Ceres dependency: gflags
+[5.384s] -- Found Ceres version: 2.0.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SchurSpecializations, Multithreading]
+[5.386s] [0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):
+[5.386s]   ament_target_dependencies() is deprecated.  Use target_link_libraries()
+[5.386s]   with modern CMake targets instead.  Try replacing this call with:
+[5.386s] 
+[5.386s]     target_link_libraries(GSSlamNode PUBLIC
+[5.386s]       ${nav_msgs_TARGETS}
+[5.386s]       ${sensor_msgs_TARGETS}
+[5.387s]       cv_bridge::cv_bridge
+[5.387s]       image_geometry::image_geometry
+[5.387s]       image_transport::image_transport
+[5.387s]       message_filters::message_filters
+[5.387s]       rclcpp::rclcpp
+[5.387s]       sensor_msgs::sensor_msgs_library
+[5.387s]       tf2::tf2
+[5.387s]       tf2_eigen::tf2_eigen
+[5.387s]       tf2_geometry_msgs::tf2_geometry_msgs
+[5.387s]       tf2_ros::static_transform_broadcaster_node
+[5.387s]       tf2_ros::tf2_ros
+[5.387s]     )
+[5.387s] 
+[5.388s] Call Stack (most recent call first):
+[5.388s]   CMakeLists.txt:106 (ament_target_dependencies)
+[5.388s] 
+[5.388s] [0m
+[5.388s] [0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):
+[5.388s]   ament_target_dependencies() is deprecated.  Use target_link_libraries()
+[5.388s]   with modern CMake targets instead.  Try replacing this call with:
+[5.389s] 
+[5.389s]     target_link_libraries(gs_slam_node PUBLIC
+[5.389s]       rclcpp::rclcpp
+[5.389s]     )
+[5.389s] 
+[5.389s] Call Stack (most recent call first):
+[5.389s]   CMakeLists.txt:166 (ament_target_dependencies)
+[5.389s] 
+[5.389s] [0m
+[5.403s] -- Found ament_lint_auto: 0.20.3 (/opt/ros/rolling/share/ament_lint_auto/cmake)
+[5.747s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[5.748s] -- Configured cppcheck include dirs: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include;$<BUILD_INTERFACE:/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include>
+[5.748s] -- Configured cppcheck exclude dirs and/or files: 
+[5.755s] -- Added test 'flake8' to check Python code syntax and style conventions
+[5.755s] -- Configured 'flake8' exclude dirs and/or files: 
+[5.770s] -- Added test 'lint_cmake' to check CMake code style
+[5.778s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[5.836s] -- Added test 'uncrustify' to check C / C++ code style
+[5.836s] -- Configured uncrustify additional arguments: 
+[5.844s] -- Added test 'xmllint' to check XML markup files
+[5.846s] -- Configuring done (5.8s)
+[5.926s] [33mCMake Warning (dev) in CMakeLists.txt:
+[5.927s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[5.927s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[5.927s]   for policy details.  Use the cmake_policy command to set the policy and
+[5.927s]   suppress this warning.
+[5.927s] 
+[5.927s]   CUDA_ARCHITECTURES is empty for target "GSSlam".
+[5.927s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[5.927s] [0m
+[6.000s] -- Generating done (0.1s)
+[6.004s] [33mCMake Warning (dev) in CMakeLists.txt:
+[6.004s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[6.004s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[6.004s]   for policy details.  Use the cmake_policy command to set the policy and
+[6.004s]   suppress this warning.
+[6.004s] 
+[6.004s]   CUDA_ARCHITECTURES is empty for target "GSSlam".
+[6.004s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[6.004s] [0m
+[6.010s] -- Build files have been written to: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam
+[6.106s] [ 58%] Built target GSSlam
+[6.180s] [ 66%] [32mBuilding CXX object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o[0m
+[6.181s] [ 75%] [32mBuilding CXX object CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o[0m
+[7.226s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:13[m[K,
+[7.226s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp:1[m[K:
+[7.226s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/buffer.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning BUFFER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[7.226s]    40 |   #[01;35m[Kwarning[m[K BUFFER_HEADER_DEPRECATION
+[7.226s]       |    [01;35m[K^~~~~~~[m[K
+[7.269s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:14[m[K:
+[7.269s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning TRANSFORM_LISTENER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[7.269s]    40 |   #[01;35m[Kwarning[m[K TRANSFORM_LISTENER_HEADER_DEPRECATION
+[7.270s]       |    [01;35m[K^~~~~~~[m[K
+[10.326s] In file included from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/internal_functional.h:27[m[K,
+[10.326s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:22[m[K,
+[10.326s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.h:57[m[K,
+[10.326s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.inl:22[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:90[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.inl:23[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.h:45[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:23[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.h:234[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.h:30[m[K,
+[10.327s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/device_vector.h:26[m[K,
+[10.327s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh:5[m[K,
+[10.327s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GaussianSplattingViewer.hpp:10[m[K,
+[10.327s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp:1[m[K:
+[10.327s] /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of ‘[01m[KInputIterator thrust::system::detail::generic::[01;32m[Kfor_each_n[m[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float3>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float3> >][m[K[m[K’:
+[10.327s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:[m[K   required from ‘[01m[KInputIterator thrust::[01;32m[Kfor_each_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float3>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float3> >][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kgenerate_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) [35m[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float3>][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kgenerate_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; Generator = detail::fill_functor<float3>][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kfill_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; T = float3][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kfill_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; T = float3][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:[m[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:[m[K   required from ‘[01m[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float3][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:[m[K   required from ‘[01m[Kvoid thrust::detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:[m[K   required from ‘[01m[Kvoid thrust::detail::contiguous_storage<T, Alloc>::[01;32m[Kdefault_construct_n[m[K(iterator, size_type) [35m[K[with T = float3; Alloc = thrust::device_allocator<float3>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float3> >; size_type = long unsigned int][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kappend[m[K(size_type) [35m[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int][m[K[m[K’
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kresize[m[K(size_type) [35m[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int][m[K[m[K’
+[10.328s] [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:63:29:[m[K   required from here
+[10.328s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: unimplemented for this system
+[10.329s]    66 |     [01;31m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[10.329s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[10.329s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[10.329s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[10.329s]       |                                                          [01;36m[K^[m[K
+[10.329s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;36m[Knote: [m[K‘[01m[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float3>, false>::value[m[K’ evaluates to false
+[10.329s]    66 |     [01;36m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[10.329s]       |     [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[10.329s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[10.329s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[10.329s]       |                                                          [01;36m[K^[m[K
+[10.329s] /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of ‘[01m[KInputIterator thrust::system::detail::generic::[01;32m[Kfor_each_n[m[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float4>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float4> >][m[K[m[K’:
+[10.329s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:[m[K   required from ‘[01m[KInputIterator thrust::[01;32m[Kfor_each_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float4>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float4> >][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kgenerate_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) [35m[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float4>][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kgenerate_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; Generator = detail::fill_functor<float4>][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kfill_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; T = float4][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kfill_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; T = float4][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:[m[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:[m[K   required from ‘[01m[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float4][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:[m[K   required from ‘[01m[Kvoid thrust::detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:[m[K   required from ‘[01m[Kvoid thrust::detail::contiguous_storage<T, Alloc>::[01;32m[Kdefault_construct_n[m[K(iterator, size_type) [35m[K[with T = float4; Alloc = thrust::device_allocator<float4>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float4> >; size_type = long unsigned int][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kappend[m[K(size_type) [35m[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int][m[K[m[K’
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kresize[m[K(size_type) [35m[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int][m[K[m[K’
+[10.330s] [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:65:32:[m[K   required from here
+[10.330s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: unimplemented for this system
+[10.331s]    66 |     [01;31m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[10.331s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[10.331s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[10.331s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[10.331s]       |                                                          [01;36m[K^[m[K
+[10.331s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;36m[Knote: [m[K‘[01m[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float4>, false>::value[m[K’ evaluates to false
+[10.331s]    66 |     [01;36m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[10.331s]       |     [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[10.331s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[10.331s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[10.331s]       |                                                          [01;36m[K^[m[K
+[10.331s] /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of ‘[01m[KInputIterator thrust::system::detail::generic::[01;32m[Kfor_each_n[m[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float> >][m[K[m[K’:
+[10.331s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:[m[K   required from ‘[01m[KInputIterator thrust::[01;32m[Kfor_each_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float> >][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kgenerate_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) [35m[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float>][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kgenerate_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; Generator = detail::fill_functor<float>][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kfill_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; T = float][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kfill_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; T = float][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:[m[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:[m[K   required from ‘[01m[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:[m[K   required from ‘[01m[Kvoid thrust::detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:[m[K   required from ‘[01m[Kvoid thrust::detail::contiguous_storage<T, Alloc>::[01;32m[Kdefault_construct_n[m[K(iterator, size_type) [35m[K[with T = float; Alloc = thrust::device_allocator<float>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float> >; size_type = long unsigned int][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kappend[m[K(size_type) [35m[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int][m[K[m[K’
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kresize[m[K(size_type) [35m[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int][m[K[m[K’
+[10.332s] [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:67:29:[m[K   required from here
+[10.332s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: unimplemented for this system
+[10.333s]    66 |     [01;31m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[10.333s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[10.333s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[10.333s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[10.333s]       |                                                          [01;36m[K^[m[K
+[10.333s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;36m[Knote: [m[K‘[01m[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float>, false>::value[m[K’ evaluates to false
+[10.333s]    66 |     [01;36m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[10.333s]       |     [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[10.333s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[10.333s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[10.333s]       |                                                          [01;36m[K^[m[K
+[10.559s] gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:90: CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o] Error 1
+[10.559s] gmake[2]: *** Waiting for unfinished jobs....
+[18.310s] In file included from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/internal_functional.h:27[m[K,
+[18.310s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:22[m[K,
+[18.310s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.h:57[m[K,
+[18.310s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.inl:22[m[K,
+[18.310s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:90[m[K,
+[18.311s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.inl:23[m[K,
+[18.311s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.h:45[m[K,
+[18.311s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:23[m[K,
+[18.311s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.h:234[m[K,
+[18.311s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.h:30[m[K,
+[18.311s]                  from [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/device_vector.h:26[m[K,
+[18.312s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh:5[m[K,
+[18.312s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:4[m[K:
+[18.312s] /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of ‘[01m[KInputIterator thrust::system::detail::generic::[01;32m[Kfor_each_n[m[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float3>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float3> >][m[K[m[K’:
+[18.312s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:[m[K   required from ‘[01m[KInputIterator thrust::[01;32m[Kfor_each_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float3>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float3> >][m[K[m[K’
+[18.312s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kgenerate_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) [35m[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float3>][m[K[m[K’
+[18.312s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kgenerate_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; Generator = detail::fill_functor<float3>][m[K[m[K’
+[18.312s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kfill_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; T = float3][m[K[m[K’
+[18.312s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kfill_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; T = float3][m[K[m[K’
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:[m[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:[m[K   required from ‘[01m[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float3][m[K[m[K’
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:[m[K   required from ‘[01m[Kvoid thrust::detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int][m[K[m[K’
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:[m[K   required from ‘[01m[Kvoid thrust::detail::contiguous_storage<T, Alloc>::[01;32m[Kdefault_construct_n[m[K(iterator, size_type) [35m[K[with T = float3; Alloc = thrust::device_allocator<float3>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float3> >; size_type = long unsigned int][m[K[m[K’
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kappend[m[K(size_type) [35m[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int][m[K[m[K’
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kresize[m[K(size_type) [35m[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int][m[K[m[K’
+[18.313s] [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:63:29:[m[K   required from here
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: unimplemented for this system
+[18.313s]    66 |     [01;31m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[18.313s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[18.313s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[18.313s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[18.314s]       |                                                          [01;36m[K^[m[K
+[18.314s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;36m[Knote: [m[K‘[01m[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float3>, false>::value[m[K’ evaluates to false
+[18.314s]    66 |     [01;36m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[18.314s]       |     [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[18.314s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[18.314s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[18.314s]       |                                                          [01;36m[K^[m[K
+[18.314s] /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of ‘[01m[KInputIterator thrust::system::detail::generic::[01;32m[Kfor_each_n[m[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float4>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float4> >][m[K[m[K’:
+[18.314s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:[m[K   required from ‘[01m[KInputIterator thrust::[01;32m[Kfor_each_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float4>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float4> >][m[K[m[K’
+[18.314s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kgenerate_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) [35m[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float4>][m[K[m[K’
+[18.314s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kgenerate_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; Generator = detail::fill_functor<float4>][m[K[m[K’
+[18.314s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kfill_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; T = float4][m[K[m[K’
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kfill_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; T = float4][m[K[m[K’
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:[m[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:[m[K   required from ‘[01m[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float4][m[K[m[K’
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:[m[K   required from ‘[01m[Kvoid thrust::detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int][m[K[m[K’
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:[m[K   required from ‘[01m[Kvoid thrust::detail::contiguous_storage<T, Alloc>::[01;32m[Kdefault_construct_n[m[K(iterator, size_type) [35m[K[with T = float4; Alloc = thrust::device_allocator<float4>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float4> >; size_type = long unsigned int][m[K[m[K’
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kappend[m[K(size_type) [35m[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int][m[K[m[K’
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kresize[m[K(size_type) [35m[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int][m[K[m[K’
+[18.315s] [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:65:32:[m[K   required from here
+[18.315s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: unimplemented for this system
+[18.315s]    66 |     [01;31m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[18.315s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[18.316s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[18.316s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[18.316s]       |                                                          [01;36m[K^[m[K
+[18.316s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;36m[Knote: [m[K‘[01m[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float4>, false>::value[m[K’ evaluates to false
+[18.316s]    66 |     [01;36m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[18.316s]       |     [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[18.316s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[18.316s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[18.316s]       |                                                          [01;36m[K^[m[K
+[18.316s] /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of ‘[01m[KInputIterator thrust::system::detail::generic::[01;32m[Kfor_each_n[m[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float> >][m[K[m[K’:
+[18.316s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:[m[K   required from ‘[01m[KInputIterator thrust::[01;32m[Kfor_each_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) [35m[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float> >][m[K[m[K’
+[18.316s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kgenerate_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) [35m[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float>][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kgenerate_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; Generator = detail::fill_functor<float>][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:[m[K   required from ‘[01m[KOutputIterator thrust::system::detail::generic::[01;32m[Kfill_n[m[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; T = float][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:[m[K   required from ‘[01m[KOutputIterator thrust::[01;32m[Kfill_n[m[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) [35m[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; T = float][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:[m[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:[m[K   required from ‘[01m[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:[m[K   required from ‘[01m[Kvoid thrust::detail::[01;32m[Kdefault_construct_range[m[K(Allocator&, Pointer, Size) [35m[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:[m[K   required from ‘[01m[Kvoid thrust::detail::contiguous_storage<T, Alloc>::[01;32m[Kdefault_construct_n[m[K(iterator, size_type) [35m[K[with T = float; Alloc = thrust::device_allocator<float>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float> >; size_type = long unsigned int][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kappend[m[K(size_type) [35m[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int][m[K[m[K’
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:[m[K   required from ‘[01m[Kvoid thrust::detail::vector_base<T, Alloc>::[01;32m[Kresize[m[K(size_type) [35m[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int][m[K[m[K’
+[18.317s] [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:67:29:[m[K   required from here
+[18.317s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: unimplemented for this system
+[18.317s]    66 |     [01;31m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[18.318s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[18.318s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[18.318s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[18.318s]       |                                                          [01;36m[K^[m[K
+[18.318s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:[m[K [01;36m[Knote: [m[K‘[01m[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float>, false>::value[m[K’ evaluates to false
+[18.318s]    66 |     [01;36m[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)[m[K
+[18.318s]       |     [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[18.318s] [01m[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KTHRUST_STATIC_ASSERT_MSG[m[K’
+[18.318s]    50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert([01;36m[KB[m[K, msg)
+[18.318s]       |                                                          [01;36m[K^[m[K
+[25.135s] gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:76: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o] Error 1
+[25.136s] gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/GSSlamNode.dir/all] Error 2
+[25.136s] gmake: *** [Makefile:146: all] Error 2
+[25.140s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

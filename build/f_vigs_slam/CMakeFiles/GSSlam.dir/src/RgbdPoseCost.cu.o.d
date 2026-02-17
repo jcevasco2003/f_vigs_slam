@@ -1877,6 +1877,7 @@ CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o : /home/jorge/ros2_thesis_ws/src/f_v
     /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/pointer.h \
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSCudaKernels.cuh \
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp \
+    /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/CudaMathOperations.cuh \
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/KeyframeSelector.hpp \
     /usr/include/c++/12/random \
     /usr/include/c++/12/bits/random.h \

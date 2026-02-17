@@ -1,0 +1,127 @@
+[33mCMake Warning (dev) at /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:86 (find_package):
+  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
+  --help-policy CMP0146" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+Call Stack (most recent call first):
+  /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:108 (find_host_package)
+  /opt/ros/rolling/share/cv_bridge/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+  /opt/ros/rolling/share/cv_bridge/cmake/cv_bridgeConfig.cmake:41 (include)
+  CMakeLists.txt:24 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) at CMakeLists.txt:32 (find_package):
+  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
+  --help-policy CMP0146" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):
+  ament_target_dependencies() is deprecated.  Use target_link_libraries()
+  with modern CMake targets instead.  Try replacing this call with:
+
+    target_link_libraries(GSSlamNode PUBLIC
+      ${nav_msgs_TARGETS}
+      ${sensor_msgs_TARGETS}
+      cv_bridge::cv_bridge
+      image_geometry::image_geometry
+      image_transport::image_transport
+      message_filters::message_filters
+      rclcpp::rclcpp
+      sensor_msgs::sensor_msgs_library
+      tf2::tf2
+      tf2_eigen::tf2_eigen
+      tf2_geometry_msgs::tf2_geometry_msgs
+      tf2_ros::static_transform_broadcaster_node
+      tf2_ros::tf2_ros
+    )
+
+Call Stack (most recent call first):
+  CMakeLists.txt:115 (ament_target_dependencies)
+
+[0m
+[0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):
+  ament_target_dependencies() is deprecated.  Use target_link_libraries()
+  with modern CMake targets instead.  Try replacing this call with:
+
+    target_link_libraries(gs_slam_node PUBLIC
+      rclcpp::rclcpp
+    )
+
+Call Stack (most recent call first):
+  CMakeLists.txt:175 (ament_target_dependencies)
+
+[0m
+[33mCMake Warning (dev) in CMakeLists.txt:
+  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+  for policy details.  Use the cmake_policy command to set the policy and
+  suppress this warning.
+
+  CUDA_ARCHITECTURES is empty for target "GSSlam".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) in CMakeLists.txt:
+  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+  for policy details.  Use the cmake_policy command to set the policy and
+  suppress this warning.
+
+  CUDA_ARCHITECTURES is empty for target "GSSlamNode".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) in CMakeLists.txt:
+  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+  for policy details.  Use the cmake_policy command to set the policy and
+  suppress this warning.
+
+  CUDA_ARCHITECTURES is empty for target "GSSlamNode".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) in CMakeLists.txt:
+  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+  for policy details.  Use the cmake_policy command to set the policy and
+  suppress this warning.
+
+  CUDA_ARCHITECTURES is empty for target "GSSlam".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) in CMakeLists.txt:
+  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+  for policy details.  Use the cmake_policy command to set the policy and
+  suppress this warning.
+
+  CUDA_ARCHITECTURES is empty for target "GSSlamNode".
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1593)[0m: [01;31merror[0m: no operator "[01m=[0m" matches these operands
+            operand types are: float3 = const float2
+                  s_positions[threadIdx.y * 16 + threadIdx.x] = imgPositions[gid];
+                                                              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1941)[0m: [01;31merror[0m: identifier "[01mbucketToTile[0m" is undefined
+              if (bIdx < bucketCount) bucketToTile[bucket_base + bIdx] = tileId;
+                                      ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1972)[0m: [01;31merror[0m: no operator "[01m=[0m" matches these operands
+            operand types are: float3 = const float
+                  s_depths[threadIdx.y * 16 + threadIdx.x] = depths[gid];
+                                                           ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1995)[0m: [01;31merror[0m: no suitable conversion function from "float3" to "float" exists
+                  float z_c = s_depths[i];
+                              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(2675)[0m: [01;31merror[0m: too few arguments in function call
+          scales[idx] = max(make_float3(0.001f), scale);
+                                              ^
+
+5 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu".
+gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:92: CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o] Error 2
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

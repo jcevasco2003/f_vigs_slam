@@ -33,6 +33,7 @@ find_package(CUDA REQUIRED )
 find_package(OpenCV 4 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Ceres REQUIRED)
+find_package(message_filters REQUIRED)
 
 include_directories(
   include
@@ -47,11 +48,13 @@ include_directories(
 
 add_library(GSSlam SHARED
             src/GSSlam.cu
+            src/GSCudaKernels.cu
             src/RgbdPoseCost.cu
             src/Preintegration.cpp
             src/ImuCostFunction.cpp
             src/PoseLocalParameterization.cpp
             src/MarginalizationFactor.cpp
+            src/KeyframeSelector.cpp
 #            src/GaussianSplattingSlam.cu
 #            src/GaussianSplattingSlamKernels.cu
 #            src/GaussianSplattingSlamTypes.cu
@@ -93,6 +96,20 @@ set_target_properties(GSSlam
 add_library(GSSlamNode SHARED
             src/GSSlamNode.cpp
             src/GaussianSplattingViewer.cpp
+)
+
+set_source_files_properties(
+  src/GSSlamNode.cpp
+  src/GaussianSplattingViewer.cpp
+  PROPERTIES
+  LANGUAGE CUDA
+)
+
+set_target_properties(GSSlamNode
+  PROPERTIES
+  CUDA_STANDARD 17
+  CUDA_STANDARD_REQUIRED ON
+  CUDA_SEPARABLE_COMPILATION ON
 )
 
 ament_target_dependencies( GSSlamNode

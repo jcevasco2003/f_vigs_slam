@@ -1,0 +1,648 @@
+[0.000000] (-) TimerEvent: {}
+[0.000265] (f_vigs_slam) JobQueued: {'identifier': 'f_vigs_slam', 'dependencies': OrderedDict()}
+[0.000382] (f_vigs_slam) JobStarted: {'identifier': 'f_vigs_slam'}
+[0.008732] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'cmake'}
+[0.009432] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'build'}
+[0.010175] (f_vigs_slam) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', '--', '-j6', '-l6'], 'cwd': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jorge', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12.3/lib64:/opt/ros/rolling/opt/zenoh_cpp_vendor/lib:/opt/ros/rolling/opt/gz_math_vendor/lib:/opt/ros/rolling/opt/gz_utils_vendor/lib:/opt/ros/rolling/opt/rviz_ogre_vendor/lib:/opt/ros/rolling/lib/x86_64-linux-gnu:/opt/ros/rolling/opt/gz_cmake_vendor/lib:/opt/ros/rolling/lib:/usr/local/cuda-11.8/lib64:', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/jorge', 'OLDPWD': '/home/jorge/ros2_thesis_ws/src', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'rolling', 'LOGNAME': 'jorge', 'NAME': 'DESKTOP-ECKJB30', 'WSL_INTEROP': '/run/WSL/299_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/usr/local/cuda-12.3/bin:/opt/ros/rolling/bin:/usr/local/cuda-11.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/d/NVIDIA/bin:/mnt/d/NVIDIA/libnvvp:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2022.3.0/:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Users/jorge/AppData/Local/Microsoft/WindowsApps:/mnt/d/Program Files/IntelliJ IDEA Community Edition 2024.3/bin:/mnt/d/Program Files (x86)/Microsoft VS Code/bin:/mnt/c/Users/jorge/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/jorge/.dotnet/tools:/mnt/c/Users/jorge/AppData/Roaming/TinyTeX/bin/windows:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/rolling', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/rolling/opt/gz_math_vendor/lib/python:/opt/ros/rolling/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/rolling/opt/gz_math_vendor:/opt/ros/rolling/opt/gz_utils_vendor:/opt/ros/rolling/opt/gz_cmake_vendor:/opt/ros/rolling', 'WSLENV': ''}), 'shell': False}
+[0.100409] (-) TimerEvent: {}
+[0.133984] (f_vigs_slam) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o\x1b[0m\n'}
+[0.202201] (-) TimerEvent: {}
+[0.305216] (-) TimerEvent: {}
+[0.407721] (-) TimerEvent: {}
+[0.508242] (-) TimerEvent: {}
+[0.614239] (-) TimerEvent: {}
+[0.724601] (-) TimerEvent: {}
+[0.825151] (-) TimerEvent: {}
+[0.925670] (-) TimerEvent: {}
+[1.030433] (-) TimerEvent: {}
+[1.131096] (-) TimerEvent: {}
+[1.241410] (-) TimerEvent: {}
+[1.341954] (-) TimerEvent: {}
+[1.447346] (-) TimerEvent: {}
+[1.548127] (-) TimerEvent: {}
+[1.655178] (-) TimerEvent: {}
+[1.756675] (-) TimerEvent: {}
+[1.858848] (-) TimerEvent: {}
+[1.959539] (-) TimerEvent: {}
+[2.065535] (-) TimerEvent: {}
+[2.167320] (-) TimerEvent: {}
+[2.268106] (-) TimerEvent: {}
+[2.370534] (-) TimerEvent: {}
+[2.478125] (-) TimerEvent: {}
+[2.580760] (-) TimerEvent: {}
+[2.681522] (-) TimerEvent: {}
+[2.784064] (-) TimerEvent: {}
+[2.885677] (-) TimerEvent: {}
+[2.986280] (-) TimerEvent: {}
+[3.087711] (-) TimerEvent: {}
+[3.190509] (-) TimerEvent: {}
+[3.292382] (-) TimerEvent: {}
+[3.392771] (-) TimerEvent: {}
+[3.494784] (-) TimerEvent: {}
+[3.598754] (-) TimerEvent: {}
+[3.701135] (-) TimerEvent: {}
+[3.802285] (-) TimerEvent: {}
+[3.906223] (-) TimerEvent: {}
+[4.006875] (-) TimerEvent: {}
+[4.109186] (-) TimerEvent: {}
+[4.210219] (-) TimerEvent: {}
+[4.313021] (-) TimerEvent: {}
+[4.414346] (-) TimerEvent: {}
+[4.517207] (-) TimerEvent: {}
+[4.618158] (-) TimerEvent: {}
+[4.720800] (-) TimerEvent: {}
+[4.822463] (-) TimerEvent: {}
+[4.925239] (-) TimerEvent: {}
+[5.025721] (-) TimerEvent: {}
+[5.126357] (-) TimerEvent: {}
+[5.231733] (-) TimerEvent: {}
+[5.336861] (-) TimerEvent: {}
+[5.440170] (-) TimerEvent: {}
+[5.545327] (-) TimerEvent: {}
+[5.650545] (-) TimerEvent: {}
+[5.755876] (-) TimerEvent: {}
+[5.856611] (-) TimerEvent: {}
+[5.961877] (-) TimerEvent: {}
+[6.067110] (-) TimerEvent: {}
+[6.172273] (-) TimerEvent: {}
+[6.273828] (-) TimerEvent: {}
+[6.379027] (-) TimerEvent: {}
+[6.484377] (-) TimerEvent: {}
+[6.587732] (-) TimerEvent: {}
+[6.689328] (-) TimerEvent: {}
+[6.794539] (-) TimerEvent: {}
+[6.899838] (-) TimerEvent: {}
+[7.004671] (-) TimerEvent: {}
+[7.105229] (-) TimerEvent: {}
+[7.205786] (-) TimerEvent: {}
+[7.311078] (-) TimerEvent: {}
+[7.411776] (-) TimerEvent: {}
+[7.516948] (-) TimerEvent: {}
+[7.622037] (-) TimerEvent: {}
+[7.727141] (-) TimerEvent: {}
+[7.827846] (-) TimerEvent: {}
+[7.930394] (-) TimerEvent: {}
+[8.031064] (-) TimerEvent: {}
+[8.131812] (-) TimerEvent: {}
+[8.232694] (-) TimerEvent: {}
+[8.334891] (-) TimerEvent: {}
+[8.436024] (-) TimerEvent: {}
+[8.538414] (-) TimerEvent: {}
+[8.654198] (-) TimerEvent: {}
+[8.757042] (-) TimerEvent: {}
+[8.858830] (-) TimerEvent: {}
+[8.961122] (-) TimerEvent: {}
+[9.061560] (-) TimerEvent: {}
+[9.164244] (-) TimerEvent: {}
+[9.264631] (-) TimerEvent: {}
+[9.369911] (-) TimerEvent: {}
+[9.475248] (-) TimerEvent: {}
+[9.579043] (-) TimerEvent: {}
+[9.683465] (-) TimerEvent: {}
+[9.788793] (-) TimerEvent: {}
+[9.893702] (-) TimerEvent: {}
+[9.998982] (-) TimerEvent: {}
+[10.104312] (-) TimerEvent: {}
+[10.209598] (-) TimerEvent: {}
+[10.312634] (-) TimerEvent: {}
+[10.417815] (-) TimerEvent: {}
+[10.521737] (-) TimerEvent: {}
+[10.624330] (-) TimerEvent: {}
+[10.725799] (-) TimerEvent: {}
+[10.830986] (-) TimerEvent: {}
+[10.935914] (-) TimerEvent: {}
+[11.041134] (-) TimerEvent: {}
+[11.146510] (-) TimerEvent: {}
+[11.254130] (-) TimerEvent: {}
+[11.354700] (-) TimerEvent: {}
+[11.460235] (-) TimerEvent: {}
+[11.568392] (-) TimerEvent: {}
+[11.668884] (-) TimerEvent: {}
+[11.779267] (-) TimerEvent: {}
+[11.880032] (-) TimerEvent: {}
+[11.990419] (-) TimerEvent: {}
+[12.092269] (-) TimerEvent: {}
+[12.202667] (-) TimerEvent: {}
+[12.306858] (-) TimerEvent: {}
+[12.417245] (-) TimerEvent: {}
+[12.521023] (-) TimerEvent: {}
+[12.623319] (-) TimerEvent: {}
+[12.727727] (-) TimerEvent: {}
+[12.828935] (-) TimerEvent: {}
+[12.934661] (-) TimerEvent: {}
+[13.042653] (-) TimerEvent: {}
+[13.150781] (-) TimerEvent: {}
+[13.259010] (-) TimerEvent: {}
+[13.359713] (-) TimerEvent: {}
+[13.460103] (-) TimerEvent: {}
+[13.560553] (-) TimerEvent: {}
+[13.661037] (-) TimerEvent: {}
+[13.761981] (-) TimerEvent: {}
+[13.863444] (-) TimerEvent: {}
+[13.968764] (-) TimerEvent: {}
+[14.073909] (-) TimerEvent: {}
+[14.174847] (-) TimerEvent: {}
+[14.276304] (-) TimerEvent: {}
+[14.381576] (-) TimerEvent: {}
+[14.485333] (-) TimerEvent: {}
+[14.585774] (-) TimerEvent: {}
+[14.687395] (-) TimerEvent: {}
+[14.792724] (-) TimerEvent: {}
+[14.893170] (-) TimerEvent: {}
+[14.995937] (-) TimerEvent: {}
+[15.096360] (-) TimerEvent: {}
+[15.196890] (-) TimerEvent: {}
+[15.299747] (-) TimerEvent: {}
+[15.405033] (-) TimerEvent: {}
+[15.505487] (-) TimerEvent: {}
+[15.609264] (-) TimerEvent: {}
+[15.709747] (-) TimerEvent: {}
+[15.811555] (-) TimerEvent: {}
+[15.912125] (-) TimerEvent: {}
+[16.014156] (-) TimerEvent: {}
+[16.114799] (-) TimerEvent: {}
+[16.215410] (-) TimerEvent: {}
+[16.316170] (-) TimerEvent: {}
+[16.417793] (-) TimerEvent: {}
+[16.518396] (-) TimerEvent: {}
+[16.620288] (-) TimerEvent: {}
+[16.720763] (-) TimerEvent: {}
+[16.822467] (-) TimerEvent: {}
+[16.923137] (-) TimerEvent: {}
+[17.024660] (-) TimerEvent: {}
+[17.125125] (-) TimerEvent: {}
+[17.226871] (-) TimerEvent: {}
+[17.327614] (-) TimerEvent: {}
+[17.429252] (-) TimerEvent: {}
+[17.529826] (-) TimerEvent: {}
+[17.630419] (-) TimerEvent: {}
+[17.731000] (-) TimerEvent: {}
+[17.831516] (-) TimerEvent: {}
+[17.932212] (-) TimerEvent: {}
+[18.033019] (-) TimerEvent: {}
+[18.133919] (-) TimerEvent: {}
+[18.234893] (-) TimerEvent: {}
+[18.336091] (-) TimerEvent: {}
+[18.437511] (-) TimerEvent: {}
+[18.547914] (-) TimerEvent: {}
+[18.648532] (-) TimerEvent: {}
+[18.748980] (-) TimerEvent: {}
+[18.849941] (-) TimerEvent: {}
+[18.950548] (-) TimerEvent: {}
+[19.051427] (-) TimerEvent: {}
+[19.152045] (-) TimerEvent: {}
+[19.255460] (-) TimerEvent: {}
+[19.356225] (-) TimerEvent: {}
+[19.457017] (-) TimerEvent: {}
+[19.557497] (-) TimerEvent: {}
+[19.658678] (-) TimerEvent: {}
+[19.759316] (-) TimerEvent: {}
+[19.860850] (-) TimerEvent: {}
+[19.961318] (-) TimerEvent: {}
+[20.063290] (-) TimerEvent: {}
+[20.164045] (-) TimerEvent: {}
+[20.265659] (-) TimerEvent: {}
+[20.366224] (-) TimerEvent: {}
+[20.468050] (-) TimerEvent: {}
+[20.568428] (-) TimerEvent: {}
+[20.670071] (-) TimerEvent: {}
+[20.770683] (-) TimerEvent: {}
+[20.872156] (-) TimerEvent: {}
+[20.972554] (-) TimerEvent: {}
+[21.074306] (-) TimerEvent: {}
+[21.174958] (-) TimerEvent: {}
+[21.275406] (-) TimerEvent: {}
+[21.375817] (-) TimerEvent: {}
+[21.476997] (-) TimerEvent: {}
+[21.577492] (-) TimerEvent: {}
+[21.686912] (-) TimerEvent: {}
+[21.787612] (-) TimerEvent: {}
+[21.888433] (-) TimerEvent: {}
+[21.989496] (-) TimerEvent: {}
+[22.090829] (-) TimerEvent: {}
+[22.191603] (-) TimerEvent: {}
+[22.292571] (-) TimerEvent: {}
+[22.393834] (-) TimerEvent: {}
+[22.495271] (-) TimerEvent: {}
+[22.596068] (-) TimerEvent: {}
+[22.697175] (-) TimerEvent: {}
+[22.797603] (-) TimerEvent: {}
+[22.898098] (-) TimerEvent: {}
+[22.998916] (-) TimerEvent: {}
+[23.099775] (-) TimerEvent: {}
+[23.200752] (-) TimerEvent: {}
+[23.301217] (-) TimerEvent: {}
+[23.401678] (-) TimerEvent: {}
+[23.502224] (-) TimerEvent: {}
+[23.602843] (-) TimerEvent: {}
+[23.703686] (-) TimerEvent: {}
+[23.804610] (-) TimerEvent: {}
+[23.905029] (-) TimerEvent: {}
+[24.005520] (-) TimerEvent: {}
+[24.106868] (-) TimerEvent: {}
+[24.208773] (-) TimerEvent: {}
+[24.310863] (-) TimerEvent: {}
+[24.411544] (-) TimerEvent: {}
+[24.514595] (-) TimerEvent: {}
+[24.615313] (-) TimerEvent: {}
+[24.718156] (-) TimerEvent: {}
+[24.821194] (-) TimerEvent: {}
+[24.922119] (-) TimerEvent: {}
+[25.032487] (-) TimerEvent: {}
+[25.133372] (-) TimerEvent: {}
+[25.234746] (-) TimerEvent: {}
+[25.338253] (-) TimerEvent: {}
+[25.439974] (-) TimerEvent: {}
+[25.540847] (-) TimerEvent: {}
+[25.641356] (-) TimerEvent: {}
+[25.743985] (-) TimerEvent: {}
+[25.846131] (-) TimerEvent: {}
+[25.946752] (-) TimerEvent: {}
+[26.047413] (-) TimerEvent: {}
+[26.149089] (-) TimerEvent: {}
+[26.251636] (-) TimerEvent: {}
+[26.354871] (-) TimerEvent: {}
+[26.463263] (-) TimerEvent: {}
+[26.566713] (-) TimerEvent: {}
+[26.670222] (-) TimerEvent: {}
+[26.770842] (-) TimerEvent: {}
+[26.874535] (-) TimerEvent: {}
+[26.977935] (-) TimerEvent: {}
+[27.081442] (-) TimerEvent: {}
+[27.184201] (-) TimerEvent: {}
+[27.284580] (-) TimerEvent: {}
+[27.387236] (-) TimerEvent: {}
+[27.491895] (-) TimerEvent: {}
+[27.595548] (-) TimerEvent: {}
+[27.696317] (-) TimerEvent: {}
+[27.796726] (-) TimerEvent: {}
+[27.897439] (-) TimerEvent: {}
+[28.000203] (-) TimerEvent: {}
+[28.100616] (-) TimerEvent: {}
+[28.201932] (-) TimerEvent: {}
+[28.302566] (-) TimerEvent: {}
+[28.412953] (-) TimerEvent: {}
+[28.523334] (-) TimerEvent: {}
+[28.624896] (-) TimerEvent: {}
+[28.727423] (-) TimerEvent: {}
+[28.830602] (-) TimerEvent: {}
+[28.933304] (-) TimerEvent: {}
+[29.036302] (-) TimerEvent: {}
+[29.139131] (-) TimerEvent: {}
+[29.240249] (-) TimerEvent: {}
+[29.344273] (-) TimerEvent: {}
+[29.445434] (-) TimerEvent: {}
+[29.547551] (-) TimerEvent: {}
+[29.648770] (-) TimerEvent: {}
+[29.752588] (-) TimerEvent: {}
+[29.854648] (-) TimerEvent: {}
+[29.959508] (-) TimerEvent: {}
+[30.060372] (-) TimerEvent: {}
+[30.160829] (-) TimerEvent: {}
+[30.261323] (-) TimerEvent: {}
+[30.361854] (-) TimerEvent: {}
+[30.464526] (-) TimerEvent: {}
+[30.565032] (-) TimerEvent: {}
+[30.668156] (-) TimerEvent: {}
+[30.771204] (-) TimerEvent: {}
+[30.871741] (-) TimerEvent: {}
+[30.974520] (-) TimerEvent: {}
+[31.076820] (-) TimerEvent: {}
+[31.180149] (-) TimerEvent: {}
+[31.283411] (-) TimerEvent: {}
+[31.386913] (-) TimerEvent: {}
+[31.490034] (-) TimerEvent: {}
+[31.593849] (-) TimerEvent: {}
+[31.696884] (-) TimerEvent: {}
+[31.797413] (-) TimerEvent: {}
+[31.900262] (-) TimerEvent: {}
+[32.000816] (-) TimerEvent: {}
+[32.101918] (-) TimerEvent: {}
+[32.202468] (-) TimerEvent: {}
+[32.303110] (-) TimerEvent: {}
+[32.403801] (-) TimerEvent: {}
+[32.504774] (-) TimerEvent: {}
+[32.605708] (-) TimerEvent: {}
+[32.708513] (-) TimerEvent: {}
+[32.808999] (-) TimerEvent: {}
+[32.911939] (-) TimerEvent: {}
+[33.019163] (-) TimerEvent: {}
+[33.126302] (-) TimerEvent: {}
+[33.234152] (-) TimerEvent: {}
+[33.337326] (-) TimerEvent: {}
+[33.446206] (-) TimerEvent: {}
+[33.546865] (-) TimerEvent: {}
+[33.654279] (-) TimerEvent: {}
+[33.755722] (-) TimerEvent: {}
+[33.856469] (-) TimerEvent: {}
+[33.957332] (-) TimerEvent: {}
+[34.060072] (-) TimerEvent: {}
+[34.160842] (-) TimerEvent: {}
+[34.261326] (-) TimerEvent: {}
+[34.361819] (-) TimerEvent: {}
+[34.462383] (-) TimerEvent: {}
+[34.565525] (-) TimerEvent: {}
+[34.670675] (-) TimerEvent: {}
+[34.773305] (-) TimerEvent: {}
+[34.873854] (-) TimerEvent: {}
+[34.979056] (-) TimerEvent: {}
+[35.084156] (-) TimerEvent: {}
+[35.189263] (-) TimerEvent: {}
+[35.289800] (-) TimerEvent: {}
+[35.390895] (-) TimerEvent: {}
+[35.493533] (-) TimerEvent: {}
+[35.598705] (-) TimerEvent: {}
+[35.699391] (-) TimerEvent: {}
+[35.800174] (-) TimerEvent: {}
+[35.901804] (-) TimerEvent: {}
+[36.003619] (-) TimerEvent: {}
+[36.105595] (-) TimerEvent: {}
+[36.207355] (-) TimerEvent: {}
+[36.308530] (-) TimerEvent: {}
+[36.410589] (-) TimerEvent: {}
+[36.511275] (-) TimerEvent: {}
+[36.613166] (-) TimerEvent: {}
+[36.714569] (-) TimerEvent: {}
+[36.816424] (-) TimerEvent: {}
+[36.918844] (-) TimerEvent: {}
+[37.020730] (-) TimerEvent: {}
+[37.122422] (-) TimerEvent: {}
+[37.225573] (-) TimerEvent: {}
+[37.326909] (-) TimerEvent: {}
+[37.429962] (-) TimerEvent: {}
+[37.532952] (-) TimerEvent: {}
+[37.636231] (-) TimerEvent: {}
+[37.739824] (-) TimerEvent: {}
+[37.842625] (-) TimerEvent: {}
+[37.945645] (-) TimerEvent: {}
+[38.046565] (-) TimerEvent: {}
+[38.149138] (-) TimerEvent: {}
+[38.250554] (-) TimerEvent: {}
+[38.353149] (-) TimerEvent: {}
+[38.454621] (-) TimerEvent: {}
+[38.555255] (-) TimerEvent: {}
+[38.656024] (-) TimerEvent: {}
+[38.756299] (-) TimerEvent: {}
+[38.857296] (-) TimerEvent: {}
+[38.959442] (-) TimerEvent: {}
+[39.062935] (-) TimerEvent: {}
+[39.164836] (-) TimerEvent: {}
+[39.266948] (-) TimerEvent: {}
+[39.367489] (-) TimerEvent: {}
+[39.468203] (-) TimerEvent: {}
+[39.568600] (-) TimerEvent: {}
+[39.670568] (-) TimerEvent: {}
+[39.772800] (-) TimerEvent: {}
+[39.874574] (-) TimerEvent: {}
+[39.976936] (-) TimerEvent: {}
+[40.077408] (-) TimerEvent: {}
+[40.179962] (-) TimerEvent: {}
+[40.283170] (-) TimerEvent: {}
+[40.388417] (-) TimerEvent: {}
+[40.493766] (-) TimerEvent: {}
+[40.595590] (-) TimerEvent: {}
+[40.696119] (-) TimerEvent: {}
+[40.706044] (f_vigs_slam) StdoutLine: {'line': b'[ 16%] \x1b[32m\x1b[1mLinking CXX shared library libGSSlam.so\x1b[0m\n'}
+[40.796298] (-) TimerEvent: {}
+[40.906812] (-) TimerEvent: {}
+[41.011206] (-) TimerEvent: {}
+[41.116592] (-) TimerEvent: {}
+[41.218432] (-) TimerEvent: {}
+[41.323746] (-) TimerEvent: {}
+[41.427410] (-) TimerEvent: {}
+[41.528703] (-) TimerEvent: {}
+[41.629954] (-) TimerEvent: {}
+[41.731361] (-) TimerEvent: {}
+[41.836921] (-) TimerEvent: {}
+[41.940606] (-) TimerEvent: {}
+[42.046252] (-) TimerEvent: {}
+[42.152671] (-) TimerEvent: {}
+[42.257697] (-) TimerEvent: {}
+[42.363612] (-) TimerEvent: {}
+[42.469530] (-) TimerEvent: {}
+[42.571896] (-) TimerEvent: {}
+[42.677775] (-) TimerEvent: {}
+[42.778877] (-) TimerEvent: {}
+[42.880829] (-) TimerEvent: {}
+[42.981779] (-) TimerEvent: {}
+[43.082939] (-) TimerEvent: {}
+[43.184664] (-) TimerEvent: {}
+[43.286138] (-) TimerEvent: {}
+[43.392060] (-) TimerEvent: {}
+[43.493476] (-) TimerEvent: {}
+[43.594013] (-) TimerEvent: {}
+[43.699367] (-) TimerEvent: {}
+[43.804466] (-) TimerEvent: {}
+[43.905096] (-) TimerEvent: {}
+[44.010596] (-) TimerEvent: {}
+[44.111511] (-) TimerEvent: {}
+[44.216804] (-) TimerEvent: {}
+[44.317312] (-) TimerEvent: {}
+[44.419834] (-) TimerEvent: {}
+[44.520741] (-) TimerEvent: {}
+[44.622109] (-) TimerEvent: {}
+[44.722671] (-) TimerEvent: {}
+[44.826469] (-) TimerEvent: {}
+[44.927286] (-) TimerEvent: {}
+[45.032586] (-) TimerEvent: {}
+[45.133090] (-) TimerEvent: {}
+[45.238309] (-) TimerEvent: {}
+[45.338955] (-) TimerEvent: {}
+[45.443710] (-) TimerEvent: {}
+[45.544190] (-) TimerEvent: {}
+[45.648660] (-) TimerEvent: {}
+[45.749158] (-) TimerEvent: {}
+[45.849637] (-) TimerEvent: {}
+[45.891393] (f_vigs_slam) StdoutLine: {'line': b'[ 58%] Built target GSSlam\n'}
+[45.922266] (f_vigs_slam) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o\x1b[0m\n'}
+[45.925946] (f_vigs_slam) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o\x1b[0m\n'}
+[45.950031] (-) TimerEvent: {}
+[46.050934] (-) TimerEvent: {}
+[46.151919] (-) TimerEvent: {}
+[46.253304] (-) TimerEvent: {}
+[46.354228] (-) TimerEvent: {}
+[46.454966] (-) TimerEvent: {}
+[46.555831] (-) TimerEvent: {}
+[46.656198] (-) TimerEvent: {}
+[46.756621] (-) TimerEvent: {}
+[46.857153] (-) TimerEvent: {}
+[46.957615] (-) TimerEvent: {}
+[47.058624] (-) TimerEvent: {}
+[47.159407] (-) TimerEvent: {}
+[47.261105] (-) TimerEvent: {}
+[47.362256] (-) TimerEvent: {}
+[47.463859] (-) TimerEvent: {}
+[47.565756] (-) TimerEvent: {}
+[47.667609] (-) TimerEvent: {}
+[47.767991] (-) TimerEvent: {}
+[47.868868] (-) TimerEvent: {}
+[47.969856] (-) TimerEvent: {}
+[48.071305] (-) TimerEvent: {}
+[48.172488] (-) TimerEvent: {}
+[48.274240] (-) TimerEvent: {}
+[48.377662] (-) TimerEvent: {}
+[48.478963] (-) TimerEvent: {}
+[48.579969] (-) TimerEvent: {}
+[48.680820] (-) TimerEvent: {}
+[48.791424] (-) TimerEvent: {}
+[48.895859] (-) TimerEvent: {}
+[49.001161] (-) TimerEvent: {}
+[49.102448] (-) TimerEvent: {}
+[49.203101] (-) TimerEvent: {}
+[49.303981] (-) TimerEvent: {}
+[49.405439] (-) TimerEvent: {}
+[49.510034] (-) TimerEvent: {}
+[49.611190] (-) TimerEvent: {}
+[49.712232] (-) TimerEvent: {}
+[49.812924] (-) TimerEvent: {}
+[49.913725] (-) TimerEvent: {}
+[50.015366] (-) TimerEvent: {}
+[50.116202] (-) TimerEvent: {}
+[50.217080] (-) TimerEvent: {}
+[50.318006] (-) TimerEvent: {}
+[50.421058] (-) TimerEvent: {}
+[50.522015] (-) TimerEvent: {}
+[50.627535] (-) TimerEvent: {}
+[50.733346] (-) TimerEvent: {}
+[50.833811] (-) TimerEvent: {}
+[50.934759] (-) TimerEvent: {}
+[51.035328] (-) TimerEvent: {}
+[51.136160] (-) TimerEvent: {}
+[51.236573] (-) TimerEvent: {}
+[51.337917] (-) TimerEvent: {}
+[51.439355] (-) TimerEvent: {}
+[51.540686] (-) TimerEvent: {}
+[51.641548] (-) TimerEvent: {}
+[51.742502] (-) TimerEvent: {}
+[51.843619] (-) TimerEvent: {}
+[51.944995] (-) TimerEvent: {}
+[52.045884] (-) TimerEvent: {}
+[52.146854] (-) TimerEvent: {}
+[52.247919] (-) TimerEvent: {}
+[52.348651] (-) TimerEvent: {}
+[52.449094] (-) TimerEvent: {}
+[52.550784] (-) TimerEvent: {}
+[52.651441] (-) TimerEvent: {}
+[52.751972] (-) TimerEvent: {}
+[52.853173] (-) TimerEvent: {}
+[52.956014] (-) TimerEvent: {}
+[53.058858] (-) TimerEvent: {}
+[53.159561] (-) TimerEvent: {}
+[53.260112] (-) TimerEvent: {}
+[53.360686] (-) TimerEvent: {}
+[53.461332] (-) TimerEvent: {}
+[53.561967] (-) TimerEvent: {}
+[53.662529] (-) TimerEvent: {}
+[53.763054] (-) TimerEvent: {}
+[53.863597] (-) TimerEvent: {}
+[53.964413] (-) TimerEvent: {}
+[54.067564] (-) TimerEvent: {}
+[54.168137] (-) TimerEvent: {}
+[54.268550] (-) TimerEvent: {}
+[54.369007] (-) TimerEvent: {}
+[54.398462] (f_vigs_slam) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp:1\x1b[m\x1b[K:\n'}
+[54.398723] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:9:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kmessage_filters/subscriber.h: No such file or directory\n'}
+[54.398820] (f_vigs_slam) StderrLine: {'line': b'    9 | #include \x1b[01;31m\x1b[K"message_filters/subscriber.h"\x1b[m\x1b[K\n'}
+[54.398904] (f_vigs_slam) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[54.398987] (f_vigs_slam) StderrLine: {'line': b'compilation terminated.\n'}
+[54.414546] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:76: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o] Error 1\n'}
+[54.414763] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[54.471416] (-) TimerEvent: {}
+[54.574187] (-) TimerEvent: {}
+[54.585368] (f_vigs_slam) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/internal_functional.h:27\x1b[m\x1b[K,\n'}
+[54.585930] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:22\x1b[m\x1b[K,\n'}
+[54.586152] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.h:57\x1b[m\x1b[K,\n'}
+[54.586448] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.inl:22\x1b[m\x1b[K,\n'}
+[54.586714] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:90\x1b[m\x1b[K,\n'}
+[54.586881] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.inl:23\x1b[m\x1b[K,\n'}
+[54.587025] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.h:45\x1b[m\x1b[K,\n'}
+[54.587212] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:23\x1b[m\x1b[K,\n'}
+[54.587924] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.h:234\x1b[m\x1b[K,\n'}
+[54.588143] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.h:30\x1b[m\x1b[K,\n'}
+[54.588246] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/device_vector.h:26\x1b[m\x1b[K,\n'}
+[54.588328] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh:5\x1b[m\x1b[K,\n'}
+[54.588407] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GaussianSplattingViewer.hpp:10\x1b[m\x1b[K,\n'}
+[54.588484] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp:1\x1b[m\x1b[K:\n'}
+[54.588562] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float3>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float3> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[54.588644] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float3>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float3> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.588723] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float3>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.588819] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; Generator = detail::fill_functor<float3>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.588927] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; T = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589018] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; T = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589108] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[54.589183] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589264] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589339] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float3> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589413] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589486] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589564] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:63:29:\x1b[m\x1b[K   required from here\n'}
+[54.589636] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[54.589708] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[54.589780] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[54.589857] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.589936] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[54.590007] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[54.590083] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float3>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[54.590155] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[54.590225] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[54.590296] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.590373] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[54.590443] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[54.590513] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float4>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float4> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[54.590588] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float4>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float4> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.590667] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float4>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.590741] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; Generator = detail::fill_functor<float4>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.590822] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; T = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.590904] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; T = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.590979] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[54.591051] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.591140] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.591213] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float4> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.591286] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.591357] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.591434] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:65:32:\x1b[m\x1b[K   required from here\n'}
+[54.591505] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[54.591576] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[54.591645] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[54.591716] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.591787] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[54.591856] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[54.591927] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float4>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[54.592001] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[54.592170] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[54.592249] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.592321] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[54.592393] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[54.592464] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[54.592552] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.592631] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.592710] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; Generator = detail::fill_functor<float>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.592789] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; T = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.592862] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; T = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.592935] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[54.593007] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.593092] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.593165] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.593252] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.593330] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.593402] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:67:29:\x1b[m\x1b[K   required from here\n'}
+[54.593473] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[54.593544] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[54.593614] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[54.593683] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.593754] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[54.593824] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[54.593893] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[54.593964] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[54.594033] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[54.594103] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[54.594172] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[54.594243] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[54.674473] (-) TimerEvent: {}
+[54.775729] (-) TimerEvent: {}
+[54.805318] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:90: CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o] Error 1\n'}
+[54.805814] (f_vigs_slam) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/GSSlamNode.dir/all] Error 2\n'}
+[54.806219] (f_vigs_slam) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[54.809312] (f_vigs_slam) CommandEnded: {'returncode': 2}
+[54.817934] (f_vigs_slam) JobEnded: {'identifier': 'f_vigs_slam', 'rc': 2}
+[54.829094] (-) EventReactorShutdown: {}

@@ -1,0 +1,28 @@
+[ 58%] Built target GSSlam
+[ 66%] [32mBuilding CUDA object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o[0m
+[01m[0m[01m/usr/include/c++/12/bits/stl_construct.h(119)[0m: [01;31merror[0m: no instance of constructor [01m"message_filters::Subscriber<M>::Subscriber [with M=sensor_msgs::msg::Image]"[0m matches the argument list
+            argument types are: (f_vigs_slam::GSSlamNode *, std::string, rmw_qos_profile_t)
+        ::new((void*)__p) _Tp(std::forward<_Args>(__args)...);
+                             ^
+          detected during:
+            instantiation of [01m"void std::_Construct(_Tp *, _Args &&...) [with _Tp=message_filters::Subscriber<sensor_msgs::msg::Image>, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 635 of /usr/include/c++/12/bits/alloc_traits.h[0m
+            instantiation of [01m"void std::allocator_traits<std::allocator<void>>::construct(std::allocator_traits<std::allocator<void>>::allocator_type &, _Up *, _Args &&...) [with _Up=message_filters::Subscriber<sensor_msgs::msg::Image>, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 605 of /usr/include/c++/12/bits/shared_ptr_base.h[0m
+            instantiation of [01m"std::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args &&...) [with _Tp=message_filters::Subscriber<sensor_msgs::msg::Image>, _Alloc=std::allocator<void>, _Lp=__gnu_cxx::_S_atomic, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 972 of /usr/include/c++/12/bits/shared_ptr_base.h[0m
+            instantiation of [01m"std::__shared_count<_Lp>::__shared_count(_Tp *&, std::_Sp_alloc_shared_tag<_Alloc>, _Args &&...) [with _Lp=__gnu_cxx::_S_atomic, _Tp=message_filters::Subscriber<sensor_msgs::msg::Image>, _Alloc=std::allocator<void>, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 1716 of /usr/include/c++/12/bits/shared_ptr_base.h[0m
+            instantiation of [01m"std::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Alloc>, _Args &&...) [with _Tp=message_filters::Subscriber<sensor_msgs::msg::Image>, _Lp=__gnu_cxx::_S_atomic, _Alloc=std::allocator<void>, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 465 of /usr/include/c++/12/bits/shared_ptr.h[0m
+            instantiation of [01m"std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Alloc>, _Args &&...) [with _Tp=message_filters::Subscriber<sensor_msgs::msg::Image>, _Alloc=std::allocator<void>, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 1010 of /usr/include/c++/12/bits/shared_ptr.h[0m
+            instantiation of [01m"std::shared_ptr<std::_NonArray<_Tp>> std::make_shared<_Tp,_Args...>(_Args &&...) [with _Tp=message_filters::Subscriber<sensor_msgs::msg::Image>, _Args=<f_vigs_slam::GSSlamNode *, std::string &, rmw_qos_profile_t &>]"[0m [32mat line 78 of /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp[0m
+
+[01m[0m[01m/opt/ros/rolling/include/message_filters/message_filters/signal9.hpp(126)[0m: [01;31merror[0m: no instance of overloaded function [01m"std::_Bind<_Functor (_Bound_args...)>::operator() [with _Functor=void (f_vigs_slam::GSSlamNode::*)(std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>, std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>), _Bound_args=<f_vigs_slam::GSSlamNode *, std::_Placeholder<1>, std::_Placeholder<2>>]"[0m matches the argument list
+            argument types are: (const std::shared_ptr<const sensor_msgs::msg::Image_<std::allocator<void>>>, const std::shared_ptr<const sensor_msgs::msg::Image_<std::allocator<void>>>)
+            object type is: const std::_Bind<void (f_vigs_slam::GSSlamNode::*(f_vigs_slam::GSSlamNode *, std::_Placeholder<1>, std::_Placeholder<2>))(std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>, std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>)>
+          [callback](const std::shared_ptr<const Ms> & ... msgs) {callback(msgs ...);}));
+                                                                  ^
+          detected during:
+            instantiation of [01m"message_filters::Connection message_filters::Signal9<Ms...>::addCallback(C &) [with Ms=<sensor_msgs::msg::Image, sensor_msgs::msg::Image>, C=const std::_Bind<void (f_vigs_slam::GSSlamNode::*(f_vigs_slam::GSSlamNode *, std::_Placeholder<1>, std::_Placeholder<2>))(std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>, std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>)>]"[0m [32mat line 127 of /opt/ros/rolling/include/message_filters/message_filters/synchronizer.hpp[0m
+            instantiation of [01m"message_filters::Connection message_filters::Synchronizer<Policy>::registerCallback(const C &) [with Policy=f_vigs_slam::GSSlamNode::RGBDSyncPolicy, C=std::_Bind<void (f_vigs_slam::GSSlamNode::*(f_vigs_slam::GSSlamNode *, std::_Placeholder<1>, std::_Placeholder<2>))(std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>, std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>>)>]"[0m [32mat line 87 of /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp[0m
+
+2 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp".
+gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:77: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/GSSlamNode.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

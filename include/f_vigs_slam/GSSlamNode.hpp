@@ -1,15 +1,14 @@
 #pragma once
 
 #include "rclcpp/rclcpp.hpp"
-#include "f_vigs_slam/GSSlam.cuh"
 #include "sensor_msgs/msg/imu.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "sensor_msgs/msg/camera_info.hpp"
 #include "nav_msgs/msg/odometry.hpp"
-#include "message_filters/subscriber.h"
-#include "message_filters/synchronizer.h"
-#include "message_filters/sync_policies/approximate_time.h"
-#include "message_filters/cache.h"
+#include "message_filters/subscriber.hpp"
+#include "message_filters/synchronizer.hpp"
+#include "message_filters/sync_policies/approximate_time.hpp"
+#include "message_filters/cache.hpp"
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/transform_listener.h>
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
@@ -18,12 +17,18 @@
 #include <vector>
 #include <Eigen/Dense>
 #include <opencv2/opencv.hpp>
-#include "f_vigs_slam/GaussianSplattingViewer.hpp"
 
 // Definimos la clase que se encarga de la logica del nodo en si mismo
 
 namespace f_vigs_slam
 {
+    class GSSlam;
+    class GaussianSplattingViewer;
+    struct IntrinsicParameters;
+    struct ImuData;
+    struct CameraPose;
+    class Preintegration;
+
     class GSSlamNode : public rclcpp::Node
     {
     public:
@@ -31,9 +36,9 @@ namespace f_vigs_slam
         ~GSSlamNode();
 
     protected:
-        GSSlam gs_core_;
-        std::shared_ptr<GaussianSplattingViewer> viewer_;
-        IntrinsicParameters intrinsics;
+        struct Impl;
+        std::unique_ptr<Impl> impl_;
+
         bool hasIntrinsics = false;
         bool hasImu = false;
         bool imuInitialized = false;
@@ -41,8 +46,6 @@ namespace f_vigs_slam
         bool hasCameraInfo = false;
         cv::Mat rgbImg, depthImg;
         cv::Mat local_rgb_img, local_depth_img;
-        ImuData imu_data_;
-        Preintegration preint_;
         int nb_init_imu_ = 0;
         Eigen::Vector3d avg_acc_ = Eigen::Vector3d::Zero();
         Eigen::Vector3d avg_gyro_ = Eigen::Vector3d::Zero();
@@ -55,8 +58,7 @@ namespace f_vigs_slam
         rclcpp::Time last_imu_stamp_{0, 0, RCL_CLOCK_UNINITIALIZED};
         rclcpp::Time last_processed_rgbd_stamp_{0, 0, RCL_CLOCK_UNINITIALIZED};
         rclcpp::Time last_rgb_stamp_{0, 0, RCL_CLOCK_UNINITIALIZED};
-        sensor_msgs::msg::Image::SharedPtr last_rgb_msg_;
-        CameraPose odom_pose_init_;
+        sensor_msgs::msg::Image::ConstSharedPtr last_rgb_msg_;
 
         std::unique_ptr<tf2_ros::Buffer> tf_buffer_;
         std::shared_ptr<tf2_ros::TransformListener> tf_listener_{nullptr};
@@ -87,8 +89,8 @@ namespace f_vigs_slam
 
         // Callbacks para manejo de mensajes
         void imuCallback(const sensor_msgs::msg::Imu::SharedPtr msg);
-        void rgbdCallback(const sensor_msgs::msg::Image::SharedPtr color,
-                  const sensor_msgs::msg::Image::SharedPtr depth);
+        void rgbdCallback(const std::shared_ptr<const sensor_msgs::msg::Image>& color,
+                  const std::shared_ptr<const sensor_msgs::msg::Image>& depth);
         void cameraInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
         void imuPreintegratedCallback(const sensor_msgs::msg::Imu::SharedPtr msg);
         

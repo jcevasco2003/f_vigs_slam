@@ -1,0 +1,52 @@
+[0.023s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.587s] [  8%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o[0m
+[0.589s] [ 16%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o[0m
+[16.552s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1039)[0m: [01;31merror[0m: argument of type "float2 *" is incompatible with parameter of type "const float3 *"
+[16.552s]               thrust::raw_pointer_cast(positions_2d_.data()),
+[16.552s]               ^
+[16.552s] 
+[16.570s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1187)[0m: [01;31merror[0m: argument of type "float2 *" is incompatible with parameter of type "const float3 *"
+[16.570s]               thrust::raw_pointer_cast(positions_2d_.data()),
+[16.570s]               ^
+[16.570s] 
+[16.574s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1419)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.575s]             operand types are: float3 [ int ]
+[16.575s]           camera_pose.position[0] = static_cast<float>(P_cam.x());
+[16.575s]                               ^
+[16.575s] 
+[16.575s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1420)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.575s]             operand types are: float3 [ int ]
+[16.575s]           camera_pose.position[1] = static_cast<float>(P_cam.y());
+[16.575s]                               ^
+[16.576s] 
+[16.576s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1421)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.576s]             operand types are: float3 [ int ]
+[16.576s]           camera_pose.position[2] = static_cast<float>(P_cam.z());
+[16.576s]                               ^
+[16.576s] 
+[16.576s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1424)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.576s]             operand types are: float4 [ int ]
+[16.576s]           camera_pose.orientation[0] = Q_cam_f.x();
+[16.576s]                                  ^
+[16.576s] 
+[16.576s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1425)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.577s]             operand types are: float4 [ int ]
+[16.577s]           camera_pose.orientation[1] = Q_cam_f.y();
+[16.577s]                                  ^
+[16.577s] 
+[16.577s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1426)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.577s]             operand types are: float4 [ int ]
+[16.577s]           camera_pose.orientation[2] = Q_cam_f.z();
+[16.577s]                                  ^
+[16.577s] 
+[16.577s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1427)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[16.578s]             operand types are: float4 [ int ]
+[16.578s]           camera_pose.orientation[3] = Q_cam_f.w();
+[16.578s]                                  ^
+[16.578s] 
+[16.913s] 9 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu".
+[17.025s] gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:77: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o] Error 2
+[17.025s] gmake[2]: *** Waiting for unfinished jobs....
+[39.442s] gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+[39.442s] gmake: *** [Makefile:146: all] Error 2
+[39.445s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

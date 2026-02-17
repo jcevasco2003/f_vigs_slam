@@ -70,32 +70,247 @@ include CMakeFiles/GSSlamNode.dir/progress.make
 include CMakeFiles/GSSlamNode.dir/flags.make
 
 CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o: CMakeFiles/GSSlamNode.dir/flags.make
+CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o: CMakeFiles/GSSlamNode.dir/includes_CUDA.rsp
 CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp
 CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o: CMakeFiles/GSSlamNode.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o -MF CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o.d -o CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o"
+	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -ccbin=/usr/bin/gcc-12 $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o -MF CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o.d -x cu -rdc=true -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp -o CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o
 
 CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp > CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.i
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CUDA source to CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.i"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_PREPROCESSED_SOURCE
 
 CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp -o CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.s
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CUDA source to assembly CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.s"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
 
 CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o: CMakeFiles/GSSlamNode.dir/flags.make
+CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o: CMakeFiles/GSSlamNode.dir/includes_CUDA.rsp
 CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp
 CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o: CMakeFiles/GSSlamNode.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o -MF CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o.d -o CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CUDA object CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o"
+	/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -ccbin=/usr/bin/gcc-12 $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o -MF CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o.d -x cu -rdc=true -c /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp -o CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o
 
 CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp > CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.i
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CUDA source to CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.i"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_PREPROCESSED_SOURCE
 
 CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp -o CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.s
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CUDA source to assembly CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.s"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
+
+# Object files for target GSSlamNode
+GSSlamNode_OBJECTS = \
+"CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o" \
+"CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o"
+
+# External object files for target GSSlamNode
+GSSlamNode_EXTERNAL_OBJECTS =
+
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: CMakeFiles/GSSlamNode.dir/build.make
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/x86_64-linux-gnu/libimage_transport.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatic_transform_broadcaster_node.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libimage_geometry.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libcv_bridge.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: libGSSlam.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_gapi.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_stitching.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_alphamat.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_aruco.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_bgsegm.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_bioinspired.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_ccalib.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_cudabgsegm.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_cudastereo.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_dnn_objdetect.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_dnn_superres.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_dpm.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_fuzzy.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_hdf.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_hfs.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_img_hash.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_intensity_transform.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_line_descriptor.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_mcc.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_quality.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_rapid.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_reg.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_rgbd.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_saliency.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_stereo.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_structured_light.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_superres.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_surface_matching.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_tracking.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_viz.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_wechat_qrcode.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_xfeatures2d.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_xobjdetect.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libceres.a
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libnav_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_ros.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libmessage_filters.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librclcpp_action.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_action.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtf2_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libaction_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libunique_identifier_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librclcpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/liblibstatistics_collector.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librmw_implementation.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtype_description_interfaces__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_interfaces__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_yaml_param_parser.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosgraph_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstatistics_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libtracetools.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcl_logging_interface.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_typesupport_fastrtps_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_typesupport_fastrtps_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librmw.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_dynamic_typesupport.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libfastcdr.so.2.3.3
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_typesupport_introspection_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_typesupport_introspection_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_generator_py.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libsensor_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libgeometry_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libstd_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_typesupport_cpp.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libservice_msgs__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/libbuiltin_interfaces__rosidl_generator_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_typesupport_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librosidl_runtime_c.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcpputils.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /opt/ros/rolling/lib/librcutils.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_phase_unwrapping.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_cudawarping.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_optflow.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_highgui.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_videoio.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_datasets.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_plot.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_text.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_ml.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_shape.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_ximgproc.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_video.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_imgcodecs.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_objdetect.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_calib3d.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_dnn.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_features2d.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_flann.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_imgproc.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_core.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/lib/libopencv_cudev.so.4.8.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/lib/x86_64-linux-gnu/libglog.so.0.6.0
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/lib/x86_64-linux-gnu/libgflags.so.2.2.2
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/lib/x86_64-linux-gnu/liblapack.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/lib/x86_64-linux-gnu/libblas.so
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/local/cuda-12.3/lib64/libcudart_static.a
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: /usr/lib/x86_64-linux-gnu/librt.a
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: CMakeFiles/GSSlamNode.dir/deviceLinkLibs.rsp
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: CMakeFiles/GSSlamNode.dir/deviceObjects1.rsp
+CMakeFiles/GSSlamNode.dir/cmake_device_link.o: CMakeFiles/GSSlamNode.dir/dlink.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CUDA device code CMakeFiles/GSSlamNode.dir/cmake_device_link.o"
+	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GSSlamNode.dir/dlink.txt --verbose=$(VERBOSE)
+
+# Rule to build all files generated by this target.
+CMakeFiles/GSSlamNode.dir/build: CMakeFiles/GSSlamNode.dir/cmake_device_link.o
+.PHONY : CMakeFiles/GSSlamNode.dir/build
 
 # Object files for target GSSlamNode
 GSSlamNode_OBJECTS = \
@@ -300,8 +515,9 @@ libGSSlamNode.so: /usr/lib/x86_64-linux-gnu/liblapack.so
 libGSSlamNode.so: /usr/lib/x86_64-linux-gnu/libblas.so
 libGSSlamNode.so: /usr/local/cuda-12.3/lib64/libcudart_static.a
 libGSSlamNode.so: /usr/lib/x86_64-linux-gnu/librt.a
+libGSSlamNode.so: CMakeFiles/GSSlamNode.dir/cmake_device_link.o
 libGSSlamNode.so: CMakeFiles/GSSlamNode.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libGSSlamNode.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libGSSlamNode.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GSSlamNode.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

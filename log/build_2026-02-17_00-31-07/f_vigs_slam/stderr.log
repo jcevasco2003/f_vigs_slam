@@ -1,0 +1,48 @@
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1039)[0m: [01;31merror[0m: argument of type "float2 *" is incompatible with parameter of type "const float3 *"
+              thrust::raw_pointer_cast(positions_2d_.data()),
+              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1187)[0m: [01;31merror[0m: argument of type "float2 *" is incompatible with parameter of type "const float3 *"
+              thrust::raw_pointer_cast(positions_2d_.data()),
+              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1419)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float3 [ int ]
+          camera_pose.position[0] = static_cast<float>(P_cam.x());
+                              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1420)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float3 [ int ]
+          camera_pose.position[1] = static_cast<float>(P_cam.y());
+                              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1421)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float3 [ int ]
+          camera_pose.position[2] = static_cast<float>(P_cam.z());
+                              ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1424)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float4 [ int ]
+          camera_pose.orientation[0] = Q_cam_f.x();
+                                 ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1425)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float4 [ int ]
+          camera_pose.orientation[1] = Q_cam_f.y();
+                                 ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1426)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float4 [ int ]
+          camera_pose.orientation[2] = Q_cam_f.z();
+                                 ^
+
+[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1427)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+            operand types are: float4 [ int ]
+          camera_pose.orientation[3] = Q_cam_f.w();
+                                 ^
+
+9 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu".
+gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:77: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o] Error 2
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

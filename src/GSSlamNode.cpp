@@ -1,5 +1,7 @@
 #include <f_vigs_slam/GSSlamNode.hpp>
 #include "rclcpp/rclcpp.hpp"
+#include <f_vigs_slam/GSSlam.cuh>
+#include <f_vigs_slam/GaussianSplattingViewer.hpp>
 #include <f_vigs_slam/RepresentationClasses.hpp>
 #include <cv_bridge/cv_bridge.hpp>
 #include <functional>
@@ -10,8 +12,19 @@
 
 namespace f_vigs_slam
 {
+    struct GSSlamNode::Impl
+    {
+        GSSlam gs_core_;
+        std::shared_ptr<GaussianSplattingViewer> viewer_;
+        IntrinsicParameters intrinsics;
+        ImuData imu_data_;
+        Preintegration preint_;
+        CameraPose odom_pose_init_;
+    };
+
     GSSlamNode::GSSlamNode(const rclcpp::NodeOptions & options)
-        : Node("gs_slam_node", options)
+        : Node("gs_slam_node", options),
+          impl_(std::make_unique<Impl>())
         {
             RCLCPP_INFO(this->get_logger(), "GS_Node has been started.");
 
@@ -41,10 +54,10 @@ namespace f_vigs_slam
             }
             world_frame_id_ = this->get_parameter("world_frame_id").as_string();
 
-            this->get_parameter<double>("acc_n", imu_data_.acc_n);
-            this->get_parameter<double>("gyr_n", imu_data_.gyr_n);
-            this->get_parameter<double>("acc_w", imu_data_.acc_w);
-            this->get_parameter<double>("gyr_w", imu_data_.gyr_w);
+            this->get_parameter<double>("acc_n", impl_->imu_data_.acc_n);
+            this->get_parameter<double>("gyr_n", impl_->imu_data_.gyr_n);
+            this->get_parameter<double>("acc_w", impl_->imu_data_.acc_w);
+            this->get_parameter<double>("gyr_w", impl_->imu_data_.gyr_w);
 
             this->declare_parameter<int>("gauss_init_size_px", 7);
             this->declare_parameter<double>("gauss_init_scale", 0.01);
@@ -59,15 +72,15 @@ namespace f_vigs_slam
             gauss_init_scale_ = this->get_parameter("gauss_init_scale").as_double();
             depth_scale_ = this->get_parameter("depth_scale").as_double();
 
-            gs_core_.setGaussInitSizePx(gauss_init_size_px_);
-            gs_core_.setGaussInitScale(static_cast<float>(gauss_init_scale_));
+            impl_->gs_core_.setGaussInitSizePx(gauss_init_size_px_);
+            impl_->gs_core_.setGaussInitScale(static_cast<float>(gauss_init_scale_));
             
             // Configurar parámetros de optimización
-            gs_core_.setPoseIterations(this->get_parameter("pose_iterations").as_int());
-            gs_core_.setGaussianIterations(this->get_parameter("gaussian_iterations").as_int());
-            gs_core_.setEtaPose(static_cast<float>(this->get_parameter("eta_pose").as_double()));
-            gs_core_.setEtaGaussian(static_cast<float>(this->get_parameter("eta_gaussian").as_double()));
-            gs_core_.setGaussianSamplingMethod(this->get_parameter("gaussian_sampling_method").as_string());
+            impl_->gs_core_.setPoseIterations(this->get_parameter("pose_iterations").as_int());
+            impl_->gs_core_.setGaussianIterations(this->get_parameter("gaussian_iterations").as_int());
+            impl_->gs_core_.setEtaPose(static_cast<float>(this->get_parameter("eta_pose").as_double()));
+            impl_->gs_core_.setEtaGaussian(static_cast<float>(this->get_parameter("eta_gaussian").as_double()));
+            impl_->gs_core_.setGaussianSamplingMethod(this->get_parameter("gaussian_sampling_method").as_string());
 
             // Subscribimos los nodos a los topicos
             imu_sub_ = this->create_subscription<sensor_msgs::msg::Imu>(
@@ -76,9 +89,9 @@ namespace f_vigs_slam
 
             auto sensor_qos = rclcpp::SensorDataQoS();
             depth_sub_ = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(
-                this, depth_topic, sensor_qos.get_rmw_qos_profile());
+                this->shared_from_this(), depth_topic, sensor_qos);
             color_sub_ = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(
-                this, color_topic, sensor_qos.get_rmw_qos_profile());
+                this->shared_from_this(), color_topic, sensor_qos);
 
             // Para el algoritmo es necesario que las imagenes de color y profundidad
             // esten sincronizadas
@@ -104,8 +117,8 @@ namespace f_vigs_slam
             this->declare_parameter<bool>("viewer", true);
             if (this->get_parameter("viewer").as_bool())
             {
-                viewer_ = std::make_shared<GaussianSplattingViewer>(gs_core_);
-                viewer_->startThread();
+                impl_->viewer_ = std::make_shared<GaussianSplattingViewer>(impl_->gs_core_);
+                impl_->viewer_->startThread();
             }
 
 
@@ -136,11 +149,13 @@ namespace f_vigs_slam
         // [fx  0 cx]
         // [ 0 fy cy]
         // [ 0  0  1]
-        intrinsics.f = float2{msg->K[0], msg->K[4]};
-        intrinsics.c = float2{msg->K[2], msg->K[5]};
+        impl_->intrinsics.f = float2{static_cast<float>(msg->k[0]),
+                      static_cast<float>(msg->k[4])};
+        impl_->intrinsics.c = float2{static_cast<float>(msg->k[2]),
+                      static_cast<float>(msg->k[5])};
         camera_frame_id_ = msg->header.frame_id;
 
-        gs_core_.setIntrinsics(intrinsics);
+        impl_->gs_core_.setIntrinsics(impl_->intrinsics);
         hasIntrinsics = true;
 
         if (!imu_frame_id_.empty() && !camera_frame_id_.empty())
@@ -153,7 +168,7 @@ namespace f_vigs_slam
 
                 tf2::fromMsg(t.transform.rotation, q_imu_cam_);    // rotate from camera to IMU
                 tf2::fromMsg(t.transform.translation, t_imu_cam_); // pos camera in imu frame
-                gs_core_.setImuToCamExtrinsics(t_imu_cam_, q_imu_cam_);
+                impl_->gs_core_.setImuToCamExtrinsics(t_imu_cam_, q_imu_cam_);
                 hasCameraInfo = true;
             }
             catch (const tf2::TransformException &ex)
@@ -190,7 +205,7 @@ namespace f_vigs_slam
 
                 tf2::fromMsg(t.transform.rotation, q_imu_cam_);
                 tf2::fromMsg(t.transform.translation, t_imu_cam_);
-                gs_core_.setImuToCamExtrinsics(t_imu_cam_, q_imu_cam_);
+                impl_->gs_core_.setImuToCamExtrinsics(t_imu_cam_, q_imu_cam_);
                 hasCameraInfo = true;
             }
             catch (const tf2::TransformException &ex)
@@ -221,8 +236,8 @@ namespace f_vigs_slam
         last_imu_stamp_ = stamp;
 
         // Actualizar datos IMU actuales
-        imu_data_.Acc = raw_acc;
-        imu_data_.Gyro = raw_gyro;
+        impl_->imu_data_.Acc = raw_acc;
+        impl_->imu_data_.Gyro = raw_gyro;
         hasImu = true;
 
         // Rama de inicialización: calcular bias a partir de 100 muestras
@@ -238,24 +253,24 @@ namespace f_vigs_slam
             Eigen::Quaterniond q_init_cam = q_init_imu * q_imu_cam_;
 
             // Inicializar pose para el primer frame
-            odom_pose_init_.position.x = static_cast<float>(t_imu_cam_.x());
-            odom_pose_init_.position.y = static_cast<float>(t_imu_cam_.y());
-            odom_pose_init_.position.z = static_cast<float>(t_imu_cam_.z());
+            impl_->odom_pose_init_.position.x = static_cast<float>(t_imu_cam_.x());
+            impl_->odom_pose_init_.position.y = static_cast<float>(t_imu_cam_.y());
+            impl_->odom_pose_init_.position.z = static_cast<float>(t_imu_cam_.z());
             // Guardamos en orden estándar (x, y, z, w)
-            odom_pose_init_.orientation.x = static_cast<float>(q_init_cam.x());
-            odom_pose_init_.orientation.y = static_cast<float>(q_init_cam.y());
-            odom_pose_init_.orientation.z = static_cast<float>(q_init_cam.z());
-            odom_pose_init_.orientation.w = static_cast<float>(q_init_cam.w());
+            impl_->odom_pose_init_.orientation.x = static_cast<float>(q_init_cam.x());
+            impl_->odom_pose_init_.orientation.y = static_cast<float>(q_init_cam.y());
+            impl_->odom_pose_init_.orientation.z = static_cast<float>(q_init_cam.z());
+            impl_->odom_pose_init_.orientation.w = static_cast<float>(q_init_cam.w());
 
             // Configurar imu_data_ completo con medición inicial
-            imu_data_.Acc = avg_acc_;
-            imu_data_.Gyro = avg_gyro_;
-            imu_data_.g_norm = 9.81;
+            impl_->imu_data_.Acc = avg_acc_;
+            impl_->imu_data_.Gyro = avg_gyro_;
+            impl_->imu_data_.g_norm = 9.81;
             
             // Inicializar preintegración en GSSlam y en el nodo
-            gs_core_.initializeImu(imu_data_);
-            preint_.init(imu_data_.Acc, imu_data_.Gyro, acc_bias_, avg_gyro_,
-                         imu_data_.acc_n, imu_data_.gyr_n, imu_data_.acc_w, imu_data_.gyr_w);
+            impl_->gs_core_.initializeImu(impl_->imu_data_);
+            impl_->preint_.init(impl_->imu_data_.Acc, impl_->imu_data_.Gyro, acc_bias_, avg_gyro_,
+                         impl_->imu_data_.acc_n, impl_->imu_data_.gyr_n, impl_->imu_data_.acc_w, impl_->imu_data_.gyr_w);
             
             imuInitialized = true;
             RCLCPP_INFO(this->get_logger(), "IMU initialized:");
@@ -270,11 +285,11 @@ namespace f_vigs_slam
         }
 
         if (dt > 1e-6) {
-            preint_.add_imu(dt, imu_data_.Acc, imu_data_.Gyro);
+            impl_->preint_.add_imu(dt, impl_->imu_data_.Acc, impl_->imu_data_.Gyro);
         }
 
-        const double *pose = gs_core_.getImuPose();
-        const double *velocity = gs_core_.getImuVelocity();
+        const double *pose = impl_->gs_core_.getImuPose();
+        const double *velocity = impl_->gs_core_.getImuVelocity();
         if (pose && velocity)
         {
             Eigen::Map<const Eigen::Vector3d> P(pose);
@@ -283,7 +298,7 @@ namespace f_vigs_slam
 
             Eigen::Vector3d pos_imu, vel_imu;
             Eigen::Quaterniond rot_imu;
-            preint_.predict(P, Q, V, pos_imu, rot_imu, vel_imu);
+            impl_->preint_.predict(P, Q, V, pos_imu, rot_imu, vel_imu);
 
             odom_imu_msg_.header.stamp = msg->header.stamp;
             odom_imu_msg_.child_frame_id = msg->header.frame_id;
@@ -313,8 +328,8 @@ namespace f_vigs_slam
                      msg->header.frame_id.c_str(), msg->header.stamp.sec, msg->header.stamp.nanosec);
     }
 
-    void GSSlamNode::rgbdCallback(const sensor_msgs::msg::Image::SharedPtr color,
-                                  const sensor_msgs::msg::Image::SharedPtr depth)
+    void GSSlamNode::rgbdCallback(const std::shared_ptr<const sensor_msgs::msg::Image>& color,
+                                  const std::shared_ptr<const sensor_msgs::msg::Image>& depth)
     {
         if (!hasCameraInfo) return;
 
@@ -390,7 +405,7 @@ namespace f_vigs_slam
                 Eigen::Vector3d gyr(m->angular_velocity.x,
                                     m->angular_velocity.y,
                                     m->angular_velocity.z);
-                gs_core_.addImuMeasurement(dt, acc, gyr);
+                impl_->gs_core_.addImuMeasurement(dt, acc, gyr);
             }
             t_prev = t_cur;
         }
@@ -401,7 +416,7 @@ namespace f_vigs_slam
 
         try
         {
-            gs_core_.compute(local_rgb_img, local_depth_img, odom_pose_init_);
+            impl_->gs_core_.compute(local_rgb_img, local_depth_img, impl_->odom_pose_init_);
         }
         catch (const std::exception &e)
         {
@@ -410,8 +425,8 @@ namespace f_vigs_slam
             return;
         }
 
-        const double *pose = gs_core_.getImuPose();
-        const double *velocity = gs_core_.getImuVelocity();
+        const double *pose = impl_->gs_core_.getImuPose();
+        const double *velocity = impl_->gs_core_.getImuVelocity();
 
         if (pose && velocity)
         {
@@ -462,8 +477,8 @@ namespace f_vigs_slam
             }
 
             rclcpp::Time t_imu(first->header.stamp, RCL_ROS_TIME);
-            preint_.init(acc, gyr, ba, bg,
-                         imu_data_.acc_n, imu_data_.gyr_n, imu_data_.acc_w, imu_data_.gyr_w);
+            impl_->preint_.init(acc, gyr, ba, bg,
+                         impl_->imu_data_.acc_n, impl_->imu_data_.gyr_n, impl_->imu_data_.acc_w, impl_->imu_data_.gyr_w);
 
             for (const auto &m : remaining_imu)
             {
@@ -473,7 +488,7 @@ namespace f_vigs_slam
                 Eigen::Vector3d gyr_i(m->angular_velocity.x,
                                       m->angular_velocity.y,
                                       m->angular_velocity.z);
-                preint_.add_imu((rclcpp::Time(m->header.stamp, RCL_ROS_TIME) - t_imu).seconds(),
+                impl_->preint_.add_imu((rclcpp::Time(m->header.stamp, RCL_ROS_TIME) - t_imu).seconds(),
                                 acc_i, gyr_i);
                 t_imu = rclcpp::Time(m->header.stamp, RCL_ROS_TIME);
             }
@@ -494,7 +509,7 @@ namespace f_vigs_slam
 
         // Procesar frame RGBD con el core del SLAM
         try {
-            gs_core_.compute(local_rgb_img, local_depth_img, CameraPose());
+            impl_->gs_core_.compute(local_rgb_img, local_depth_img, CameraPose());
         } catch (const std::exception &e) {
             RCLCPP_ERROR(this->get_logger(), "Error in compute(): %s", e.what());
             isProcessing = false;
@@ -506,8 +521,8 @@ namespace f_vigs_slam
         // - Fusionar con pose visual del gs_core_
 
         // Publicar odometría después de procesar frame
-        const double *pose = gs_core_.getImuPose();
-        const double *velocity = gs_core_.getImuVelocity();
+        const double *pose = impl_->gs_core_.getImuPose();
+        const double *velocity = impl_->gs_core_.getImuVelocity();
         
         if (pose && velocity)
         {

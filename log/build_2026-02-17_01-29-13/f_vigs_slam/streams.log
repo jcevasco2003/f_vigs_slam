@@ -1,0 +1,24 @@
+[0.014s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.104s] [ 58%] Built target GSSlam
+[0.184s] [ 66%] [32mBuilding CUDA object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o[0m
+[15.898s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp(139)[0m: [01;31merror[0m: invalid narrowing conversion from "double" to "float"
+[15.899s]           intrinsics.f = float2{msg->k[0], msg->k[4]};
+[15.899s]                                 ^
+[15.899s] 
+[15.899s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp(139)[0m: [01;31merror[0m: invalid narrowing conversion from "double" to "float"
+[15.899s]           intrinsics.f = float2{msg->k[0], msg->k[4]};
+[15.899s]                                            ^
+[15.899s] 
+[15.899s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp(140)[0m: [01;31merror[0m: invalid narrowing conversion from "double" to "float"
+[15.899s]           intrinsics.c = float2{msg->k[2], msg->k[5]};
+[15.899s]                                 ^
+[15.899s] 
+[15.900s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp(140)[0m: [01;31merror[0m: invalid narrowing conversion from "double" to "float"
+[15.900s]           intrinsics.c = float2{msg->k[2], msg->k[5]};
+[15.900s]                                            ^
+[15.900s] 
+[16.210s] 4 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp".
+[16.394s] gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:77: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o] Error 2
+[16.395s] gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/GSSlamNode.dir/all] Error 2
+[16.395s] gmake: *** [Makefile:146: all] Error 2
+[16.399s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

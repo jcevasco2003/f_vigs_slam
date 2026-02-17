@@ -1799,6 +1799,7 @@ CMakeFiles/GSSlam.dir/src/GSSlam.cu.o : /home/jorge/ros2_thesis_ws/src/f_vigs_sl
     /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
     /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp \
+    /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/CudaMathOperations.cuh \
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/KeyframeSelector.hpp \
     /usr/include/c++/12/random \
     /usr/include/c++/12/bits/random.h \
@@ -1892,4 +1893,117 @@ CMakeFiles/GSSlam.dir/src/GSSlam.cu.o : /home/jorge/ros2_thesis_ws/src/f_vigs_sl
     /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/LocalParameterization.hpp \
     /usr/local/include/opencv4/opencv2/imgproc.hpp \
     /usr/local/include/opencv4/opencv2/imgproc/segmentation.hpp \
-    /usr/local/cuda/targets/x86_64-linux/include/thrust/host_vector.h
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/host_vector.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/sort.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sort.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/sort.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/reverse.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/reverse.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/reverse.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/reverse.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/reverse.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/reverse.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/reverse.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_merge_sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_merge_sort.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/merge.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/merge.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/merge.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/merge.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/merge.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/merge.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/merge.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/merge.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/merge.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/extrema.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/extrema.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/extrema.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/extrema.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/get_iterator_value.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/execution_policy.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/execution_policy.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/par.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/adjacent_difference.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/adjacent_difference.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/binary_search.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/binary_search.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/copy_if.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/copy_if.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/extrema.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/extrema.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/partition.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/partition.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/remove.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/remove.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/set_operations.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/set_operations.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/unique.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/unique.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cpp/detail/unique_by_key.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/unique_by_key.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/execution_policy.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/transform_reduce.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/transform_reduce.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/transform_reduce.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/transform_reduce.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/transform_reduce.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/transform_reduce.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/transform_reduce.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/extrema.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/extrema.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/insertion_sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/copy_backward.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_primitive_sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_primitive_sort.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_radix_sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/stable_radix_sort.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/copy.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy_if.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy_if.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy_if.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy_if.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/copy_if.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/copy_if.h \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/device_select.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_select_if.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_select_if.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/tuning/tuning_select_if.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_unique_by_key.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_unique_by_key.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/tuning/tuning_unique_by_key.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/sort.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/sequence.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/sequence.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sequence.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/sequence.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/tabulate.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/tabulate.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/tabulate.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/tabulate.inl \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/tabulate.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/tabulate.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/detail/tabulate.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/adl/sequence.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/sequential/sequence.h \
+    /usr/local/cuda/targets/x86_64-linux/include/thrust/detail/trivial_sequence.h \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/device_radix_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_radix_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_downsweep.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/block/block_radix_rank.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/block/../block/radix_rank_sort_operations.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cuda/std/tuple \
+    /usr/local/cuda/targets/x86_64-linux/include/cuda/std/detail/libcxx/include/tuple \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_histogram.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_onesweep.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_radix_sort_upsweep.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/block/block_radix_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/device_merge_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/device/dispatch/dispatch_merge_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/agent_merge_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/agent/../block/block_merge_sort.cuh \
+    /usr/local/cuda/targets/x86_64-linux/include/cub/thread/thread_sort.cuh

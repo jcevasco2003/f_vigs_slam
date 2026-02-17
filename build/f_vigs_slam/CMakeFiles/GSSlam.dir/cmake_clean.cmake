@@ -1,8 +1,12 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o"
+  "CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o.d"
   "CMakeFiles/GSSlam.dir/src/GSSlam.cu.o"
   "CMakeFiles/GSSlam.dir/src/GSSlam.cu.o.d"
   "CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o"
   "CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o.d"
+  "CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o"
+  "CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o.d"
   "CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o"
   "CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o.d"
   "CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o"

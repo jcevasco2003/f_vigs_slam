@@ -1,0 +1,70 @@
+[0.013s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.137s] [  8%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o[0m
+[5.531s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(251)[0m: [01;31merror[0m: no suitable constructor exists to convert from "uint32_t" to "f_vigs_slam::CameraPose"
+[5.531s]               static_cast<uint32_t>(gauss_init_size_px_),
+[5.531s]               ^
+[5.531s] 
+[5.531s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(253)[0m: [01;31merror[0m: too few arguments in function call
+[5.532s]               gauss_init_opacity_);
+[5.532s]                                  ^
+[5.532s] 
+[5.535s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(379)[0m: [01;31merror[0m: argument of type "float2 *" is incompatible with parameter of type "int"
+[5.535s]            thrust::raw_pointer_cast(p_hats_.data()),
+[5.535s]            ^
+[5.535s] 
+[5.535s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(385)[0m: [01;31merror[0m: too many arguments in function call
+[5.535s]            3.0f);
+[5.536s]            ^
+[5.536s] 
+[5.537s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(455)[0m: [01;31merror[0m: argument of type "float2 *" is incompatible with parameter of type "int"
+[5.537s]            thrust::raw_pointer_cast(p_hats_.data()),
+[5.538s]            ^
+[5.538s] 
+[5.538s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(459)[0m: [01;31merror[0m: too many arguments in function call
+[5.538s]            num_tiles_.y);
+[5.538s]            ^
+[5.538s] 
+[5.854s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1374)[0m: [01;31merror[0m: identifier "[01mGSS_BLOCK_SIZE[0m" is undefined
+[5.854s]               (n_Gaussians + GSS_BLOCK_SIZE - 1) / GSS_BLOCK_SIZE,
+[5.854s]                              ^
+[5.854s] 
+[5.857s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1560)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.857s]             operand types are: float3 [ int ]
+[5.857s]           camera_pose.position[0] = static_cast<float>(P_cam.x());
+[5.858s]                               ^
+[5.858s] 
+[5.858s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1561)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.858s]             operand types are: float3 [ int ]
+[5.858s]           camera_pose.position[1] = static_cast<float>(P_cam.y());
+[5.858s]                               ^
+[5.858s] 
+[5.858s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1562)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.858s]             operand types are: float3 [ int ]
+[5.858s]           camera_pose.position[2] = static_cast<float>(P_cam.z());
+[5.858s]                               ^
+[5.858s] 
+[5.858s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1565)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.858s]             operand types are: float4 [ int ]
+[5.859s]           camera_pose.orientation[0] = Q_cam_f.x();
+[5.859s]                                  ^
+[5.859s] 
+[5.859s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1566)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.859s]             operand types are: float4 [ int ]
+[5.859s]           camera_pose.orientation[1] = Q_cam_f.y();
+[5.859s]                                  ^
+[5.859s] 
+[5.859s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1567)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.859s]             operand types are: float4 [ int ]
+[5.859s]           camera_pose.orientation[2] = Q_cam_f.z();
+[5.859s]                                  ^
+[5.859s] 
+[5.860s] [01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu(1568)[0m: [01;31merror[0m: no operator "[01m[][0m" matches these operands
+[5.860s]             operand types are: float4 [ int ]
+[5.860s]           camera_pose.orientation[3] = Q_cam_f.w();
+[5.860s]                                  ^
+[5.860s] 
+[6.180s] 14 errors detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlam.cu".
+[6.283s] gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:77: CMakeFiles/GSSlam.dir/src/GSSlam.cu.o] Error 2
+[6.283s] gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
+[6.283s] gmake: *** [Makefile:146: all] Error 2
+[6.286s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

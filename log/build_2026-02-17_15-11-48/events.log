@@ -1,0 +1,560 @@
+[0.000000] (-) TimerEvent: {}
+[0.000177] (f_vigs_slam) JobQueued: {'identifier': 'f_vigs_slam', 'dependencies': OrderedDict()}
+[0.000252] (f_vigs_slam) JobStarted: {'identifier': 'f_vigs_slam'}
+[0.007943] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'cmake'}
+[0.008870] (f_vigs_slam) JobProgress: {'identifier': 'f_vigs_slam', 'progress': 'build'}
+[0.009709] (f_vigs_slam) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', '--', '-j6', '-l6'], 'cwd': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'jorge', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/local/cuda-12.3/lib64:/opt/ros/rolling/opt/zenoh_cpp_vendor/lib:/opt/ros/rolling/opt/gz_math_vendor/lib:/opt/ros/rolling/opt/gz_utils_vendor/lib:/opt/ros/rolling/opt/rviz_ogre_vendor/lib:/opt/ros/rolling/lib/x86_64-linux-gnu:/opt/ros/rolling/opt/gz_cmake_vendor/lib:/opt/ros/rolling/lib:/usr/local/cuda-11.8/lib64:', 'HOME': '/home/jorge', 'OLDPWD': '/home/jorge/ros2_thesis_ws/src', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'rolling', 'LOGNAME': 'jorge', 'NAME': 'DESKTOP-ECKJB30', 'WSL_INTEROP': '/run/WSL/286_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/usr/local/cuda-12.3/bin:/opt/ros/rolling/bin:/usr/local/cuda-11.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/d/NVIDIA/bin:/mnt/d/NVIDIA/libnvvp:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2022.3.0/:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Users/jorge/AppData/Local/Microsoft/WindowsApps:/mnt/d/Program Files/IntelliJ IDEA Community Edition 2024.3/bin:/mnt/d/Program Files (x86)/Microsoft VS Code/bin:/mnt/c/Users/jorge/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/jorge/.dotnet/tools:/mnt/c/Users/jorge/AppData/Roaming/TinyTeX/bin/windows:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/rolling', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/rolling/opt/gz_math_vendor/lib/python:/opt/ros/rolling/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/rolling/opt/gz_math_vendor:/opt/ros/rolling/opt/gz_utils_vendor:/opt/ros/rolling/opt/gz_cmake_vendor:/opt/ros/rolling', 'WSLENV': ''}), 'shell': False}
+[0.099601] (-) TimerEvent: {}
+[0.200045] (-) TimerEvent: {}
+[0.300671] (-) TimerEvent: {}
+[0.401236] (-) TimerEvent: {}
+[0.449329] (f_vigs_slam) StdoutLine: {'line': b'-- Found ament_cmake: 2.8.4 (/opt/ros/rolling/share/ament_cmake/cmake)\n'}
+[0.501826] (-) TimerEvent: {}
+[0.602496] (-) TimerEvent: {}
+[0.703390] (-) TimerEvent: {}
+[0.804110] (-) TimerEvent: {}
+[0.904951] (-) TimerEvent: {}
+[1.007198] (-) TimerEvent: {}
+[1.107609] (-) TimerEvent: {}
+[1.213944] (-) TimerEvent: {}
+[1.256023] (f_vigs_slam) StdoutLine: {'line': b'-- Found rclcpp: 30.1.3 (/opt/ros/rolling/share/rclcpp/cmake)\n'}
+[1.314778] (-) TimerEvent: {}
+[1.415468] (-) TimerEvent: {}
+[1.487056] (f_vigs_slam) StdoutLine: {'line': b'-- Found rosidl_generator_c: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_c/cmake)\n'}
+[1.517827] (f_vigs_slam) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_cpp/cmake)\n'}
+[1.518038] (-) TimerEvent: {}
+[1.606174] (f_vigs_slam) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.619300] (-) TimerEvent: {}
+[1.664940] (f_vigs_slam) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.720211] (-) TimerEvent: {}
+[1.822267] (-) TimerEvent: {}
+[1.923420] (-) TimerEvent: {}
+[1.944408] (f_vigs_slam) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.9.1 (/opt/ros/rolling/share/rmw_implementation_cmake/cmake)\n'}
+[1.967271] (f_vigs_slam) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 9.4.4 (/opt/ros/rolling/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.025483] (-) TimerEvent: {}
+[2.126801] (-) TimerEvent: {}
+[2.219765] (f_vigs_slam) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.227527] (-) TimerEvent: {}
+[2.328285] (-) TimerEvent: {}
+[2.429771] (-) TimerEvent: {}
+[2.531967] (-) TimerEvent: {}
+[2.634383] (-) TimerEvent: {}
+[2.737178] (-) TimerEvent: {}
+[2.837727] (-) TimerEvent: {}
+[2.940730] (-) TimerEvent: {}
+[3.041316] (-) TimerEvent: {}
+[3.147710] (-) TimerEvent: {}
+[3.251738] (-) TimerEvent: {}
+[3.354005] (-) TimerEvent: {}
+[3.458049] (-) TimerEvent: {}
+[3.564086] (-) TimerEvent: {}
+[3.664658] (-) TimerEvent: {}
+[3.767127] (-) TimerEvent: {}
+[3.871016] (-) TimerEvent: {}
+[3.973527] (-) TimerEvent: {}
+[4.076476] (-) TimerEvent: {}
+[4.177437] (-) TimerEvent: {}
+[4.278401] (-) TimerEvent: {}
+[4.318338] (f_vigs_slam) StdoutLine: {'line': b'-- Found sensor_msgs: 5.9.1 (/opt/ros/rolling/share/sensor_msgs/cmake)\n'}
+[4.379418] (-) TimerEvent: {}
+[4.479692] (f_vigs_slam) StdoutLine: {'line': b'-- Found cv_bridge: 4.1.0 (/opt/ros/rolling/share/cv_bridge/cmake)\n'}
+[4.479899] (-) TimerEvent: {}
+[4.500314] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:86 (find_package):\n'}
+[4.500776] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake\n'}
+[4.500867] (f_vigs_slam) StderrLine: {'line': b'  --help-policy CMP0146" for policy details.  Use the cmake_policy command to\n'}
+[4.500944] (f_vigs_slam) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[4.501017] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[4.501090] (f_vigs_slam) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[4.501162] (f_vigs_slam) StderrLine: {'line': b'  /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:108 (find_host_package)\n'}
+[4.501294] (f_vigs_slam) StderrLine: {'line': b'  /opt/ros/rolling/share/cv_bridge/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)\n'}
+[4.501369] (f_vigs_slam) StderrLine: {'line': b'  /opt/ros/rolling/share/cv_bridge/cmake/cv_bridgeConfig.cmake:41 (include)\n'}
+[4.501472] (f_vigs_slam) StderrLine: {'line': b'  CMakeLists.txt:24 (find_package)\n'}
+[4.501542] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[4.501612] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[4.582417] (-) TimerEvent: {}
+[4.683138] (-) TimerEvent: {}
+[4.697185] (f_vigs_slam) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda-12.3 (found suitable exact version "12.3") \n'}
+[4.783654] (-) TimerEvent: {}
+[4.808099] (f_vigs_slam) StdoutLine: {'line': b'-- Found nav_msgs: 5.9.1 (/opt/ros/rolling/share/nav_msgs/cmake)\n'}
+[4.880950] (f_vigs_slam) StdoutLine: {'line': b'-- Found image_transport: 6.4.3 (/opt/ros/rolling/share/image_transport/cmake)\n'}
+[4.884089] (-) TimerEvent: {}
+[4.957896] (f_vigs_slam) StdoutLine: {'line': b'-- Found image_geometry: 4.1.0 (/opt/ros/rolling/share/image_geometry/cmake)\n'}
+[4.964643] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2: 0.45.3 (/opt/ros/rolling/share/tf2/cmake)\n'}
+[4.980016] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2_ros: 0.45.3 (/opt/ros/rolling/share/tf2_ros/cmake)\n'}
+[4.984308] (-) TimerEvent: {}
+[5.088457] (-) TimerEvent: {}
+[5.181023] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2_eigen: 0.45.3 (/opt/ros/rolling/share/tf2_eigen/cmake)\n'}
+[5.189287] (-) TimerEvent: {}
+[5.200625] (f_vigs_slam) StdoutLine: {'line': b'-- Found tf2_geometry_msgs: 0.45.3 (/opt/ros/rolling/share/tf2_geometry_msgs/cmake)\n'}
+[5.216291] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:32 (find_package):\n'}
+[5.216460] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake\n'}
+[5.216542] (f_vigs_slam) StderrLine: {'line': b'  --help-policy CMP0146" for policy details.  Use the cmake_policy command to\n'}
+[5.216616] (f_vigs_slam) StderrLine: {'line': b'  set the policy and suppress this warning.\n'}
+[5.216717] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.216792] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[5.216865] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.258673] (f_vigs_slam) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda-12.3 (found version "12.3") \n'}
+[5.290323] (-) TimerEvent: {}
+[5.326919] (f_vigs_slam) StdoutLine: {'line': b'-- Found required Ceres dependency: Eigen version 3.4.0 in /usr/include/eigen3\n'}
+[5.382315] (f_vigs_slam) StdoutLine: {'line': b'-- Found required Ceres dependency: glog\n'}
+[5.383019] (f_vigs_slam) StdoutLine: {'line': b'-- Found required Ceres dependency: gflags\n'}
+[5.384226] (f_vigs_slam) StdoutLine: {'line': b'-- Found Ceres version: 2.0.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SchurSpecializations, Multithreading]\n'}
+[5.386082] (f_vigs_slam) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):\n'}
+[5.386249] (f_vigs_slam) StderrLine: {'line': b'  ament_target_dependencies() is deprecated.  Use target_link_libraries()\n'}
+[5.386333] (f_vigs_slam) StderrLine: {'line': b'  with modern CMake targets instead.  Try replacing this call with:\n'}
+[5.386412] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.386489] (f_vigs_slam) StderrLine: {'line': b'    target_link_libraries(GSSlamNode PUBLIC\n'}
+[5.386564] (f_vigs_slam) StderrLine: {'line': b'      ${nav_msgs_TARGETS}\n'}
+[5.386638] (f_vigs_slam) StderrLine: {'line': b'      ${sensor_msgs_TARGETS}\n'}
+[5.386710] (f_vigs_slam) StderrLine: {'line': b'      cv_bridge::cv_bridge\n'}
+[5.386828] (f_vigs_slam) StderrLine: {'line': b'      image_geometry::image_geometry\n'}
+[5.386905] (f_vigs_slam) StderrLine: {'line': b'      image_transport::image_transport\n'}
+[5.387006] (f_vigs_slam) StderrLine: {'line': b'      message_filters::message_filters\n'}
+[5.387087] (f_vigs_slam) StderrLine: {'line': b'      rclcpp::rclcpp\n'}
+[5.387160] (f_vigs_slam) StderrLine: {'line': b'      sensor_msgs::sensor_msgs_library\n'}
+[5.387231] (f_vigs_slam) StderrLine: {'line': b'      tf2::tf2\n'}
+[5.387316] (f_vigs_slam) StderrLine: {'line': b'      tf2_eigen::tf2_eigen\n'}
+[5.387391] (f_vigs_slam) StderrLine: {'line': b'      tf2_geometry_msgs::tf2_geometry_msgs\n'}
+[5.387463] (f_vigs_slam) StderrLine: {'line': b'      tf2_ros::static_transform_broadcaster_node\n'}
+[5.387536] (f_vigs_slam) StderrLine: {'line': b'      tf2_ros::tf2_ros\n'}
+[5.387607] (f_vigs_slam) StderrLine: {'line': b'    )\n'}
+[5.387679] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.387751] (f_vigs_slam) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[5.387868] (f_vigs_slam) StderrLine: {'line': b'  CMakeLists.txt:106 (ament_target_dependencies)\n'}
+[5.387952] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.388027] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.388535] (f_vigs_slam) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):\n'}
+[5.388644] (f_vigs_slam) StderrLine: {'line': b'  ament_target_dependencies() is deprecated.  Use target_link_libraries()\n'}
+[5.388721] (f_vigs_slam) StderrLine: {'line': b'  with modern CMake targets instead.  Try replacing this call with:\n'}
+[5.388795] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.388868] (f_vigs_slam) StderrLine: {'line': b'    target_link_libraries(gs_slam_node PUBLIC\n'}
+[5.388976] (f_vigs_slam) StderrLine: {'line': b'      rclcpp::rclcpp\n'}
+[5.389051] (f_vigs_slam) StderrLine: {'line': b'    )\n'}
+[5.389125] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.389198] (f_vigs_slam) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[5.389285] (f_vigs_slam) StderrLine: {'line': b'  CMakeLists.txt:166 (ament_target_dependencies)\n'}
+[5.389358] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.389430] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.390514] (-) TimerEvent: {}
+[5.402896] (f_vigs_slam) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.20.3 (/opt/ros/rolling/share/ament_lint_auto/cmake)\n'}
+[5.491338] (-) TimerEvent: {}
+[5.594091] (-) TimerEvent: {}
+[5.694719] (-) TimerEvent: {}
+[5.747025] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[5.747922] (f_vigs_slam) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include;$<BUILD_INTERFACE:/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include>\n'}
+[5.748067] (f_vigs_slam) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[5.755560] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[5.755715] (f_vigs_slam) StdoutLine: {'line': b"-- Configured 'flake8' exclude dirs and/or files: \n"}
+[5.770089] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[5.778101] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[5.795141] (-) TimerEvent: {}
+[5.835855] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[5.836069] (f_vigs_slam) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[5.843979] (f_vigs_slam) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[5.845765] (f_vigs_slam) StdoutLine: {'line': b'-- Configuring done (5.8s)\n'}
+[5.897385] (-) TimerEvent: {}
+[5.926530] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) in CMakeLists.txt:\n'}
+[5.926744] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,\n'}
+[5.926843] (f_vigs_slam) StderrLine: {'line': b'  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"\n'}
+[5.926925] (f_vigs_slam) StderrLine: {'line': b'  for policy details.  Use the cmake_policy command to set the policy and\n'}
+[5.927027] (f_vigs_slam) StderrLine: {'line': b'  suppress this warning.\n'}
+[5.927114] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[5.927191] (f_vigs_slam) StderrLine: {'line': b'  CUDA_ARCHITECTURES is empty for target "GSSlam".\n'}
+[5.927268] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[5.927375] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[5.998213] (-) TimerEvent: {}
+[6.000196] (f_vigs_slam) StdoutLine: {'line': b'-- Generating done (0.1s)\n'}
+[6.003641] (f_vigs_slam) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) in CMakeLists.txt:\n'}
+[6.003822] (f_vigs_slam) StderrLine: {'line': b'  Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,\n'}
+[6.003908] (f_vigs_slam) StderrLine: {'line': b'  empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"\n'}
+[6.003986] (f_vigs_slam) StderrLine: {'line': b'  for policy details.  Use the cmake_policy command to set the policy and\n'}
+[6.004062] (f_vigs_slam) StderrLine: {'line': b'  suppress this warning.\n'}
+[6.004136] (f_vigs_slam) StderrLine: {'line': b'\n'}
+[6.004208] (f_vigs_slam) StderrLine: {'line': b'  CUDA_ARCHITECTURES is empty for target "GSSlam".\n'}
+[6.004281] (f_vigs_slam) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[6.004353] (f_vigs_slam) StderrLine: {'line': b'\x1b[0m\n'}
+[6.010054] (f_vigs_slam) StdoutLine: {'line': b'-- Build files have been written to: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam\n'}
+[6.098605] (-) TimerEvent: {}
+[6.106425] (f_vigs_slam) StdoutLine: {'line': b'[ 58%] Built target GSSlam\n'}
+[6.179900] (f_vigs_slam) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o\x1b[0m\n'}
+[6.181258] (f_vigs_slam) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o\x1b[0m\n'}
+[6.199042] (-) TimerEvent: {}
+[6.299738] (-) TimerEvent: {}
+[6.400143] (-) TimerEvent: {}
+[6.502830] (-) TimerEvent: {}
+[6.603511] (-) TimerEvent: {}
+[6.703946] (-) TimerEvent: {}
+[6.804663] (-) TimerEvent: {}
+[6.909729] (-) TimerEvent: {}
+[7.010351] (-) TimerEvent: {}
+[7.111020] (-) TimerEvent: {}
+[7.217481] (-) TimerEvent: {}
+[7.226186] (f_vigs_slam) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:13\x1b[m\x1b[K,\n'}
+[7.226414] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp:1\x1b[m\x1b[K:\n'}
+[7.226507] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/rolling/include/tf2_ros/tf2_ros/buffer.h:40:4:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K#warning BUFFER_HEADER_DEPRECATION [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp\x07-Wcpp\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.226586] (f_vigs_slam) StderrLine: {'line': b'   40 |   #\x1b[01;35m\x1b[Kwarning\x1b[m\x1b[K BUFFER_HEADER_DEPRECATION\n'}
+[7.226660] (f_vigs_slam) StderrLine: {'line': b'      |    \x1b[01;35m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[7.269357] (f_vigs_slam) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:14\x1b[m\x1b[K:\n'}
+[7.269578] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.h:40:4:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K#warning TRANSFORM_LISTENER_HEADER_DEPRECATION [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp\x07-Wcpp\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.269679] (f_vigs_slam) StderrLine: {'line': b'   40 |   #\x1b[01;35m\x1b[Kwarning\x1b[m\x1b[K TRANSFORM_LISTENER_HEADER_DEPRECATION\n'}
+[7.269795] (f_vigs_slam) StderrLine: {'line': b'      |    \x1b[01;35m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[7.318174] (-) TimerEvent: {}
+[7.419188] (-) TimerEvent: {}
+[7.521445] (-) TimerEvent: {}
+[7.623349] (-) TimerEvent: {}
+[7.725466] (-) TimerEvent: {}
+[7.826266] (-) TimerEvent: {}
+[7.928737] (-) TimerEvent: {}
+[8.029929] (-) TimerEvent: {}
+[8.130944] (-) TimerEvent: {}
+[8.231973] (-) TimerEvent: {}
+[8.334364] (-) TimerEvent: {}
+[8.435066] (-) TimerEvent: {}
+[8.535798] (-) TimerEvent: {}
+[8.636891] (-) TimerEvent: {}
+[8.740749] (-) TimerEvent: {}
+[8.841295] (-) TimerEvent: {}
+[8.942556] (-) TimerEvent: {}
+[9.043299] (-) TimerEvent: {}
+[9.143699] (-) TimerEvent: {}
+[9.244473] (-) TimerEvent: {}
+[9.345549] (-) TimerEvent: {}
+[9.446168] (-) TimerEvent: {}
+[9.547047] (-) TimerEvent: {}
+[9.648194] (-) TimerEvent: {}
+[9.748739] (-) TimerEvent: {}
+[9.849274] (-) TimerEvent: {}
+[9.950457] (-) TimerEvent: {}
+[10.054163] (-) TimerEvent: {}
+[10.154556] (-) TimerEvent: {}
+[10.255261] (-) TimerEvent: {}
+[10.325851] (f_vigs_slam) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/internal_functional.h:27\x1b[m\x1b[K,\n'}
+[10.326146] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:22\x1b[m\x1b[K,\n'}
+[10.326576] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.h:57\x1b[m\x1b[K,\n'}
+[10.326709] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.inl:22\x1b[m\x1b[K,\n'}
+[10.326793] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:90\x1b[m\x1b[K,\n'}
+[10.326870] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.inl:23\x1b[m\x1b[K,\n'}
+[10.326955] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.h:45\x1b[m\x1b[K,\n'}
+[10.327073] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:23\x1b[m\x1b[K,\n'}
+[10.327151] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.h:234\x1b[m\x1b[K,\n'}
+[10.327243] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.h:30\x1b[m\x1b[K,\n'}
+[10.327323] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/device_vector.h:26\x1b[m\x1b[K,\n'}
+[10.327397] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh:5\x1b[m\x1b[K,\n'}
+[10.327469] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GaussianSplattingViewer.hpp:10\x1b[m\x1b[K,\n'}
+[10.327542] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GaussianSplattingViewer.cpp:1\x1b[m\x1b[K:\n'}
+[10.327614] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float3>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float3> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.327699] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float3>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float3> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.327775] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float3>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.327857] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; Generator = detail::fill_functor<float3>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.327932] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; T = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328017] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; T = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328122] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[10.328206] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328300] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328376] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float3> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328451] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328525] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.328598] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:63:29:\x1b[m\x1b[K   required from here\n'}
+[10.328704] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[10.328785] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[10.328858] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[10.328929] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.329001] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[10.329078] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[10.329151] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float3>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[10.329254] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[10.329329] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[10.329412] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.329490] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[10.329562] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[10.329633] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float4>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float4> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.329709] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float4>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float4> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.329789] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float4>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.329873] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; Generator = detail::fill_functor<float4>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.329946] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; T = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330021] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; T = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330100] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[10.330178] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330281] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330380] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float4> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330456] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330531] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330610] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:65:32:\x1b[m\x1b[K   required from here\n'}
+[10.330683] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[10.330755] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[10.330826] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[10.330898] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.330971] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[10.331048] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[10.331119] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float4>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[10.331193] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[10.331295] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[10.331402] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.331480] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[10.331552] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[10.331623] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.331710] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.331787] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.331876] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; Generator = detail::fill_functor<float>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.331951] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; T = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332040] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; T = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332115] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[10.332186] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332262] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332336] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332442] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332529] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332603] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:67:29:\x1b[m\x1b[K   required from here\n'}
+[10.332682] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[10.332761] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[10.332832] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[10.332903] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.332979] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[10.333050] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[10.333122] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[10.333196] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[10.333273] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[10.333345] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.333419] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[10.333489] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[10.356509] (-) TimerEvent: {}
+[10.458987] (-) TimerEvent: {}
+[10.559165] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:90: CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o] Error 1\n'}
+[10.559370] (-) TimerEvent: {}
+[10.559498] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[10.660396] (-) TimerEvent: {}
+[10.760910] (-) TimerEvent: {}
+[10.863631] (-) TimerEvent: {}
+[10.965869] (-) TimerEvent: {}
+[11.067046] (-) TimerEvent: {}
+[11.168592] (-) TimerEvent: {}
+[11.269138] (-) TimerEvent: {}
+[11.371816] (-) TimerEvent: {}
+[11.474196] (-) TimerEvent: {}
+[11.576929] (-) TimerEvent: {}
+[11.680139] (-) TimerEvent: {}
+[11.783069] (-) TimerEvent: {}
+[11.885105] (-) TimerEvent: {}
+[11.987746] (-) TimerEvent: {}
+[12.090404] (-) TimerEvent: {}
+[12.191650] (-) TimerEvent: {}
+[12.294411] (-) TimerEvent: {}
+[12.397154] (-) TimerEvent: {}
+[12.501084] (-) TimerEvent: {}
+[12.601640] (-) TimerEvent: {}
+[12.705913] (-) TimerEvent: {}
+[12.809104] (-) TimerEvent: {}
+[12.910346] (-) TimerEvent: {}
+[13.016694] (-) TimerEvent: {}
+[13.122237] (-) TimerEvent: {}
+[13.223676] (-) TimerEvent: {}
+[13.324136] (-) TimerEvent: {}
+[13.424897] (-) TimerEvent: {}
+[13.528237] (-) TimerEvent: {}
+[13.630981] (-) TimerEvent: {}
+[13.731966] (-) TimerEvent: {}
+[13.832410] (-) TimerEvent: {}
+[13.933161] (-) TimerEvent: {}
+[14.035610] (-) TimerEvent: {}
+[14.139554] (-) TimerEvent: {}
+[14.242329] (-) TimerEvent: {}
+[14.346321] (-) TimerEvent: {}
+[14.450677] (-) TimerEvent: {}
+[14.555072] (-) TimerEvent: {}
+[14.655921] (-) TimerEvent: {}
+[14.756970] (-) TimerEvent: {}
+[14.857386] (-) TimerEvent: {}
+[14.958003] (-) TimerEvent: {}
+[15.058964] (-) TimerEvent: {}
+[15.160101] (-) TimerEvent: {}
+[15.260988] (-) TimerEvent: {}
+[15.361554] (-) TimerEvent: {}
+[15.463463] (-) TimerEvent: {}
+[15.566271] (-) TimerEvent: {}
+[15.669252] (-) TimerEvent: {}
+[15.771884] (-) TimerEvent: {}
+[15.874982] (-) TimerEvent: {}
+[15.977804] (-) TimerEvent: {}
+[16.079459] (-) TimerEvent: {}
+[16.180483] (-) TimerEvent: {}
+[16.280988] (-) TimerEvent: {}
+[16.383874] (-) TimerEvent: {}
+[16.486725] (-) TimerEvent: {}
+[16.589646] (-) TimerEvent: {}
+[16.692764] (-) TimerEvent: {}
+[16.795369] (-) TimerEvent: {}
+[16.898320] (-) TimerEvent: {}
+[17.001166] (-) TimerEvent: {}
+[17.101761] (-) TimerEvent: {}
+[17.204690] (-) TimerEvent: {}
+[17.307575] (-) TimerEvent: {}
+[17.410043] (-) TimerEvent: {}
+[17.510654] (-) TimerEvent: {}
+[17.611127] (-) TimerEvent: {}
+[17.712171] (-) TimerEvent: {}
+[17.816623] (-) TimerEvent: {}
+[17.917453] (-) TimerEvent: {}
+[18.021873] (-) TimerEvent: {}
+[18.123135] (-) TimerEvent: {}
+[18.225757] (-) TimerEvent: {}
+[18.309770] (f_vigs_slam) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/internal_functional.h:27\x1b[m\x1b[K,\n'}
+[18.310224] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.inl:22\x1b[m\x1b[K,\n'}
+[18.310334] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/copy.h:57\x1b[m\x1b[K,\n'}
+[18.310415] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.inl:22\x1b[m\x1b[K,\n'}
+[18.310585] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/copy.h:90\x1b[m\x1b[K,\n'}
+[18.310753] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.inl:23\x1b[m\x1b[K,\n'}
+[18.310872] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/copy_construct_range.h:45\x1b[m\x1b[K,\n'}
+[18.311055] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:23\x1b[m\x1b[K,\n'}
+[18.311257] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.h:234\x1b[m\x1b[K,\n'}
+[18.311451] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.h:30\x1b[m\x1b[K,\n'}
+[18.311594] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/device_vector.h:26\x1b[m\x1b[K,\n'}
+[18.311742] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlam.cuh:5\x1b[m\x1b[K,\n'}
+[18.312059] (f_vigs_slam) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:4\x1b[m\x1b[K:\n'}
+[18.312203] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float3>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float3> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[18.312292] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float3>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float3> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.312393] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float3>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.312539] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; Generator = detail::fill_functor<float3>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.312630] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float3>; Size = long unsigned int; T = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.312710] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float3>; Size = long unsigned int; T = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.312794] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[18.312870] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float3]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.312956] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float3>; Pointer = thrust::device_ptr<float3>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.313038] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float3> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.313114] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.313226] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float3; Alloc = thrust::device_allocator<float3>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.313315] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:63:29:\x1b[m\x1b[K   required from here\n'}
+[18.313389] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[18.313465] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[18.313541] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[18.313614] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.313715] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[18.313797] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[18.313878] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float3>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[18.313954] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[18.314027] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[18.314099] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.314171] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[18.314270] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[18.314354] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float4>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float4> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[18.314433] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float4>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float4> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.314522] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float4>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.314607] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; Generator = detail::fill_functor<float4>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.314682] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float4>; Size = long unsigned int; T = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.314764] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float4>; Size = long unsigned int; T = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.314841] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[18.314917] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float4]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.315013] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float4>; Pointer = thrust::device_ptr<float4>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.315091] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float4> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.315168] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.315284] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float4; Alloc = thrust::device_allocator<float4>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.315405] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:65:32:\x1b[m\x1b[K   required from here\n'}
+[18.315484] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[18.315560] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[18.315634] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[18.315737] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.315817] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[18.315894] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[18.315971] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float4>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[18.316059] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[18.316132] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[18.316206] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.316281] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[18.316354] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[18.316455] (f_vigs_slam) StderrLine: {'line': b'/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; InputIterator = thrust::device_ptr<float>; Size = long unsigned int; UnaryFunction = thrust::detail::device_generate_functor<thrust::detail::fill_functor<float> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[18.316549] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/for_each.inl:67:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KInputIterator thrust::\x1b[01;32m\x1b[Kfor_each_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, InputIterator, Size, UnaryFunction) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; InputIterator = device_ptr<float>; Size = long unsigned int; UnaryFunction = detail::device_generate_functor<detail::fill_functor<float> >]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.316660] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/generate.inl:93:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with ExecutionPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; Generator = thrust::detail::fill_functor<float>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.316744] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/generate.inl:56:20:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kgenerate_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, Generator) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; Generator = detail::fill_functor<float>]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.316827] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/fill.h:42:28:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::system::detail::generic::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(thrust::execution_policy<Derived>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = thrust::cuda_cub::tag; OutputIterator = thrust::device_ptr<float>; Size = long unsigned int; T = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.316910] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/fill.inl:51:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[KOutputIterator thrust::\x1b[01;32m\x1b[Kfill_n\x1b[m\x1b[K(const detail::execution_policy_base<DerivedPolicy>&, OutputIterator, Size, const T&) \x1b[35m\x1b[K[with DerivedPolicy = cuda_cub::tag; OutputIterator = device_ptr<float>; Size = long unsigned int; T = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.316992] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/uninitialized_fill.inl:75:24:\x1b[m\x1b[K   [ skipping 3 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]\n'}
+[18.317066] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:95:31:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Ktypename thrust::detail::disable_if<thrust::detail::allocator_traits_detail::needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type thrust::detail::allocator_traits_detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int; typename thrust::detail::disable_if<needs_default_construct_via_allocator<Allocator, typename thrust::detail::pointer_element<ToPtr>::type>::value>::type = void; typename thrust::detail::pointer_element<ToPtr>::type = float]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.317150] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/allocator/default_construct_range.inl:106:58:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::\x1b[01;32m\x1b[Kdefault_construct_range\x1b[m\x1b[K(Allocator&, Pointer, Size) \x1b[35m\x1b[K[with Allocator = thrust::device_allocator<float>; Pointer = thrust::device_ptr<float>; Size = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.317227] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/contiguous_storage.inl:256:26:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::contiguous_storage<T, Alloc>::\x1b[01;32m\x1b[Kdefault_construct_n\x1b[m\x1b[K(iterator, size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; iterator = thrust::detail::normal_iterator<thrust::device_ptr<float> >; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.317309] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:929:36:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kappend\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.317390] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/vector_base.inl:349:5:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kvoid thrust::detail::vector_base<T, Alloc>::\x1b[01;32m\x1b[Kresize\x1b[m\x1b[K(size_type) \x1b[35m\x1b[K[with T = float; Alloc = thrust::device_allocator<float>; size_type = long unsigned int]\x1b[m\x1b[K\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.317465] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/RepresentationClasses.hpp:67:29:\x1b[m\x1b[K   required from here\n'}
+[18.317571] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: unimplemented for this system\n'}
+[18.317651] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;31m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[18.317733] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[18.317806] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.317884] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[18.317957] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[18.318029] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/system/detail/generic/for_each.h:66:69:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kthrust::detail::depend_on_instantiation<thrust::device_ptr<float>, false>::value\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[18.318103] (f_vigs_slam) StderrLine: {'line': b'   66 |     \x1b[01;36m\x1b[K(thrust::detail::depend_on_instantiation<InputIterator, false>::value)\x1b[m\x1b[K\n'}
+[18.318175] (f_vigs_slam) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[18.318248] (f_vigs_slam) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/cuda/targets/x86_64-linux/include/thrust/detail/static_assert.h:50:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin definition of macro \xe2\x80\x98\x1b[01m\x1b[KTHRUST_STATIC_ASSERT_MSG\x1b[m\x1b[K\xe2\x80\x99\n'}
+[18.318321] (f_vigs_slam) StderrLine: {'line': b'   50 | #  define THRUST_STATIC_ASSERT_MSG(B, msg) static_assert(\x1b[01;36m\x1b[KB\x1b[m\x1b[K, msg)\n'}
+[18.318392] (f_vigs_slam) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[18.326130] (-) TimerEvent: {}
+[18.430582] (-) TimerEvent: {}
+[18.532272] (-) TimerEvent: {}
+[18.632772] (-) TimerEvent: {}
+[18.733277] (-) TimerEvent: {}
+[18.833902] (-) TimerEvent: {}
+[18.934947] (-) TimerEvent: {}
+[19.035407] (-) TimerEvent: {}
+[19.136426] (-) TimerEvent: {}
+[19.237069] (-) TimerEvent: {}
+[19.337640] (-) TimerEvent: {}
+[19.439609] (-) TimerEvent: {}
+[19.540014] (-) TimerEvent: {}
+[19.640840] (-) TimerEvent: {}
+[19.749580] (-) TimerEvent: {}
+[19.850674] (-) TimerEvent: {}
+[19.952710] (-) TimerEvent: {}
+[20.061453] (-) TimerEvent: {}
+[20.163379] (-) TimerEvent: {}
+[20.272128] (-) TimerEvent: {}
+[20.374253] (-) TimerEvent: {}
+[20.482999] (-) TimerEvent: {}
+[20.586101] (-) TimerEvent: {}
+[20.689727] (-) TimerEvent: {}
+[20.794367] (-) TimerEvent: {}
+[20.897687] (-) TimerEvent: {}
+[21.006422] (-) TimerEvent: {}
+[21.115168] (-) TimerEvent: {}
+[21.218161] (-) TimerEvent: {}
+[21.319843] (-) TimerEvent: {}
+[21.423454] (-) TimerEvent: {}
+[21.529536] (-) TimerEvent: {}
+[21.630138] (-) TimerEvent: {}
+[21.730794] (-) TimerEvent: {}
+[21.837508] (-) TimerEvent: {}
+[21.939399] (-) TimerEvent: {}
+[22.046180] (-) TimerEvent: {}
+[22.146888] (-) TimerEvent: {}
+[22.250427] (-) TimerEvent: {}
+[22.351187] (-) TimerEvent: {}
+[22.457948] (-) TimerEvent: {}
+[22.558551] (-) TimerEvent: {}
+[22.659875] (-) TimerEvent: {}
+[22.760350] (-) TimerEvent: {}
+[22.860849] (-) TimerEvent: {}
+[22.961399] (-) TimerEvent: {}
+[23.062296] (-) TimerEvent: {}
+[23.162964] (-) TimerEvent: {}
+[23.263416] (-) TimerEvent: {}
+[23.363911] (-) TimerEvent: {}
+[23.464762] (-) TimerEvent: {}
+[23.565375] (-) TimerEvent: {}
+[23.666157] (-) TimerEvent: {}
+[23.766769] (-) TimerEvent: {}
+[23.867816] (-) TimerEvent: {}
+[23.968276] (-) TimerEvent: {}
+[24.071356] (-) TimerEvent: {}
+[24.171730] (-) TimerEvent: {}
+[24.278534] (-) TimerEvent: {}
+[24.379218] (-) TimerEvent: {}
+[24.479745] (-) TimerEvent: {}
+[24.580201] (-) TimerEvent: {}
+[24.682688] (-) TimerEvent: {}
+[24.783320] (-) TimerEvent: {}
+[24.883736] (-) TimerEvent: {}
+[24.984190] (-) TimerEvent: {}
+[25.084892] (-) TimerEvent: {}
+[25.135277] (f_vigs_slam) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:76: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o] Error 1\n'}
+[25.135939] (f_vigs_slam) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/GSSlamNode.dir/all] Error 2\n'}
+[25.136266] (f_vigs_slam) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[25.138987] (f_vigs_slam) CommandEnded: {'returncode': 2}
+[25.147724] (f_vigs_slam) JobEnded: {'identifier': 'f_vigs_slam', 'rc': 2}
+[25.158484] (-) EventReactorShutdown: {}
