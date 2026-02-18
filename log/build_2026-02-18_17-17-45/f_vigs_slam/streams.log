@@ -1,0 +1,36 @@
+[0.026s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[0.184s] [  6%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o[0m
+[39.533s] [ 13%] [32m[1mLinking CXX shared library libGSSlam.so[0m
+[40.608s] [ 60%] Built target GSSlam
+[40.661s] [ 66%] [32m[1mLinking CUDA device code CMakeFiles/GSSlamNode.dir/cmake_device_link.o[0m
+[40.754s] [ 73%] [32m[1mLinking CXX shared library libGSSlamNode.so[0m
+[43.652s] [ 86%] Built target GSSlamNode
+[43.689s] [ 93%] [32m[1mLinking CXX executable gs_slam_node[0m
+[45.098s] [100%] Built target gs_slam_node
+[45.116s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[45.130s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --install /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam
+[45.140s] -- Install configuration: ""
+[45.140s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlam.so
+[45.178s] -- Set non-toolchain portion of runtime path of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlam.so" to ""
+[45.178s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlamNode.so
+[45.206s] -- Set non-toolchain portion of runtime path of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlamNode.so" to ""
+[45.206s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/f_vigs_slam/gs_slam_node
+[45.206s] -- Set non-toolchain portion of runtime path of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/f_vigs_slam/gs_slam_node" to ""
+[45.206s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/launch
+[45.206s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/launch/gs_slam_launch.py
+[45.206s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/ament_index/resource_index/package_run_dependencies/f_vigs_slam
+[45.206s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/ament_index/resource_index/parent_prefix_path/f_vigs_slam
+[45.206s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/ament_prefix_path.sh
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/ament_prefix_path.dsv
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/path.sh
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/path.dsv
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.bash
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.sh
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.zsh
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.dsv
+[45.207s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/package.dsv
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/ament_index/resource_index/packages/f_vigs_slam
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/cmake/f_vigs_slamConfig.cmake
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/cmake/f_vigs_slamConfig-version.cmake
+[45.207s] -- Up-to-date: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/package.xml
+[45.210s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --install /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam

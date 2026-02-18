@@ -187,8 +187,8 @@ namespace f_vigs_slam
         bool isFirstImage;
         bool isInitialized;
 
-        int gauss_init_size_px_ = 7;
-        float gauss_init_scale_ = 0.01f;
+        int gauss_init_size_px_ = 10;
+        float gauss_init_scale_ = 2.0f;
         float gauss_init_opacity_ = 0.8f;
 
         // ===== IMAGENES EN GPU =====

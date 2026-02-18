@@ -96,9 +96,9 @@ namespace f_vigs_slam
                 this, color_topic, sensor_qos);
 
             // Para el algoritmo es necesario que las imagenes de color y profundidad
-            // esten sincronizadas. Increased queue from 10 to 50 for better timing tolerance
+            // esten sincronizadas
             rgbd_sync_ = std::make_shared<message_filters::Synchronizer<RGBDSyncPolicy>>(
-                RGBDSyncPolicy(50), *color_sub_, *depth_sub_);
+                RGBDSyncPolicy(10), *color_sub_, *depth_sub_);
             rgbd_sync_->registerCallback(
                 std::bind(&GSSlamNode::rgbdCallback, this, std::placeholders::_1, std::placeholders::_2));
 
@@ -106,7 +106,7 @@ namespace f_vigs_slam
                 camera_info_topic, rclcpp::SensorDataQoS(),
                 std::bind(&GSSlamNode::cameraInfoCallback, this, std::placeholders::_1));
 
-            // Diagnostic subscribers to monitor individual RGB/Depth arrivals
+            // TESTING: Diagnosticos para verificar que los mensajes llegan correctamente a los callbacks
             color_diag_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
                 color_topic, rclcpp::SensorDataQoS(),
                 std::bind(&GSSlamNode::colorDiagCallback, this, std::placeholders::_1));

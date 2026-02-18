@@ -116,6 +116,12 @@ namespace f_vigs_slam
         int u = sx * sample_dx;
         int v = sy * sample_dy;
         if (u >= width || v >= height) return;
+        
+        // DEBUG: Print first few samples to verify distribution
+        if (sx < 3 && sy < 3) {
+            printf("[initGaussians] sample[%d,%d] -> pixel[%d,%d] (image %dx%d)\n", 
+                   sx, sy, u, v, width, height);
+        }
 
         // Tomamos los valores de RGB-D
         const unsigned char *rgb_row = reinterpret_cast<const unsigned char *>(rgb) + v * rgb_step;
@@ -557,7 +563,8 @@ namespace f_vigs_slam
         int width,
         int height,
         int num_tiles_x,
-        int num_tiles_y
+        int num_tiles_y,
+        uint32_t n_gaussians_max  // Add parameter for bounds checking
         )
     {
         // Como tenemos que iterar sobre las gaussianas de cada tile, que no son necesariamente la misma
@@ -589,9 +596,14 @@ namespace f_vigs_slam
         bool has_median_depth = false;
         bool done = !inside;
 
+        // Thread index dentro del bloque
         int tid = threadIdx.y * TILE_SIZE + threadIdx.x;
-        int range_start = tile_ranges[tid].x;
-        int range_end   = tile_ranges[tid].y;
+        
+
+        // Un bloque por tile
+        int tile_id = blockIdx.y * num_tiles_x + blockIdx.x;
+        int range_start = tile_ranges[tile_id].x;
+        int range_end   = tile_ranges[tile_id].y;
         int n_gaussians_tile = range_end - range_start;
         int block_size = TILE_SIZE * TILE_SIZE;
 
@@ -600,13 +612,30 @@ namespace f_vigs_slam
             int local_idx = base + tid;
             if (local_idx < n_gaussians_tile)
             {
-                int g = tile_gaussian_indices[range_start + local_idx];
-                s_positions_2d[tid] = positions_2d[g];
-                s_covariances_2d[tid] = covariances_2d[g];
-                s_colors[tid] = colors[g];
-                s_alphas[tid] = alphas[g];
-                s_depths[tid] = depths[g];
-                s_pHats[tid] = pHats[g];
+                int array_idx = range_start + local_idx;
+                int g = tile_gaussian_indices[array_idx];
+                
+                // CRITICAL: Bounds check to prevent illegal memory access
+                // If g is out of range, skip this gaussian
+                if (g < n_gaussians_max)
+                {
+                    s_positions_2d[tid] = positions_2d[g];
+                    s_covariances_2d[tid] = covariances_2d[g];
+                    s_colors[tid] = colors[g];
+                    s_alphas[tid] = alphas[g];
+                    s_depths[tid] = depths[g];
+                    s_pHats[tid] = pHats[g];
+                }
+                else
+                {
+                    // Out of bounds - set to invalid data
+                    // DEBUG: Print error message (will spam, but helps identify issue)
+                    if (tid == 0 && base == 0) {
+                        printf("[KERNEL ERROR] tile_id=%d, range=[%d,%d], g=%d >= n_gaussians_max=%d\n",
+                               tile_id, range_start, range_end, g, n_gaussians_max);
+                    }
+                    s_alphas[tid] = 0.0f;  // Zero alpha means this gaussian won't contribute
+                }
             }
             __syncthreads();
 
@@ -1395,6 +1424,11 @@ namespace f_vigs_slam
         // criterio de opacidad (alfa < umbral)
         if (alpha < alphaThreshold) {
             state = 0xff;
+            // DEBUG: Print first few instances
+            if (idx < 5) {
+                printf("[PRUNE] gaussian[%d] REMOVED: alpha=%.6f < threshold=%.6f\n", 
+                       idx, alpha, alphaThreshold);
+            }
 
         // criterio de escala (proporcion menor a escala, o escala muy pequeña)
         } else {
@@ -1408,6 +1442,11 @@ namespace f_vigs_slam
 
             if (s_medio / s_max < scaleRatioThreshold || s_max < 0.005f) {
                 state = 0xff;
+                // DEBUG: Print first few instances
+                if (idx < 5) {
+                    printf("[PRUNE] gaussian[%d] REMOVED: scale=(%.6f,%.6f,%.6f) s_max=%.6f ratio=%.6f\n", 
+                           idx, s_x, s_y, s_z, s_max, s_medio / s_max);
+                }
             }
         }
 

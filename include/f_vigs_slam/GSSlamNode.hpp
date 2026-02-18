@@ -90,7 +90,6 @@ namespace f_vigs_slam
         rclcpp::Time last_rgbd_callback_time_{0, 0, RCL_CLOCK_UNINITIALIZED};
         rclcpp::Time last_color_diag_time_{0, 0, RCL_CLOCK_UNINITIALIZED};
         rclcpp::Time last_depth_diag_time_{0, 0, RCL_CLOCK_UNINITIALIZED};
-        rclcpp::Time last_sync_process_time_{0, 0, RCL_ROS_TIME};
         
         // Diagnostic subscribers for monitoring individual message arrivals
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr color_diag_sub_;

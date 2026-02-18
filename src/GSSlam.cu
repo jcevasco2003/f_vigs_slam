@@ -18,6 +18,53 @@
 #include <random>
 #include <thread>
 
+// ============================================================
+// DEBUG LOGGING MACROS
+// ============================================================
+#define DEBUG_LOG(func_name, msg) \
+    std::cerr << "[DEBUG " << func_name << "] " << msg << std::endl;
+
+#define DEBUG_LOG_BUFFER(func_name, buf_name, size) \
+    std::cerr << "[DEBUG " << func_name << "] " << #buf_name << ".size() = " << size << std::endl;
+
+#define DEBUG_LOG_VALUE(func_name, var_name, value) \
+    std::cerr << "[DEBUG " << func_name << "] " << #var_name << " = " << value << std::endl;
+
+#define VALIDATE_BUFFER_SIZE(func_name, buf, expected_size) \
+    if (buf.size() < static_cast<size_t>(expected_size)) { \
+        std::cerr << "[ERROR " << func_name << "] " << #buf << " size mismatch!" << std::endl; \
+        std::cerr << "  Expected: " << expected_size << ", Got: " << buf.size() << std::endl; \
+        return; \
+    }
+
+#define VALIDATE_COUNTER_BOUNDS(func_name, counter, max_val) \
+    if (counter > max_val) { \
+        std::cerr << "[ERROR " << func_name << "] Counter overflow detected!" << std::endl; \
+        std::cerr << "  Counter: " << counter << ", Max: " << max_val << std::endl; \
+        return; \
+    }
+
+#define CUDA_CHECK_KERNEL(func_name) \
+    { \
+        cudaError_t err = cudaGetLastError(); \
+        if (err != cudaSuccess) { \
+            std::cerr << "[CUDA ERROR " << func_name << "] Launch error: " << cudaGetErrorString(err) << std::endl; \
+            std::cerr << "  This error occurred before kernel execution" << std::endl; \
+            return; \
+        } \
+        cudaError_t syncErr = cudaDeviceSynchronize(); \
+        if (syncErr != cudaSuccess) { \
+            std::cerr << "[CUDA ERROR " << func_name << "] Execution error: " << cudaGetErrorString(syncErr) << std::endl; \
+            std::cerr << "  This error occurred during kernel execution" << std::endl; \
+            return; \
+        } \
+        err = cudaGetLastError(); \
+        if (err != cudaSuccess) { \
+            std::cerr << "[CUDA ERROR " << func_name << "] Post-execution error: " << cudaGetErrorString(err) << std::endl; \
+            return; \
+        } \
+    }
+
 // Implementamos el codigo principal en CUDA para todas las funciones paralelizables
 
 namespace f_vigs_slam
@@ -73,10 +120,13 @@ namespace f_vigs_slam
         instance_counter_screen_.resize(1);
 
         // Inicializar estado IMU: pose en origen, orientación identidad
+
+        // Estado actual
         P_cur_[0] = P_cur_[1] = P_cur_[2] = 0.0;        // posición
         P_cur_[3] = P_cur_[4] = P_cur_[5] = 0.0;        // qx, qy, qz
         P_cur_[6] = 1.0;                                 // qw
         
+        // Estado previo
         P_prev_[0] = P_prev_[1] = P_prev_[2] = 0.0;
         P_prev_[3] = P_prev_[4] = P_prev_[5] = 0.0;
         P_prev_[6] = 1.0;
@@ -273,6 +323,25 @@ namespace f_vigs_slam
 
         n_Gaussians = std::min(host_count, max_Gaussians);
         
+        std::cerr << "[INFO initGaussians] Created " << n_Gaussians << " gaussians from " 
+                  << width << "x" << height << " image with sample_dx=" << gauss_init_size_px_ << std::endl;
+        std::cerr << "[INFO initGaussians] Expected sampling grid: " << ((width + gauss_init_size_px_ - 1) / gauss_init_size_px_) 
+                  << "x" << ((height + gauss_init_size_px_ - 1) / gauss_init_size_px_) 
+                  << " = " << (((width + gauss_init_size_px_ - 1) / gauss_init_size_px_) * ((height + gauss_init_size_px_ - 1) / gauss_init_size_px_)) << " gaussians" << std::endl;
+        
+        // Sample first few gaussians to check positions
+        if (n_Gaussians > 0) {
+            float3 pos0;
+            cudaMemcpy(&pos0, thrust::raw_pointer_cast(gaussians_.positions.data()), sizeof(float3), cudaMemcpyDeviceToHost);
+            std::cerr << "[INFO initGaussians] First gaussian position: (" << pos0.x << ", " << pos0.y << ", " << pos0.z << ")" << std::endl;
+            
+            if (n_Gaussians > 100) {
+                float3 pos100;
+                cudaMemcpy(&pos100, thrust::raw_pointer_cast(gaussians_.positions.data()) + 100, sizeof(float3), cudaMemcpyDeviceToHost);
+                std::cerr << "[INFO initGaussians] Gaussian[100] position: (" << pos100.x << ", " << pos100.y << ", " << pos100.z << ")" << std::endl;
+            }
+        }
+        
         // Actualizar pose actual y estado IMU
         current_pose_ = cameraPose;
         
@@ -292,7 +361,22 @@ namespace f_vigs_slam
                                        const IntrinsicParameters &intrinsics,
                                        int width, int height)
     {
-        if (n_Gaussians == 0) return;
+        DEBUG_LOG("prepareRasterization", "=== START ===");
+        DEBUG_LOG_VALUE("prepareRasterization", "n_Gaussians", n_Gaussians);
+        DEBUG_LOG_VALUE("prepareRasterization", "max_Gaussians", max_Gaussians);
+        DEBUG_LOG_VALUE("prepareRasterization", "width x height", width << " x " << height);
+        
+        if (n_Gaussians == 0) {
+            DEBUG_LOG("prepareRasterization", "EARLY RETURN: n_Gaussians is 0");
+            return;
+        }
+        
+        // Validate input parameters
+        if (width <= 0 || height <= 0) {
+            std::cerr << "[ERROR prepareRasterization] Invalid image dimensions: " 
+                      << width << " x " << height << std::endl;
+            return;
+        }
         
         // ============================================================
         // PASO 1: Calcular número de tiles
@@ -302,31 +386,77 @@ namespace f_vigs_slam
             (height + tile_size_.y - 1) / tile_size_.y
         );
         uint32_t num_tiles_total = num_tiles_.x * num_tiles_.y;
+        DEBUG_LOG_VALUE("prepareRasterization", "num_tiles", num_tiles_.x << " x " << num_tiles_.y);
+        DEBUG_LOG_VALUE("prepareRasterization", "num_tiles_total", num_tiles_total);
         
         // ============================================================
         // PASO 2: Redimensionar buffers
         // ============================================================
+        DEBUG_LOG("prepareRasterization", "Resizing buffers to n_Gaussians=" << n_Gaussians);
         positions_2d_.resize(n_Gaussians);
         covariances_2d_.resize(n_Gaussians);
         inv_covariances_2d_.resize(n_Gaussians);
         depths_.resize(n_Gaussians);
         p_hats_.resize(n_Gaussians);
         
+        VALIDATE_BUFFER_SIZE("prepareRasterization", positions_2d_, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", covariances_2d_, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", inv_covariances_2d_, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", depths_, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", p_hats_, n_Gaussians);
+        
         uint32_t max_instances = n_Gaussians * 9;
+        DEBUG_LOG_VALUE("prepareRasterization", "max_instances", max_instances);
+        
         tile_counts_.resize(n_Gaussians);
         tile_offsets_.resize(n_Gaussians + 1);
         hashes_.resize(max_instances);
         gaussian_indices_.resize(max_instances);
         
+        VALIDATE_BUFFER_SIZE("prepareRasterization", tile_counts_, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", tile_offsets_, n_Gaussians + 1);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", hashes_, max_instances);
+        VALIDATE_BUFFER_SIZE("prepareRasterization", gaussian_indices_, max_instances);
+        
         tile_ranges_.resize(num_tiles_total);
         cudaMemset(thrust::raw_pointer_cast(tile_ranges_.data()), 0, 
                    num_tiles_total * sizeof(uint2));
+        
+        DEBUG_LOG("prepareRasterization", "All buffers resized successfully");
+        
+        // ============================================================
+        // CRITICAL: Validate input Gaussian buffers before kernel launch
+        // ============================================================
+        DEBUG_LOG_VALUE("prepareRasterization", "gaussians_.positions.size()", gaussians_.positions.size());
+        DEBUG_LOG_VALUE("prepareRasterization", "gaussians_.scales.size()", gaussians_.scales.size());
+        DEBUG_LOG_VALUE("prepareRasterization", "gaussians_.orientations.size()", gaussians_.orientations.size());
+        
+        if (gaussians_.positions.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR prepareRasterization] gaussians_.positions buffer too small!" << std::endl;
+            std::cerr << "  gaussians_.positions.size()=" << gaussians_.positions.size() 
+                      << " < n_Gaussians=" << n_Gaussians << std::endl;
+            std::cerr << "  This indicates buffer corruption from prune/removeOutliers!" << std::endl;
+            return;
+        }
+        if (gaussians_.scales.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR prepareRasterization] gaussians_.scales buffer too small!" << std::endl;
+            std::cerr << "  gaussians_.scales.size()=" << gaussians_.scales.size() 
+                      << " < n_Gaussians=" << n_Gaussians << std::endl;
+            return;
+        }
+        if (gaussians_.orientations.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR prepareRasterization] gaussians_.orientations buffer too small!" << std::endl;
+            std::cerr << "  gaussians_.orientations.size()=" << gaussians_.orientations.size() 
+                      << " < n_Gaussians=" << n_Gaussians << std::endl;
+            return;
+        }
         
         // ============================================================
         // PASO 3: Proyectar gaussianas a screen-space 2D
         // ============================================================
         dim3 block(256);
         dim3 grid((n_Gaussians + block.x - 1) / block.x);
+        DEBUG_LOG_VALUE("prepareRasterization", "projectGaussians kernel", "grid=" << grid.x << ", block=" << block.x);
         
         projectGaussiansWorldToScreen_kernel<<<grid, block>>>
         (thrust::raw_pointer_cast(positions_2d_.data()),
@@ -342,11 +472,14 @@ namespace f_vigs_slam
          width,
          height,
          n_Gaussians);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("prepareRasterization::projectGaussians");
+        
+        DEBUG_LOG("prepareRasterization", "projectGaussians completed successfully");
         
         // ============================================================
         // PASO 4: Contar tiles por gaussiana
         // ============================================================
+        DEBUG_LOG("prepareRasterization", "Launching countTilesPerGaussian kernel");
         countTilesPerGaussian_kernel<<<grid, block>>>
         (thrust::raw_pointer_cast(tile_counts_.data()),
          thrust::raw_pointer_cast(positions_2d_.data()),
@@ -357,15 +490,21 @@ namespace f_vigs_slam
          num_tiles_.x,
          num_tiles_.y,
          3.0f);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("prepareRasterization::countTilesPerGaussian");
         
         // ============================================================
         // PASO 5: Exclusive scan para obtener offsets
         // ============================================================
+        DEBUG_LOG("prepareRasterization", "Validating buffers for exclusive_scan");
         if (tile_counts_.empty() || tile_offsets_.empty() || tile_counts_.size() != static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR prepareRasterization] Buffer validation failed before exclusive_scan!" << std::endl;
+            std::cerr << "  tile_counts_.size()=" << tile_counts_.size() 
+                      << ", tile_offsets_.size()=" << tile_offsets_.size() 
+                      << ", n_Gaussians=" << n_Gaussians << std::endl;
             return;
         }
         
+        DEBUG_LOG("prepareRasterization", "Launching exclusive_scan for tile offsets");
         thrust::exclusive_scan(
             tile_counts_.begin(),
             tile_counts_.end(),
@@ -375,13 +514,23 @@ namespace f_vigs_slam
         
         if (n_Gaussians <= 0 || static_cast<size_t>(n_Gaussians - 1) >= tile_offsets_.size() || 
             static_cast<size_t>(n_Gaussians - 1) >= tile_counts_.size()) {
+            std::cerr << "[ERROR prepareRasterization] Index out of bounds after exclusive_scan!" << std::endl;
+            std::cerr << "  n_Gaussians=" << n_Gaussians 
+                      << ", tile_offsets_.size()=" << tile_offsets_.size() 
+                      << ", tile_counts_.size()=" << tile_counts_.size() << std::endl;
             return;
         }
         
         uint32_t nb_instances = tile_offsets_[n_Gaussians - 1] + tile_counts_[n_Gaussians - 1];
-        if (nb_instances == 0) return;
+        DEBUG_LOG_VALUE("prepareRasterization", "nb_instances", nb_instances);
+        
+        if (nb_instances == 0) {
+            DEBUG_LOG("prepareRasterization", "EARLY RETURN: nb_instances is 0");
+            return;
+        }
         
         if (hashes_.size() < nb_instances) {
+            std::cerr << "[WARN prepareRasterization] Expanding hashes buffer" << std::endl;
             hashes_.resize(nb_instances);
             gaussian_indices_.resize(nb_instances);
         }
@@ -389,6 +538,7 @@ namespace f_vigs_slam
         // ============================================================
         // PASO 6: Generar hashes para cada tile cubierto
         // ============================================================
+        DEBUG_LOG("prepareRasterization", "Launching generateTileHashes kernel");
         generateTileHashes_kernel<<<grid, block>>>
         (thrust::raw_pointer_cast(hashes_.data()),
          thrust::raw_pointer_cast(gaussian_indices_.data()),
@@ -403,14 +553,14 @@ namespace f_vigs_slam
          num_tiles_.x,
          num_tiles_.y,
          3.0f);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("prepareRasterization::generateTileHashes");
         
         // ============================================================
         // PASO 7: Ordenar por hash
         // ============================================================
         // CRITICAL VALIDATION: Verificar que los iteradores son válidos
         if (nb_instances > hashes_.size() || nb_instances > gaussian_indices_.size()) {
-            std::cerr << "ERROR: sort_by_key - Invalid size mismatch!" << std::endl;
+            std::cerr << "[ERROR prepareRasterization] sort_by_key - Invalid size mismatch!" << std::endl;
             std::cerr << "  nb_instances: " << nb_instances << std::endl;
             std::cerr << "  hashes_.size(): " << hashes_.size() << std::endl;
             std::cerr << "  gaussian_indices_.size(): " << gaussian_indices_.size() << std::endl;
@@ -418,9 +568,11 @@ namespace f_vigs_slam
         }
         
         if (nb_instances == 0) {
+            DEBUG_LOG("prepareRasterization", "EARLY RETURN: nb_instances is 0 before sort");
             return;
         }
         
+        DEBUG_LOG("prepareRasterization", "Launching sort_by_key");
         thrust::sort_by_key(
             hashes_.begin(),
             hashes_.begin() + nb_instances,
@@ -431,36 +583,57 @@ namespace f_vigs_slam
         // PASO 8: Calcular rangos de gaussianas por tile
         // ============================================================
         dim3 tile_grid((num_tiles_total + block.x - 1) / block.x);
+        DEBUG_LOG_VALUE("prepareRasterization", "computeIndicesRanges kernel", "grid=" << tile_grid.x);
+        
         computeIndicesRanges_kernel<<<tile_grid, block>>>
         (thrust::raw_pointer_cast(tile_ranges_.data()),
          thrust::raw_pointer_cast(hashes_.data()),
          nb_instances,
          num_tiles_total);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("prepareRasterization::computeIndicesRanges");
         
         last_nb_instances_ = nb_instances;
+        DEBUG_LOG_VALUE("prepareRasterization", "last_nb_instances_", last_nb_instances_);
+        DEBUG_LOG("prepareRasterization", "=== END ===");
     }
     
     void GSSlam::rasterize(const CameraPose &camera_pose, 
                            const IntrinsicParameters &intrinsics,
                            int width, int height)
     {
-        if (n_Gaussians == 0) return;
+        DEBUG_LOG("rasterize", "=== START ===");
+        DEBUG_LOG_VALUE("rasterize", "n_Gaussians", n_Gaussians);
+        DEBUG_LOG_VALUE("rasterize", "width x height", width << " x " << height);
+        
+        if (n_Gaussians == 0) {
+            DEBUG_LOG("rasterize", "EARLY RETURN: n_Gaussians is 0");
+            return;
+        }
         
         // ============================================================
         // PASO 1: Preparar screen-space transform y sorting
         // ============================================================
+        DEBUG_LOG("rasterize", "Calling prepareRasterization");
         prepareRasterization(camera_pose, intrinsics, width, height);
         
-        if (last_nb_instances_ == 0) return;
+        if (last_nb_instances_ == 0) {
+            DEBUG_LOG("rasterize", "EARLY RETURN: last_nb_instances_ is 0");
+            return;
+        }
+        
+        DEBUG_LOG_VALUE("rasterize", "last_nb_instances_", last_nb_instances_);
         
         // Validar integridad de buffers críticos
         if (gaussian_indices_.empty() || tile_ranges_.empty() || 
             positions_2d_.empty() || covariances_2d_.empty() ||
             depths_.empty() || p_hats_.empty()) {
-            std::cerr << "ERROR in rasterize(): Buffers vacios tras prepareRasterization()" << std::endl;
+            std::cerr << "[ERROR rasterize] Buffers vacios tras prepareRasterization()" << std::endl;
+            DEBUG_LOG_BUFFER("rasterize", gaussian_indices_, gaussian_indices_.size());
+            DEBUG_LOG_BUFFER("rasterize", tile_ranges_, tile_ranges_.size());
+            DEBUG_LOG_BUFFER("rasterize", positions_2d_, positions_2d_.size());
             return;
         }
+    
         
         // ============================================================
         // PASO 2: Asegurar que buffers de salida existen
@@ -469,9 +642,13 @@ namespace f_vigs_slam
             rendered_rgb_gpu_.cols != width || 
             rendered_rgb_gpu_.rows != height)
         {
+            DEBUG_LOG("rasterize", "Creating new rendered buffers");
             rendered_rgb_gpu_.create(height, width, CV_8UC3);
             rendered_depth_gpu_.create(height, width, CV_32FC1);
         }
+        
+        DEBUG_LOG_VALUE("rasterize", "rendered_rgb_gpu_ size", 
+                        rendered_rgb_gpu_.cols << "x" << rendered_rgb_gpu_.rows);
         
         // Limpiar buffers (negro + depth infinito)
         rendered_rgb_gpu_.setTo(cv::Scalar(0, 0, 0));
@@ -483,11 +660,49 @@ namespace f_vigs_slam
         dim3 block(tile_size_.x, tile_size_.y);  // 16x16
         dim3 grid(num_tiles_.x, num_tiles_.y);
         
+        DEBUG_LOG_VALUE("rasterize", "forwardPassTileKernel grid", grid.x << "x" << grid.y);
+        DEBUG_LOG_VALUE("rasterize", "forwardPassTileKernel block", block.x << "x" << block.y);
+        
         if (grid.x == 0 || grid.y == 0) {
-            std::cerr << "ERROR in rasterize(): Invalid grid dimensions" << std::endl;
+            std::cerr << "[ERROR rasterize] Invalid grid dimensions" << std::endl;
             return;
         }
         
+        // Validate Gaussian buffers before kernel
+        DEBUG_LOG_VALUE("rasterize", "gaussians_.colors.size()", gaussians_.colors.size());
+        DEBUG_LOG_VALUE("rasterize", "gaussians_.opacities.size()", gaussians_.opacities.size());
+        
+        if (gaussians_.colors.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR rasterize] gaussians_.colors buffer too small!" << std::endl;
+            std::cerr << "  colors.size()=" << gaussians_.colors.size() 
+                      << " < n_Gaussians=" << n_Gaussians << std::endl;
+            return;
+        }
+        if (gaussians_.opacities.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR rasterize] gaussians_.opacities buffer too small!" << std::endl;
+            std::cerr << "  opacities.size()=" << gaussians_.opacities.size() 
+                      << " < n_Gaussians=" << n_Gaussians << std::endl;
+            return;
+        }
+        
+        // CRITICAL: Validate all input buffer sizes before kernel launch
+        DEBUG_LOG_VALUE("rasterize", "n_Gaussians", n_Gaussians);
+        DEBUG_LOG_VALUE("rasterize", "last_nb_instances_", last_nb_instances_);
+        DEBUG_LOG_VALUE("rasterize", "positions_2d_.size()", positions_2d_.size());
+        DEBUG_LOG_VALUE("rasterize", "gaussian_indices_.size()", gaussian_indices_.size());
+        DEBUG_LOG_VALUE("rasterize", "tile_ranges_.size()", tile_ranges_.size());
+        
+        if (positions_2d_.size() < static_cast<size_t>(n_Gaussians) ||
+            covariances_2d_.size() < static_cast<size_t>(n_Gaussians) ||
+            depths_.size() < static_cast<size_t>(n_Gaussians) ||
+            p_hats_.size() < static_cast<size_t>(n_Gaussians)) {
+            std::cerr << "[ERROR rasterize] Screen-space buffers too small!" << std::endl;
+            std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
+            std::cerr << "  positions_2d_.size(): " << positions_2d_.size() << std::endl;
+            return;
+        }
+        
+        DEBUG_LOG("rasterize", "Launching forwardPassTileKernel");
         forwardPassTileKernel<<<grid, block>>>
         ((float3*)rendered_rgb_gpu_.ptr<uchar3>(),
          rendered_depth_gpu_.ptr<float>(),
@@ -502,8 +717,11 @@ namespace f_vigs_slam
          width,
          height,
          num_tiles_.x,
-         num_tiles_.y);
-        cudaDeviceSynchronize();
+         num_tiles_.y,
+         n_Gaussians);
+        CUDA_CHECK_KERNEL("rasterize::forwardPassTileKernel");
+        
+        DEBUG_LOG("rasterize", "=== END ===");
     }
 
     bool GSSlam::renderView(const CameraPose &camera_pose,
@@ -1050,6 +1268,13 @@ namespace f_vigs_slam
         dim3 adam_block(256);
         dim3 adam_grid((n_Gaussians + adam_block.x - 1) / adam_block.x);
 
+        // DIAGNOSTIC: Check scale values before and after optimization
+        static int opt_iteration = 0;
+        float3 scale_before, scale_after;
+        if (n_Gaussians > 0 && opt_iteration % 50 == 0) {
+            cudaMemcpy(&scale_before, thrust::raw_pointer_cast(gaussians_.scales.data()), sizeof(float3), cudaMemcpyDeviceToHost);
+        }
+        
         updateGaussiansParametersAdam_kernel<<<adam_grid, adam_block>>>(
             thrust::raw_pointer_cast(gaussians_.positions.data()),
             thrust::raw_pointer_cast(gaussians_.scales.data()),
@@ -1065,6 +1290,14 @@ namespace f_vigs_slam
             n_Gaussians);
 
         cudaDeviceSynchronize();
+        
+        if (n_Gaussians > 0 && opt_iteration % 50 == 0) {
+            cudaMemcpy(&scale_after, thrust::raw_pointer_cast(gaussians_.scales.data()), sizeof(float3), cudaMemcpyDeviceToHost);
+            std::cerr << "[OPTIM iteration " << opt_iteration << "] Gaussian[0] scale: before=(" 
+                      << scale_before.x << "," << scale_before.y << "," << scale_before.z << ") -> after=(" 
+                      << scale_after.x << "," << scale_after.y << "," << scale_after.z << ")" << std::endl;
+        }
+        opt_iteration++;
     }
     
     void GSSlam::addKeyframe()
@@ -1098,19 +1331,33 @@ namespace f_vigs_slam
     
     void GSSlam::densify(const KeyframeData &keyframe)
     {
-        if (n_Gaussians == 0) return;
-        if (keyframe.color_img.empty() || keyframe.depth_img.empty()) return;
+        DEBUG_LOG("densify", "=== START ===");
+        DEBUG_LOG_VALUE("densify", "n_Gaussians_initial", n_Gaussians);
+        DEBUG_LOG_VALUE("densify", "max_Gaussians", max_Gaussians);
+        
+        if (n_Gaussians == 0) {
+            DEBUG_LOG("densify", "EARLY RETURN: n_Gaussians is 0");
+            return;
+        }
+        if (keyframe.color_img.empty() || keyframe.depth_img.empty()) {
+            DEBUG_LOG("densify", "EARLY RETURN: color or depth image is empty");
+            return;
+        }
 
         int width = keyframe.getWidth();
         int height = keyframe.getHeight();
+        DEBUG_LOG_VALUE("densify", "image size", width << " x " << height);
 
         // Preparamos proyeccion y ranges para calcular el density mask
+        DEBUG_LOG("densify", "Calling prepareRasterization");
         prepareRasterization(keyframe.getPose(), keyframe.getIntrinsics(), width, height);
 
         cv::cuda::GpuMat density_mask(height, width, CV_32FC1);
 
         dim3 tile_block(tile_size_.x, tile_size_.y);
         dim3 tile_grid(num_tiles_.x, num_tiles_.y);
+        DEBUG_LOG_VALUE("densify", "computeDensityMask kernel", "grid=" << tile_grid.x << "x" << tile_grid.y);
+        
         computeDensityMask_kernel<<<tile_grid, tile_block>>>(
             density_mask.ptr<float>(),
             thrust::raw_pointer_cast(tile_ranges_.data()),
@@ -1127,21 +1374,28 @@ namespace f_vigs_slam
             width,
             height,
             density_mask.step);
+        CUDA_CHECK_KERNEL("densify::computeDensityMask");
 
+        // Validate instance counter before use
+        VALIDATE_BUFFER_SIZE("densify", instance_counter_, 1);
+        
         uint32_t counter_host = n_Gaussians;
         cudaMemcpy(thrust::raw_pointer_cast(instance_counter_.data()),
                    &counter_host,
                    sizeof(uint32_t),
                    cudaMemcpyHostToDevice);
+        DEBUG_LOG_VALUE("densify", "instance_counter reset to", counter_host);
 
         uint32_t sample_dx = static_cast<uint32_t>(gauss_init_size_px_);
         uint32_t sample_dy = static_cast<uint32_t>(gauss_init_size_px_);
         int sample_w = (width + sample_dx - 1) / sample_dx;
         int sample_h = (height + sample_dy - 1) / sample_dy;
+        DEBUG_LOG_VALUE("densify", "sampling grid", sample_w << " x " << sample_h);
 
         dim3 block(16, 16);
         dim3 grid((sample_w + block.x - 1) / block.x,
                   (sample_h + block.y - 1) / block.y);
+        DEBUG_LOG_VALUE("densify", "densifyGaussians kernel", "grid=" << grid.x << "x" << grid.y);
 
         densifyGaussians_kernel<<<grid, block>>>(
             thrust::raw_pointer_cast(gaussians_.positions.data()),
@@ -1165,24 +1419,65 @@ namespace f_vigs_slam
             width,
             height,
             max_Gaussians);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("densify::densifyGaussians");
 
         cudaMemcpy(&counter_host,
                    thrust::raw_pointer_cast(instance_counter_.data()),
                    sizeof(uint32_t),
                    cudaMemcpyDeviceToHost);
 
+        DEBUG_LOG_VALUE("densify", "instance_counter after kernel", counter_host);
+        DEBUG_LOG_VALUE("densify", "max_Gaussians", max_Gaussians);
+        
+        // CRITICAL VALIDATION: Check counter bounds
+        if (counter_host > max_Gaussians) {
+            std::cerr << "[WARN densify] Counter exceeded max_Gaussians!" << std::endl;
+            std::cerr << "  counter_host=" << counter_host << " > max_Gaussians=" << max_Gaussians << std::endl;
+            counter_host = max_Gaussians;  // Clamp to max
+        }
+        
+        uint32_t n_Gaussians_prev = n_Gaussians;
         n_Gaussians = std::min(counter_host, max_Gaussians);
-        std::cout << "Densify: total gaussianas " << n_Gaussians << std::endl;
+        
+        DEBUG_LOG_VALUE("densify", "n_Gaussians_final", n_Gaussians);
+        std::cout << "Densify: total gaussianas " << n_Gaussians 
+                  << " (added " << (n_Gaussians - n_Gaussians_prev) << ")" << std::endl;
+        DEBUG_LOG("densify", "=== END ===");
     }
     
     void GSSlam::prune()
     {
-        if (n_Gaussians == 0) return;
+        DEBUG_LOG("prune", "=== START ===");
+        DEBUG_LOG_VALUE("prune", "n_Gaussians_initial", n_Gaussians);
+        
+        if (n_Gaussians == 0) {
+            DEBUG_LOG("prune", "EARLY RETURN: n_Gaussians is 0");
+            return;
+        }
         
         // Parámetros de prune
         const float alpha_threshold = 0.05f;       // Opacidad mínima 5%
         const float scale_ratio_threshold = 0.05f; // Ratio mínimo entre escalas
+        
+        // DIAGNOSTIC: Check sample gaussian values before pruning
+        if (n_Gaussians > 0) {
+            float3 sample_scale_host;
+            float sample_opacity_host;
+            cudaMemcpy(&sample_scale_host, 
+                       thrust::raw_pointer_cast(gaussians_.scales.data()), 
+                       sizeof(float3), 
+                       cudaMemcpyDeviceToHost);
+            cudaMemcpy(&sample_opacity_host, 
+                       thrust::raw_pointer_cast(gaussians_.opacities.data()), 
+                       sizeof(float), 
+                       cudaMemcpyDeviceToHost);
+            
+            std::cerr << "[DEBUG prune] Sample gaussian[0]: scale=(" 
+                      << sample_scale_host.x << "," << sample_scale_host.y << "," << sample_scale_host.z 
+                      << "), opacity=" << sample_opacity_host << std::endl;
+            std::cerr << "[DEBUG prune] Thresholds: alpha_threshold=" << alpha_threshold 
+                      << ", min_scale=0.005, scale_ratio=" << scale_ratio_threshold << std::endl;
+        }
         
         // Preparar buffers
         thrust::device_vector<unsigned char> states(n_Gaussians, 0);
@@ -1192,6 +1487,7 @@ namespace f_vigs_slam
         // Lanzar kernel de prune
         dim3 block(256);
         dim3 grid((n_Gaussians + block.x - 1) / block.x);
+        DEBUG_LOG_VALUE("prune", "pruneGaussians kernel", "grid=" << grid.x << ", block=" << block.x);
         
         pruneGaussians_kernel<<<grid, block>>>(
             thrust::raw_pointer_cast(nb_removed.data()),
@@ -1201,17 +1497,19 @@ namespace f_vigs_slam
             alpha_threshold,
             scale_ratio_threshold,
             n_Gaussians);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("prune::pruneGaussians");
         
         // CRITICAL VALIDATION: Verificar integridad antes de ordenar
         if (states.size() != static_cast<size_t>(n_Gaussians)) {
-            std::cerr << "ERROR in prune(): states size mismatch!" << std::endl;
+            std::cerr << "[ERROR prune] states size mismatch!" << std::endl;
             std::cerr << "  states.size(): " << states.size() << std::endl;
             std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
             return;
         }
         if (gaussians_.positions.size() < static_cast<size_t>(n_Gaussians)) {
-            std::cerr << "ERROR in prune(): positions capacity too small!" << std::endl;
+            std::cerr << "[ERROR prune] positions capacity too small!" << std::endl;
+            std::cerr << "  positions.size(): " << gaussians_.positions.size() << std::endl;
+            std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
             return;
         }
         
@@ -1223,6 +1521,7 @@ namespace f_vigs_slam
             gaussians_.colors.begin(),
             gaussians_.opacities.begin()));
         
+        DEBUG_LOG("prune", "Launching sort_by_key");
         thrust::sort_by_key(
             states.begin(),
             states.begin() + n_Gaussians,
@@ -1234,27 +1533,53 @@ namespace f_vigs_slam
                    sizeof(uint32_t),
                    cudaMemcpyDeviceToHost);
         
+        DEBUG_LOG_VALUE("prune", "nb_removed_host", nb_removed_host);
+        
+        // CRITICAL VALIDATION: Check for underflow
+        // ====================================================
+        if (nb_removed_host > n_Gaussians) {
+            std::cerr << "[ERROR prune] UNDERFLOW DETECTED!" << std::endl;
+            std::cerr << "  nb_removed_host (" << nb_removed_host << ") > n_Gaussians (" << n_Gaussians << ")" << std::endl;
+            std::cerr << "  This will cause unsigned integer underflow and memory corruption!" << std::endl;
+            std::cerr << "  Skipping prune operation to prevent data loss." << std::endl;
+            return;
+        }
+        
         // Actualizar contador
+        uint32_t n_Gaussians_prev = n_Gaussians;
         n_Gaussians -= nb_removed_host;
         
-        // Mantener capacidad para futuras densificaciones.
+        DEBUG_LOG_VALUE("prune", "n_Gaussians_final", n_Gaussians);
         
         if (nb_removed_host > 0) {
             std::cout << "Prune: eliminadas " << nb_removed_host << " gaussianas (quedan: " 
                       << n_Gaussians << ")" << std::endl;
         }
+        
+        DEBUG_LOG("prune", "=== END ===");
     }
     
     void GSSlam::removeOutliers()
     {
-        if (n_Gaussians == 0) return;
+        DEBUG_LOG("removeOutliers", "=== START ===");
+        DEBUG_LOG_VALUE("removeOutliers", "n_Gaussians_initial", n_Gaussians);
+        
+        if (n_Gaussians == 0) {
+            DEBUG_LOG("removeOutliers", "EARLY RETURN: n_Gaussians is 0");
+            return;
+        }
         
         // Preparar rasterización para detección de outliers
         int width = pyr_depth_.empty() ? 0 : pyr_depth_[0].cols;
         int height = pyr_depth_.empty() ? 0 : pyr_depth_[0].rows;
+        DEBUG_LOG_VALUE("removeOutliers", "image size", width << " x " << height);
         
-        if (width == 0 || height == 0) return;
+        if (width == 0 || height == 0) {
+            DEBUG_LOG("removeOutliers", "EARLY RETURN: Invalid image dimensions");
+            return;
+        }
         
+        DEBUG_LOG("removeOutliers", "Calling prepareRasterization");
         prepareRasterization(current_pose_, intrinsics_, width, height);
         
         // Preparar buffers para outliers
@@ -1262,9 +1587,14 @@ namespace f_vigs_slam
         thrust::device_vector<float> total_alpha(n_Gaussians, 0.0f);
         thrust::device_vector<unsigned char> states(n_Gaussians, 0);
         
+        VALIDATE_BUFFER_SIZE("removeOutliers", outlier_prob, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("removeOutliers", total_alpha, n_Gaussians);
+        VALIDATE_BUFFER_SIZE("removeOutliers", states, n_Gaussians);
+        
         // Lanzar kernel de detección de outliers
         dim3 block(tile_size_.x, tile_size_.y);
         dim3 grid(num_tiles_.x, num_tiles_.y);
+        DEBUG_LOG_VALUE("removeOutliers", "computeOutliers kernel", "grid=" << grid.x << "x" << grid.y);
 
         computeOutliers_kernel<<<grid, block>>>(
             thrust::raw_pointer_cast(outlier_prob.data()),
@@ -1281,7 +1611,7 @@ namespace f_vigs_slam
             num_tiles_,
             width,
             height);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("removeOutliers::computeOutliers");
         
         // Eliminar outliers detectados
         uint32_t nb_removed_host = 0;
@@ -1290,6 +1620,7 @@ namespace f_vigs_slam
         
         dim3 block2(256);
         dim3 grid2((n_Gaussians + block2.x - 1) / block2.x);
+        DEBUG_LOG_VALUE("removeOutliers", "removeOutliers kernel", "grid=" << grid2.x);
         
         removeOutliers_kernel<<<grid2, block2>>>(
             thrust::raw_pointer_cast(nb_removed.data()),
@@ -1298,17 +1629,19 @@ namespace f_vigs_slam
             thrust::raw_pointer_cast(total_alpha.data()),
             outlier_threshold,
             n_Gaussians);
-        cudaDeviceSynchronize();
+        CUDA_CHECK_KERNEL("removeOutliers::removeOutliers");
         
         // CRITICAL VALIDATION: Verificar integridad antes de ordenar
         if (states.size() != static_cast<size_t>(n_Gaussians)) {
-            std::cerr << "ERROR in removeOutliers(): states size mismatch!" << std::endl;
+            std::cerr << "[ERROR removeOutliers] states size mismatch!" << std::endl;
             std::cerr << "  states.size(): " << states.size() << std::endl;
             std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
             return;
         }
         if (gaussians_.positions.size() < static_cast<size_t>(n_Gaussians)) {
-            std::cerr << "ERROR in removeOutliers(): positions capacity too small!" << std::endl;
+            std::cerr << "[ERROR removeOutliers] positions capacity too small!" << std::endl;
+            std::cerr << "  positions.size(): " << gaussians_.positions.size() << std::endl;
+            std::cerr << "  n_Gaussians: " << n_Gaussians << std::endl;
             return;
         }
         
@@ -1320,6 +1653,7 @@ namespace f_vigs_slam
             gaussians_.colors.begin(),
             gaussians_.opacities.begin()));
         
+        DEBUG_LOG("removeOutliers", "Launching sort_by_key");
         thrust::sort_by_key(
             states.begin(),
             states.begin() + n_Gaussians,
@@ -1331,15 +1665,30 @@ namespace f_vigs_slam
                    sizeof(uint32_t),
                    cudaMemcpyDeviceToHost);
         
+        DEBUG_LOG_VALUE("removeOutliers", "nb_removed_host", nb_removed_host);
+        
+        // CRITICAL VALIDATION: Check for underflow
+        // ====================================================
+        if (nb_removed_host > n_Gaussians) {
+            std::cerr << "[ERROR removeOutliers] UNDERFLOW DETECTED!" << std::endl;
+            std::cerr << "  nb_removed_host (" << nb_removed_host << ") > n_Gaussians (" << n_Gaussians << ")" << std::endl;
+            std::cerr << "  This will cause unsigned integer underflow and memory corruption!" << std::endl;
+            std::cerr << "  Skipping removeOutliers operation to prevent data loss." << std::endl;
+            return;
+        }
+        
         // Actualizar contador
+        uint32_t n_Gaussians_prev = n_Gaussians;
         n_Gaussians -= nb_removed_host;
         
-        // Mantener capacidad para futuras densificaciones.
+        DEBUG_LOG_VALUE("removeOutliers", "n_Gaussians_final", n_Gaussians);
         
         if (nb_removed_host > 0) {
             std::cout << "RemoveOutliers: eliminadas " << nb_removed_host << " gaussianas (quedan: " 
                       << n_Gaussians << ")" << std::endl;
         }
+        
+        DEBUG_LOG("removeOutliers", "=== END ===");
     }
     
     float GSSlam::computeCovisibilityRatio()
@@ -1601,6 +1950,9 @@ namespace f_vigs_slam
             pyr_dy_[i].upload(dy_cpu);
         }
         
+        // Calcular normales desde profundidad
+        computeNormals();
+        
         // Actualizar referencias legacy
         rgb_gpu_ = pyr_color_[0];
         depth_gpu_ = pyr_depth_[0];
@@ -1608,8 +1960,38 @@ namespace f_vigs_slam
     
     void GSSlam::computeRenderingErrors(const cv::Mat &rgb_gt, const cv::Mat &depth_gt)
     {
-        if (rgb_gt.empty() || depth_gt.empty()) return;
-        if (rendered_rgb_gpu_.empty() || rendered_depth_gpu_.empty()) return;
+        DEBUG_LOG("computeRenderingErrors", "=== START ===");
+        
+        if (rgb_gt.empty() || depth_gt.empty()) {
+            DEBUG_LOG("computeRenderingErrors", "EARLY RETURN: rgb_gt or depth_gt is empty");
+            return;
+        }
+        if (rendered_rgb_gpu_.empty() || rendered_depth_gpu_.empty()) {
+            DEBUG_LOG("computeRenderingErrors", "EARLY RETURN: rendered buffers are empty");
+            return;
+        }
+
+        // Check for pending CUDA errors before download
+        cudaError_t err = cudaGetLastError();
+        if (err != cudaSuccess) {
+            std::cerr << "[CUDA ERROR computeRenderingErrors] Pending CUDA error detected before download: " 
+                      << cudaGetErrorString(err) << std::endl;
+            std::cerr << "  This error was caused by a previous CUDA operation" << std::endl;
+            return;
+        }
+        
+        // Synchronize to ensure all GPU operations are complete
+        cudaError_t syncErr = cudaDeviceSynchronize();
+        if (syncErr != cudaSuccess) {
+            std::cerr << "[CUDA ERROR computeRenderingErrors] Device synchronization failed before download: " 
+                      << cudaGetErrorString(syncErr) << std::endl;
+            return;
+        }
+
+        DEBUG_LOG_VALUE("computeRenderingErrors", "rendered_rgb_gpu_ size", 
+                        rendered_rgb_gpu_.cols << "x" << rendered_rgb_gpu_.rows);
+        DEBUG_LOG_VALUE("computeRenderingErrors", "rendered_depth_gpu_ size", 
+                        rendered_depth_gpu_.cols << "x" << rendered_depth_gpu_.rows);
 
         cv::Mat rgb_bgr;
         if (rgb_gt.type() == CV_8UC3) {
@@ -1624,13 +2006,32 @@ namespace f_vigs_slam
         } else if (depth_gt.type() == CV_16UC1) {
             depth_gt.convertTo(depth_float, CV_32FC1, 0.001f);
         } else {
+            DEBUG_LOG("computeRenderingErrors", "EARLY RETURN: unsupported depth type");
             return;
         }
 
+        DEBUG_LOG("computeRenderingErrors", "Attempting rendered_rgb_gpu_.download()");
         cv::Mat rendered_rgb_cpu;
         cv::Mat rendered_depth_cpu;
-        rendered_rgb_gpu_.download(rendered_rgb_cpu);
-        rendered_depth_gpu_.download(rendered_depth_cpu);
+        
+        try {
+            rendered_rgb_gpu_.download(rendered_rgb_cpu);
+            DEBUG_LOG("computeRenderingErrors", "RGB download successful");
+        } catch (cv::Exception& e) {
+            std::cerr << "[ERROR computeRenderingErrors] RGB download failed: " << e.what() << std::endl;
+            return;
+        }
+        
+        DEBUG_LOG("computeRenderingErrors", "Attempting rendered_depth_gpu_.download()");
+        try {
+            rendered_depth_gpu_.download(rendered_depth_cpu);
+            DEBUG_LOG("computeRenderingErrors", "Depth download successful");
+        } catch (cv::Exception& e) {
+            std::cerr << "[ERROR computeRenderingErrors] Depth download failed: " << e.what() << std::endl;
+            return;
+        }
+        
+        DEBUG_LOG("computeRenderingErrors", "Both downloads successful, continuing...");
 
         cv::Mat rendered_rgb_f;
         cv::Mat rgb_gt_f;

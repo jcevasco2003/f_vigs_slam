@@ -270,7 +270,8 @@ namespace f_vigs_slam
         int width,
         int height,
         int num_tiles_x,
-        int num_tiles_y);
+        int num_tiles_y,
+        uint32_t n_gaussians_max);  // Add parameter for bounds checking
 
 
     /**
