@@ -1,6 +1,0 @@
-[0.036s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
-[0.213s] [ 60%] Built target GSSlam
-[0.239s] gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:532: CMakeFiles/GSSlamNode.dir/depend] Interrupt
-[0.240s] gmake[1]: *** [CMakeFiles/Makefile2:166: CMakeFiles/GSSlamNode.dir/all] Interrupt
-[0.240s] gmake: *** [Makefile:146: all] Interrupt
-[0.244s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '-2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6

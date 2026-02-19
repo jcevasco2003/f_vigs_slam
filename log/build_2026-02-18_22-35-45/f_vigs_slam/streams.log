@@ -1,0 +1,223 @@
+[0.016s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake /home/jorge/ros2_thesis_ws/src/f_vigs_slam -DCMAKE_INSTALL_PREFIX=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam
+[2.646s] -- The C compiler identification is GNU 13.3.0
+[3.112s] -- The CXX compiler identification is GNU 13.3.0
+[3.481s] -- Detecting C compiler ABI info
+[3.822s] -- Detecting C compiler ABI info - done
+[3.838s] -- Check for working C compiler: /usr/bin/cc - skipped
+[3.838s] -- Detecting C compile features
+[3.853s] -- Detecting C compile features - done
+[3.904s] -- Detecting CXX compiler ABI info
+[4.158s] -- Detecting CXX compiler ABI info - done
+[4.169s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[4.169s] -- Detecting CXX compile features
+[4.170s] -- Detecting CXX compile features - done
+[5.717s] -- The CUDA compiler identification is NVIDIA 12.3.52
+[6.079s] -- Detecting CUDA compiler ABI info
+[7.621s] -- Detecting CUDA compiler ABI info - done
+[7.653s] -- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc - skipped
+[7.720s] -- Detecting CUDA compile features
+[7.720s] -- Detecting CUDA compile features - done
+[8.123s] -- Found ament_cmake: 2.8.4 (/opt/ros/rolling/share/ament_cmake/cmake)
+[8.390s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[8.654s] -- Found rclcpp: 30.1.3 (/opt/ros/rolling/share/rclcpp/cmake)
+[9.035s] -- Found rosidl_generator_c: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_c/cmake)
+[9.075s] -- Found rosidl_generator_cpp: 5.1.1 (/opt/ros/rolling/share/rosidl_generator_cpp/cmake)
+[9.140s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[9.194s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[9.515s] -- Found rmw_implementation_cmake: 7.9.1 (/opt/ros/rolling/share/rmw_implementation_cmake/cmake)
+[9.532s] -- Found rmw_fastrtps_cpp: 9.4.4 (/opt/ros/rolling/share/rmw_fastrtps_cpp/cmake)
+[10.084s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[10.103s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[10.728s] -- Found sensor_msgs: 5.9.1 (/opt/ros/rolling/share/sensor_msgs/cmake)
+[10.946s] -- Found cv_bridge: 4.1.0 (/opt/ros/rolling/share/cv_bridge/cmake)
+[10.976s] [33mCMake Warning (dev) at /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:86 (find_package):
+[10.976s]   Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
+[10.976s]   --help-policy CMP0146" for policy details.  Use the cmake_policy command to
+[10.976s]   set the policy and suppress this warning.
+[10.976s] 
+[10.977s] Call Stack (most recent call first):
+[10.977s]   /usr/local/lib/cmake/opencv4/OpenCVConfig.cmake:108 (find_host_package)
+[10.977s]   /opt/ros/rolling/share/cv_bridge/cmake/ament_cmake_export_dependencies-extras.cmake:21 (find_package)
+[10.977s]   /opt/ros/rolling/share/cv_bridge/cmake/cv_bridgeConfig.cmake:41 (include)
+[10.977s]   CMakeLists.txt:24 (find_package)
+[10.977s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[10.977s] [0m
+[11.076s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[11.462s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[11.463s] -- Found Threads: TRUE  
+[11.727s] -- Found CUDA: /usr/local/cuda-12.3 (found suitable exact version "12.3") 
+[12.179s] -- Found nav_msgs: 5.9.1 (/opt/ros/rolling/share/nav_msgs/cmake)
+[12.671s] -- Found image_transport: 6.4.3 (/opt/ros/rolling/share/image_transport/cmake)
+[13.081s] -- Found image_geometry: 4.1.0 (/opt/ros/rolling/share/image_geometry/cmake)
+[13.208s] -- Found tf2: 0.45.3 (/opt/ros/rolling/share/tf2/cmake)
+[13.221s] -- Found tf2_ros: 0.45.3 (/opt/ros/rolling/share/tf2_ros/cmake)
+[13.655s] -- Found tf2_eigen: 0.45.3 (/opt/ros/rolling/share/tf2_eigen/cmake)
+[13.709s] -- Found tf2_geometry_msgs: 0.45.3 (/opt/ros/rolling/share/tf2_geometry_msgs/cmake)
+[13.725s] [33mCMake Warning (dev) at CMakeLists.txt:32 (find_package):
+[13.725s]   Policy CMP0146 is not set: The FindCUDA module is removed.  Run "cmake
+[13.725s]   --help-policy CMP0146" for policy details.  Use the cmake_policy command to
+[13.726s]   set the policy and suppress this warning.
+[13.726s] 
+[13.726s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[13.726s] [0m
+[13.772s] -- Found CUDA: /usr/local/cuda-12.3 (found version "12.3") 
+[13.812s] -- Found OpenCV: /usr/local (found suitable version "4.8.0", minimum required is "4") 
+[13.875s] -- Found required Ceres dependency: Eigen version 3.4.0 in /usr/include/eigen3
+[14.020s] -- Found required Ceres dependency: glog
+[14.020s] -- Found required Ceres dependency: gflags
+[14.021s] -- Found Ceres version: 2.0.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SchurSpecializations, Multithreading]
+[14.024s] [0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):
+[14.024s]   ament_target_dependencies() is deprecated.  Use target_link_libraries()
+[14.024s]   with modern CMake targets instead.  Try replacing this call with:
+[14.024s] 
+[14.024s]     target_link_libraries(GSSlamNode PUBLIC
+[14.024s]       ${nav_msgs_TARGETS}
+[14.024s]       ${sensor_msgs_TARGETS}
+[14.024s]       cv_bridge::cv_bridge
+[14.024s]       image_geometry::image_geometry
+[14.024s]       image_transport::image_transport
+[14.024s]       message_filters::message_filters
+[14.024s]       rclcpp::rclcpp
+[14.025s]       sensor_msgs::sensor_msgs_library
+[14.025s]       tf2::tf2
+[14.025s]       tf2_eigen::tf2_eigen
+[14.025s]       tf2_geometry_msgs::tf2_geometry_msgs
+[14.025s]       tf2_ros::static_transform_broadcaster_node
+[14.025s]       tf2_ros::tf2_ros
+[14.025s]     )
+[14.025s] 
+[14.025s] Call Stack (most recent call first):
+[14.025s]   CMakeLists.txt:115 (ament_target_dependencies)
+[14.025s] 
+[14.025s] [0m
+[14.026s] [0mCMake Deprecation Warning at /opt/ros/rolling/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:87 (message):
+[14.027s]   ament_target_dependencies() is deprecated.  Use target_link_libraries()
+[14.027s]   with modern CMake targets instead.  Try replacing this call with:
+[14.027s] 
+[14.027s]     target_link_libraries(gs_slam_node PUBLIC
+[14.027s]       rclcpp::rclcpp
+[14.027s]     )
+[14.027s] 
+[14.027s] Call Stack (most recent call first):
+[14.027s]   CMakeLists.txt:175 (ament_target_dependencies)
+[14.027s] 
+[14.027s] [0m
+[14.050s] -- Found ament_lint_auto: 0.20.3 (/opt/ros/rolling/share/ament_lint_auto/cmake)
+[14.469s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[14.470s] -- Configured cppcheck include dirs: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/include;$<BUILD_INTERFACE:/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include>
+[14.472s] -- Configured cppcheck exclude dirs and/or files: 
+[14.484s] -- Added test 'flake8' to check Python code syntax and style conventions
+[14.484s] -- Configured 'flake8' exclude dirs and/or files: 
+[14.507s] -- Added test 'lint_cmake' to check CMake code style
+[14.532s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[14.623s] -- Added test 'uncrustify' to check C / C++ code style
+[14.624s] -- Configured uncrustify additional arguments: 
+[14.635s] -- Added test 'xmllint' to check XML markup files
+[14.639s] -- Configuring done (14.6s)
+[14.735s] [33mCMake Warning (dev) in CMakeLists.txt:
+[14.736s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[14.736s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[14.736s]   for policy details.  Use the cmake_policy command to set the policy and
+[14.736s]   suppress this warning.
+[14.736s] 
+[14.736s]   CUDA_ARCHITECTURES is empty for target "GSSlam".
+[14.736s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[14.736s] [0m
+[14.754s] [33mCMake Warning (dev) in CMakeLists.txt:
+[14.755s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[14.755s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[14.755s]   for policy details.  Use the cmake_policy command to set the policy and
+[14.755s]   suppress this warning.
+[14.755s] 
+[14.755s]   CUDA_ARCHITECTURES is empty for target "GSSlamNode".
+[14.755s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[14.755s] [0m
+[14.764s] [33mCMake Warning (dev) in CMakeLists.txt:
+[14.765s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[14.765s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[14.765s]   for policy details.  Use the cmake_policy command to set the policy and
+[14.765s]   suppress this warning.
+[14.765s] 
+[14.765s]   CUDA_ARCHITECTURES is empty for target "GSSlamNode".
+[14.765s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[14.765s] [0m
+[14.807s] -- Generating done (0.1s)
+[14.807s] [33mCMake Warning (dev) in CMakeLists.txt:
+[14.807s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[14.808s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[14.808s]   for policy details.  Use the cmake_policy command to set the policy and
+[14.808s]   suppress this warning.
+[14.808s] 
+[14.809s]   CUDA_ARCHITECTURES is empty for target "GSSlam".
+[14.809s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[14.809s] [0m
+[14.810s] [33mCMake Warning (dev) in CMakeLists.txt:
+[14.810s]   Policy CMP0104 is not set: CMAKE_CUDA_ARCHITECTURES now detected for NVCC,
+[14.812s]   empty CUDA_ARCHITECTURES not allowed.  Run "cmake --help-policy CMP0104"
+[14.812s]   for policy details.  Use the cmake_policy command to set the policy and
+[14.812s]   suppress this warning.
+[14.812s] 
+[14.812s]   CUDA_ARCHITECTURES is empty for target "GSSlamNode".
+[14.812s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[14.812s] [0m
+[14.824s] -- Build files have been written to: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam
+[14.851s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake /home/jorge/ros2_thesis_ws/src/f_vigs_slam -DCMAKE_INSTALL_PREFIX=/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam
+[14.853s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[14.953s] [  6%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSSlam.cu.o[0m
+[14.959s] [ 13%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o[0m
+[14.960s] [ 20%] [32mBuilding CXX object CMakeFiles/GSSlam.dir/src/Preintegration.cpp.o[0m
+[14.960s] [ 26%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/RgbdPoseCost.cu.o[0m
+[14.967s] [ 33%] [32mBuilding CXX object CMakeFiles/GSSlam.dir/src/ImuCostFunction.cpp.o[0m
+[14.980s] [ 40%] [32mBuilding CXX object CMakeFiles/GSSlam.dir/src/PoseLocalParameterization.cpp.o[0m
+[21.263s] [ 46%] [32mBuilding CXX object CMakeFiles/GSSlam.dir/src/MarginalizationFactor.cpp.o[0m
+[29.003s] [ 53%] [32mBuilding CXX object CMakeFiles/GSSlam.dir/src/KeyframeSelector.cpp.o[0m
+[75.706s] [ 60%] [32m[1mLinking CXX shared library libGSSlam.so[0m
+[77.172s] [ 60%] Built target GSSlam
+[77.211s] [ 73%] [32mBuilding CUDA object CMakeFiles/GSSlamNode.dir/src/GaussianSplattingViewer.cpp.o[0m
+[77.211s] [ 73%] [32mBuilding CUDA object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o[0m
+[193.072s] [ 80%] [32m[1mLinking CUDA device code CMakeFiles/GSSlamNode.dir/cmake_device_link.o[0m
+[193.185s] [ 86%] [32m[1mLinking CXX shared library libGSSlamNode.so[0m
+[196.967s] [ 86%] Built target GSSlamNode
+[197.005s] [ 93%] [32mBuilding CXX object CMakeFiles/gs_slam_node.dir/src/gs_slam_node.cpp.o[0m
+[197.571s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:14[m[K,
+[197.572s]                  from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/gs_slam_node.cpp:2[m[K:
+[197.572s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/buffer.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning BUFFER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[197.572s]    40 |   #[01;35m[Kwarning[m[K BUFFER_HEADER_DEPRECATION
+[197.572s]       |    [01;35m[K^~~~~~~[m[K
+[197.621s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:15[m[K:
+[197.621s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/transform_listener.h:40:4:[m[K [01;35m[Kwarning: [m[K#warning TRANSFORM_LISTENER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[197.621s]    40 |   #[01;35m[Kwarning[m[K TRANSFORM_LISTENER_HEADER_DEPRECATION
+[197.621s]       |    [01;35m[K^~~~~~~[m[K
+[197.630s] In file included from [01m[K/home/jorge/ros2_thesis_ws/src/f_vigs_slam/include/f_vigs_slam/GSSlamNode.hpp:16[m[K:
+[197.630s] [01m[K/opt/ros/rolling/include/tf2_ros/tf2_ros/transform_broadcaster.h:41:4:[m[K [01;35m[Kwarning: [m[K#warning TRANSFORM_BROADCASTER_HEADER_DEPRECATION [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[197.630s]    41 |   #[01;35m[Kwarning[m[K TRANSFORM_BROADCASTER_HEADER_DEPRECATION
+[197.630s]       |    [01;35m[K^~~~~~~[m[K
+[205.812s] [100%] [32m[1mLinking CXX executable gs_slam_node[0m
+[207.631s] [100%] Built target gs_slam_node
+[207.646s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
+[207.661s] Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --install /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam
+[207.671s] -- Install configuration: ""
+[207.672s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlam.so
+[207.718s] -- Set non-toolchain portion of runtime path of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlam.so" to ""
+[207.718s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlamNode.so
+[207.769s] -- Set non-toolchain portion of runtime path of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/libGSSlamNode.so" to ""
+[207.769s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/f_vigs_slam/gs_slam_node
+[207.769s] -- Set non-toolchain portion of runtime path of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/lib/f_vigs_slam/gs_slam_node" to ""
+[207.769s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/launch
+[207.771s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/launch/gs_slam_launch.py
+[207.772s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/ament_index/resource_index/package_run_dependencies/f_vigs_slam
+[207.772s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/ament_index/resource_index/parent_prefix_path/f_vigs_slam
+[207.773s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/ament_prefix_path.sh
+[207.773s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/ament_prefix_path.dsv
+[207.773s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/path.sh
+[207.774s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/environment/path.dsv
+[207.774s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.bash
+[207.774s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.sh
+[207.774s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.zsh
+[207.774s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/local_setup.dsv
+[207.775s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/package.dsv
+[207.775s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/ament_index/resource_index/packages/f_vigs_slam
+[207.776s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/cmake/f_vigs_slamConfig.cmake
+[207.777s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/cmake/f_vigs_slamConfig-version.cmake
+[207.777s] -- Installing: /home/jorge/ros2_thesis_ws/src/f_vigs_slam/install/f_vigs_slam/share/f_vigs_slam/package.xml
+[207.792s] Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --install /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam

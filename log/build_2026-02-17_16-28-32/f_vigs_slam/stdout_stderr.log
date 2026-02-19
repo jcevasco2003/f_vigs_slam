@@ -1,9 +1,0 @@
-[  6%] [32mBuilding CUDA object CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o[0m
-[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu(1622)[0m: [01;31merror[0m: class [01m"float2"[0m has no member "[01mz[0m"
-                      depth_rendered = s_positions[i].z + s_pHats[i].x * dx + s_pHats[i].y * dy;
-                                                      ^
-
-1 error detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSCudaKernels.cu".
-gmake[2]: *** [CMakeFiles/GSSlam.dir/build.make:92: CMakeFiles/GSSlam.dir/src/GSCudaKernels.cu.o] Error 2
-gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/GSSlam.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

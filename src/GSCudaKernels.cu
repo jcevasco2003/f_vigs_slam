@@ -81,6 +81,86 @@ namespace f_vigs_slam
         return q;
     }
 
+    // ============================================================================
+    // Cálculo de normales desde mapa de profundidad (GPU kernel)
+    // ============================================================================
+    __global__ void computeNormalsFromDepth_kernel(
+        const float *depth,
+        size_t depth_step,
+        float3 *normals_out,
+        size_t normals_step,
+        int width,
+        int height)
+    {
+        int x = blockIdx.x * blockDim.x + threadIdx.x;
+        int y = blockIdx.y * blockDim.y + threadIdx.y;
+
+        if (x >= width || y >= height) return;
+
+        // Inicializar a [0, 0, 1] por defecto
+        float3 normal = make_float3(0.0f, 0.0f, 1.0f);
+
+        // Saltar píxeles de borde (necesitamos vecinos)
+        if (x > 0 && x < width - 1 && y > 0 && y < height - 1)
+        {
+            // Acceso a los píxeles de profundidad
+            const unsigned char *depth_row_center = 
+                reinterpret_cast<const unsigned char *>(depth) + y * depth_step;
+            const float *depth_row_center_f = reinterpret_cast<const float *>(depth_row_center);
+            
+            const unsigned char *depth_row_up = 
+                reinterpret_cast<const unsigned char *>(depth) + (y - 1) * depth_step;
+            const float *depth_row_up_f = reinterpret_cast<const float *>(depth_row_up);
+            
+            const unsigned char *depth_row_down = 
+                reinterpret_cast<const unsigned char *>(depth) + (y + 1) * depth_step;
+            const float *depth_row_down_f = reinterpret_cast<const float *>(depth_row_down);
+
+            float z_c = depth_row_center_f[x];
+            float z_l = depth_row_center_f[x - 1];
+            float z_r = depth_row_center_f[x + 1];
+            float z_u = depth_row_up_f[x];
+            float z_d = depth_row_down_f[x];
+
+            // Verificar que tenemos profundidad válida
+            if (z_c > 0.01f && z_l > 0.01f && z_r > 0.01f && z_u > 0.01f && z_d > 0.01f)
+            {
+                // Calcular gradientes de profundidad (diferencias finitas)
+                float dz_dx = (z_r - z_l) / 2.0f;
+                float dz_dy = (z_d - z_u) / 2.0f;
+
+                // Vectores tangentes en el espacio de imagen: (u, v, z)
+                float3 tangent_x = make_float3(1.0f, 0.0f, dz_dx);
+                float3 tangent_y = make_float3(0.0f, 1.0f, dz_dy);
+
+                // Normal = tangent_x × tangent_y
+                normal = cross(tangent_x, tangent_y);
+
+                // Normalizar
+                float norm = sqrtf(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
+                if (norm > 1e-6f)
+                {
+                    normal.x /= norm;
+                    normal.y /= norm;
+                    normal.z /= norm;
+                }
+
+                // Asegurar que normal apunta hacia la cámara (Z > 0, componente positiva)
+                if (normal.z < 0.0f)
+                {
+                    normal.x = -normal.x;
+                    normal.y = -normal.y;
+                    normal.z = -normal.z;
+                }
+            }
+        }
+
+        // Escribir en el buffer de salida
+        unsigned char *normals_row = reinterpret_cast<unsigned char *>(normals_out) + y * normals_step;
+        float3 *normals_row_f = reinterpret_cast<float3 *>(normals_row);
+        normals_row_f[x] = normal;
+    }
+
     __global__ void initGaussiansFromRgbd_kernel(
         float3 *positions,
         float3 *scales,
@@ -93,6 +173,8 @@ namespace f_vigs_slam
         size_t rgb_step,
         const float *depth,
         size_t depth_step,
+        const float3 *normals,
+        size_t normals_step,
         int width,
         int height,
         IntrinsicParameters intrinsics,
@@ -133,6 +215,21 @@ namespace f_vigs_slam
         float z = depth_row_f[u];
         if (!(z > 0.0f) || isinf(z) || isnan(z)) return;
 
+        // Leer normal del píxel
+        const unsigned char *normals_row = reinterpret_cast<const unsigned char *>(normals) + v * normals_step;
+        const float3 *normals_row_f = reinterpret_cast<const float3 *>(normals_row);
+        float3 n = normals_row_f[u];
+        
+        // Asegurar que es una normal válida
+        float normal_len = sqrtf(n.x * n.x + n.y * n.y + n.z * n.z);
+        if (normal_len < 1e-6f) {
+            n = make_float3(0.0f, 0.0f, 1.0f);
+        } else {
+            n.x /= normal_len;
+            n.y /= normal_len;
+            n.z /= normal_len;
+        }
+
         // Transformamos a coordenadas 3D
         float x = (static_cast<float>(u) - intrinsics.c.x) * z / intrinsics.f.x;
         float y = (static_cast<float>(v) - intrinsics.c.y) * z / intrinsics.f.y;
@@ -144,10 +241,71 @@ namespace f_vigs_slam
         uint32_t idx = atomicAdd(instanceCounter, 1u);
         if (idx >= maxGaussians) return;
 
+        // ============================================================
+        // Calcular quaternion para alinear la gaussiana con la normal
+        // ============================================================
+        // Transformar normal de espacio imagen a espacio mundo
+        float4 cam_quat = cameraPose.orientation;
+        float3 normal_world = rotateByQuaternion(cam_quat, n);
+        
+        // Normalizar por si acaso
+        float nw_len = sqrtf(normal_world.x * normal_world.x + 
+                              normal_world.y * normal_world.y + 
+                              normal_world.z * normal_world.z);
+        if (nw_len > 1e-6f) {
+            normal_world.x /= nw_len;
+            normal_world.y /= nw_len;
+            normal_world.z /= nw_len;
+        }
+        
+        float3 u_from = make_float3(0.0f, 0.0f, 1.0f);  // Eje Z
+        float3 u_to = normal_world;
+        
+        // Eje de rotación: u_from × u_to
+        float3 axis = make_float3(
+            u_from.y * u_to.z - u_from.z * u_to.y,
+            u_from.z * u_to.x - u_from.x * u_to.z,
+            u_from.x * u_to.y - u_from.y * u_to.x
+        );
+        
+        float axis_len = sqrtf(axis.x * axis.x + axis.y * axis.y + axis.z * axis.z);
+        float angle_cos = u_from.x * u_to.x + u_from.y * u_to.y + u_from.z * u_to.z;
+        
+        float4 q_normal;
+        if (axis_len < 1e-6f) {
+            // Vectores paralelos o antiparalelos
+            if (angle_cos > 0.0f) {
+                // Same direction
+                q_normal = make_float4(1.0f, 0.0f, 0.0f, 0.0f);  // w, x, y, z
+            } else {
+                // Opposite direction - rotate 180 around X
+                q_normal = make_float4(0.0f, 1.0f, 0.0f, 0.0f);
+            }
+        } else {
+            // Normalizar eje
+            axis.x /= axis_len;
+            axis.y /= axis_len;
+            axis.z /= axis_len;
+            
+            // angle = atan2(axis_len, angle_cos)
+            // sin(angle/2) = sqrt((1 - cos(angle)) / 2)
+            // cos(angle/2) = sqrt((1 + cos(angle)) / 2)
+            float half_angle_sin = sqrtf(fmaxf(0.0f, (1.0f - angle_cos) / 2.0f));
+            float half_angle_cos = sqrtf(fmaxf(0.0f, (1.0f + angle_cos) / 2.0f));
+            
+            // q = [cos(angle/2), sin(angle/2) * axis]
+            q_normal = make_float4(
+                half_angle_cos,
+                half_angle_sin * axis.x,
+                half_angle_sin * axis.y,
+                half_angle_sin * axis.z
+            );
+        }
+
         // Inicializamos la gaussiana
         positions[idx] = pos_world;
         scales[idx] = make_float3(init_scale, init_scale, init_scale);
-        orientations[idx] = make_float4(1.0f, 0.0f, 0.0f, 0.0f);
+        orientations[idx] = q_normal;  // Alineada con la normal
         colors[idx] = make_float3(bgr.z / 255.0f, bgr.y / 255.0f, bgr.x / 255.0f);
         opacities[idx] = init_opacity;
     }

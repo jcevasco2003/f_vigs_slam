@@ -49,6 +49,15 @@ namespace f_vigs_slam
         bool hasGaussians() const;
         uint32_t getGaussiansCount() const;
 
+        // ===== GAUSSIAN DATA ACCESS =====
+        /**
+         * @brief Obtiene posiciones y colores de gaussianas para visualización
+         * @param positions Output vector de posiciones [x, y, z]
+         * @param colors Output vector de colores RGB [0-255]
+         * @return Número de gaussianas copiadas
+         */
+        uint32_t getGaussianData(std::vector<float3> &positions, std::vector<float3> &colors);
+
         // ===== CORE SLAM =====
         // Procesa un frame RGB-D completo: inicializa, renderiza, optimiza
         void compute(const cv::Mat &rgb, const cv::Mat &depth, const CameraPose &odometry_pose);

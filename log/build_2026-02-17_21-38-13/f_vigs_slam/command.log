@@ -1,4 +1,0 @@
-Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
-Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --build /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam -- -j6 -l6
-Invoking command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --install /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam
-Invoked command in '/home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling /usr/bin/cmake --install /home/jorge/ros2_thesis_ws/src/f_vigs_slam/build/f_vigs_slam

@@ -1,5 +1,0 @@
-[ 58%] Built target GSSlam
-[ 66%] [32mBuilding CUDA object CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o[0m
-[ 75%] [32m[1mLinking CXX shared library libGSSlamNode.so[0m
-[ 83%] Built target GSSlamNode
-[ 91%] [32mBuilding CXX object CMakeFiles/gs_slam_node.dir/src/gs_slam_node.cpp.o[0m

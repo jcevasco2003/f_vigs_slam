@@ -234,6 +234,29 @@ namespace f_vigs_slam
         return n_Gaussians;
     }
 
+    uint32_t GSSlam::getGaussianData(std::vector<float3> &positions, std::vector<float3> &colors)
+    {
+        std::lock_guard<std::mutex> lock(optimization_mutex_);
+        
+        if (n_Gaussians == 0) {
+            positions.clear();
+            colors.clear();
+            return 0;
+        }
+
+        // Copiar desde GPU a CPU
+        thrust::host_vector<float3> pos_host(gaussians_.positions.begin(), 
+                                              gaussians_.positions.begin() + n_Gaussians);
+        thrust::host_vector<float3> col_host(gaussians_.colors.begin(), 
+                                              gaussians_.colors.begin() + n_Gaussians);
+
+        // Convertir a std::vector
+        positions.assign(pos_host.begin(), pos_host.end());
+        colors.assign(col_host.begin(), col_host.end());
+
+        return n_Gaussians;
+    }
+
     void GSSlam::ensureCapacity(uint32_t required)
     {
         if (required <= max_Gaussians) return;
@@ -281,10 +304,33 @@ namespace f_vigs_slam
         rgb_gpu.upload(rgb_bgr);
         depth_gpu.upload(depth_float);
 
-        cudaMemset(thrust::raw_pointer_cast(instance_counter_.data()), 0, sizeof(uint32_t));
-
         int width = rgb_gpu.cols;
         int height = rgb_gpu.rows;
+
+        // ============================================================
+        // PASO 2: Calcular normales desde profundidad (GPU kernel)
+        // ============================================================
+        cv::cuda::GpuMat normals_gpu(height, width, CV_32FC3);
+        
+        dim3 normal_block(16, 16);
+        dim3 normal_grid((width + normal_block.x - 1) / normal_block.x,
+                         (height + normal_block.y - 1) / normal_block.y);
+        
+        computeNormalsFromDepth_kernel<<<normal_grid, normal_block>>>(
+            depth_gpu.ptr<float>(),
+            depth_gpu.step,
+            normals_gpu.ptr<float3>(),
+            normals_gpu.step,
+            width,
+            height);
+        
+        cudaDeviceSynchronize();
+
+        // ============================================================
+        // PASO 3: Configurar parameters of kernel launch
+        // ============================================================
+        cudaMemset(thrust::raw_pointer_cast(instance_counter_.data()), 0, sizeof(uint32_t));
+
         int sample_w = (width + gauss_init_size_px_ - 1) / gauss_init_size_px_;
         int sample_h = (height + gauss_init_size_px_ - 1) / gauss_init_size_px_;
 
@@ -304,6 +350,8 @@ namespace f_vigs_slam
             rgb_gpu.step,
             depth_gpu.ptr<float>(),
             depth_gpu.step,
+            normals_gpu.ptr<float3>(),  // Normales desde profundidad
+            normals_gpu.step,
             width,
             height,
             intrinsics_,
@@ -1949,9 +1997,6 @@ namespace f_vigs_slam
             pyr_dx_[i].upload(dx_cpu);
             pyr_dy_[i].upload(dy_cpu);
         }
-        
-        // Calcular normales desde profundidad
-        computeNormals();
         
         // Actualizar referencias legacy
         rgb_gpu_ = pyr_color_[0];

@@ -4,6 +4,8 @@
 #include "sensor_msgs/msg/imu.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "sensor_msgs/msg/camera_info.hpp"
+#include "sensor_msgs/msg/point_cloud2.hpp"
+#include "sensor_msgs/point_cloud2_iterator.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "message_filters/subscriber.hpp"
 #include "message_filters/synchronizer.hpp"
@@ -76,9 +78,10 @@ namespace f_vigs_slam
         rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_sub_;
         message_filters::Cache<sensor_msgs::msg::Imu> imu_cache_preint_{1000};
 
-        // Publisher de odometría
+        // Publishers de odometría y nube de puntos
         rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_;
         rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_imu_pub_;
+        rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointcloud_pub_;
         
         // Mensaje y frame para odometría
         nav_msgs::msg::Odometry odom_msg_;
@@ -107,6 +110,9 @@ namespace f_vigs_slam
         // IMU processing helpers
         void syncRgbdImu();
         Eigen::Matrix3d computeGravityAlignment(const Eigen::Vector3d& acc) const;
+
+        // PointCloud publishing
+        void publishGaussiansAsPointCloud();
 
         //
         void processCallbacks(); 

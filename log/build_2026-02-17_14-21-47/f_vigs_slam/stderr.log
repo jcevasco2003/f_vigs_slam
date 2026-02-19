@@ -1,9 +1,0 @@
-[01m[0m[01m/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp(326)[0m: [01;31merror[0m: no operator "[01m=[0m" matches these operands
-            operand types are: std::shared_ptr<sensor_msgs::msg::Image_<std::allocator<void>>> = const std::shared_ptr<const sensor_msgs::msg::Image_<std::allocator<void>>>
-          last_rgb_msg_ = color;
-                        ^
-
-1 error detected in the compilation of "/home/jorge/ros2_thesis_ws/src/f_vigs_slam/src/GSSlamNode.cpp".
-gmake[2]: *** [CMakeFiles/GSSlamNode.dir/build.make:77: CMakeFiles/GSSlamNode.dir/src/GSSlamNode.cpp.o] Error 2
-gmake[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/GSSlamNode.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

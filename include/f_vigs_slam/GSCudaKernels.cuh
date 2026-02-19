@@ -51,6 +51,14 @@ namespace f_vigs_slam
     // =======================================================================
     // Inicializacion de Gaussianas desde RGB-D
     // =======================================================================
+    __global__ void computeNormalsFromDepth_kernel(
+        const float *depth,
+        size_t depth_step,
+        float3 *normals_out,
+        size_t normals_step,
+        int width,
+        int height);
+
     __global__ void initGaussiansFromRgbd_kernel(
         float3 *positions,
         float3 *scales,
@@ -63,6 +71,8 @@ namespace f_vigs_slam
         size_t rgb_step,
         const float *depth,
         size_t depth_step,
+        const float3 *normals,
+        size_t normals_step,
         int width,
         int height,
         IntrinsicParameters intrinsics,

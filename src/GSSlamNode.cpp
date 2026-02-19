@@ -118,11 +118,21 @@ namespace f_vigs_slam
             odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("odom", 10);
             odom_imu_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("odom_imu", 10);
             
+            // Crear publisher de PointCloud2 para visualización de gaussianas
+            // Usar QoS RELIABLE + VOLATILE para compatibilidad con RViz2
+            auto pointcloud_qos = rclcpp::QoS(rclcpp::KeepLast(10));
+            pointcloud_qos.reliability(rclcpp::ReliabilityPolicy::Reliable);
+            pointcloud_qos.durability(rclcpp::DurabilityPolicy::Volatile);
+            pointcloud_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>(
+                "gaussian_pointcloud", 
+                pointcloud_qos);
+            
             // Configurar frame_id de mensajes de odometría
             odom_msg_.header.frame_id = world_frame_id_;
             odom_imu_msg_.header.frame_id = world_frame_id_;
 
             RCLCPP_INFO(this->get_logger(), "Odometry publishers created on topics 'odom' and 'odom_imu'");
+            RCLCPP_INFO(this->get_logger(), "PointCloud2 publisher created on topic 'gaussian_pointcloud'");
 
             this->declare_parameter<bool>("viewer", true);
             if (this->get_parameter("viewer").as_bool())
@@ -563,6 +573,9 @@ namespace f_vigs_slam
         transform.transform.rotation = odom_msg_.pose.pose.orientation;
         tf_broadcaster_->sendTransform(transform);
 
+        // Publicar nube de puntos de gaussianas
+        publishGaussiansAsPointCloud();
+
         auto remaining_imu = imu_cache_preint_.getInterval(last_processed_rgbd_stamp_, imu_cache_preint_.getLatestTime());
         if (!remaining_imu.empty())
         {
@@ -601,6 +614,76 @@ namespace f_vigs_slam
         }
 
         isProcessing = false;
+    }
+
+    void GSSlamNode::publishGaussiansAsPointCloud()
+    {
+        // Obtener datos de gaussianas
+        std::vector<float3> positions;
+        std::vector<float3> colors;
+        
+        uint32_t num_gaussians = impl_->gs_core_.getGaussianData(positions, colors);
+        
+        if (num_gaussians == 0) {
+            RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000, 
+                                 "No gaussians to publish in point cloud");
+            return;
+        }
+
+        // Crear mensaje PointCloud2
+        auto cloud_msg = sensor_msgs::msg::PointCloud2();
+        cloud_msg.header.stamp = this->now();
+        cloud_msg.header.frame_id = world_frame_id_;
+        
+        // Configurar campos: x, y, z, rgb
+        cloud_msg.height = 1;
+        cloud_msg.width = num_gaussians;
+        cloud_msg.is_dense = false;
+        cloud_msg.is_bigendian = false;
+        
+        sensor_msgs::PointCloud2Modifier modifier(cloud_msg);
+        modifier.setPointCloud2Fields(4,
+            "x", 1, sensor_msgs::msg::PointField::FLOAT32,
+            "y", 1, sensor_msgs::msg::PointField::FLOAT32,
+            "z", 1, sensor_msgs::msg::PointField::FLOAT32,
+            "rgb", 1, sensor_msgs::msg::PointField::FLOAT32);
+        
+        modifier.resize(num_gaussians);
+        
+        // Iteradores para escribir datos
+        sensor_msgs::PointCloud2Iterator<float> iter_x(cloud_msg, "x");
+        sensor_msgs::PointCloud2Iterator<float> iter_y(cloud_msg, "y");
+        sensor_msgs::PointCloud2Iterator<float> iter_z(cloud_msg, "z");
+        sensor_msgs::PointCloud2Iterator<float> iter_rgb(cloud_msg, "rgb");
+        
+        // Llenar datos
+        for (uint32_t i = 0; i < num_gaussians; ++i) {
+            *iter_x = positions[i].x;
+            *iter_y = positions[i].y;
+            *iter_z = positions[i].z;
+            
+            // Convertir color float [0,1] a RGB packed
+            uint8_t r = static_cast<uint8_t>(std::min(255.0f, std::max(0.0f, colors[i].x * 255.0f)));
+            uint8_t g = static_cast<uint8_t>(std::min(255.0f, std::max(0.0f, colors[i].y * 255.0f)));
+            uint8_t b = static_cast<uint8_t>(std::min(255.0f, std::max(0.0f, colors[i].z * 255.0f)));
+            
+            uint32_t rgb_packed = (static_cast<uint32_t>(r) << 16) |
+                                  (static_cast<uint32_t>(g) << 8) |
+                                  static_cast<uint32_t>(b);
+            
+            *iter_rgb = *reinterpret_cast<float*>(&rgb_packed);
+            
+            ++iter_x;
+            ++iter_y;
+            ++iter_z;
+            ++iter_rgb;
+        }
+        
+        // Publicar
+        pointcloud_pub_->publish(cloud_msg);
+        
+        RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
+                            "Published PointCloud2 with %u gaussians", num_gaussians);
     }
 
     void GSSlamNode::processCallbacks(){
@@ -669,6 +752,9 @@ namespace f_vigs_slam
             transform.transform.translation.z = odom_msg_.pose.pose.position.z;
             transform.transform.rotation = odom_msg_.pose.pose.orientation;
             tf_broadcaster_->sendTransform(transform);
+            
+            // Publicar nube de puntos de gaussianas
+            publishGaussiansAsPointCloud();
             
             RCLCPP_DEBUG(this->get_logger(), 
                         "Published odometry: pos=[%.3f, %.3f, %.3f] vel=[%.3f, %.3f, %.3f]",
