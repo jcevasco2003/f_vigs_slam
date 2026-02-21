@@ -147,7 +147,7 @@ namespace f_vigs_slam
         preint_ = new Preintegration();
         preint_shared_ = std::shared_ptr<Preintegration>(preint_, [](Preintegration*) {});
 
-        // Construir problema Ceres una sola vez (reutilizable)
+        // Construir problema Ceres una sola vez
         visual_cost_ = new RgbdPoseCostFunction(this);
         imu_cost_ = new ImuCostFunction(preint_shared_);
         marginalization_cost_ = new MarginalizationFactor();
@@ -1016,34 +1016,6 @@ namespace f_vigs_slam
         P_cur_[4] = odom_pose_converted.orientation.z;
         P_cur_[5] = odom_pose_converted.orientation.w;
         P_cur_[6] = odom_pose_converted.orientation.x;
-    }
-    
-    void GSSlam::rasterizeFill(cv::cuda::GpuMat &rendered_rgb, cv::cuda::GpuMat &rendered_depth)
-    {
-        if (rendered_rgb_gpu_.empty() || rendered_depth_gpu_.empty()) {
-            rendered_rgb.release();
-            rendered_depth.release();
-            return;
-        }
-
-        rendered_rgb = rendered_rgb_gpu_;
-        rendered_depth = rendered_depth_gpu_;
-    }
-
-    void GSSlam::rasterizeWithErrors(const cv::Mat &rgb_gt, const cv::Mat &depth_gt)
-    {
-        // TODO: Rasterizar y calcular errores RGB-D en el mismo kernel
-        // Este método debe reemplazar computeRenderingErrors() cuando
-        // exista un kernel tipo forwardPassTileKernelWithError.
-        (void)rgb_gt;
-        (void)depth_gt;
-    }
-    
-    void GSSlam::optimizePose(int nb_iterations, float eta)
-    {
-        // TODO: Optimizar pose usando errores visuales
-        // Usar métodos Gauss-Newton o Adam
-        // Por ahora solo placeholder
     }
     
     void GSSlam::optimizeGaussians(int nb_iterations, float eta)
@@ -1937,12 +1909,6 @@ namespace f_vigs_slam
         // TODO: Inicializar warping para tracking
         // Usado en métodos de pose estimation con warping
         (void)camera_pose;
-    }
-    
-    void GSSlam::optimizePoseMultiScale()
-    {
-        // TODO: Optimización multi-escala completa
-        // Wrapper que llama optimizePose en cada nivel de pirámide
     }
     
     void GSSlam::initAndCopyImgs(const cv::Mat &rgb, const cv::Mat &depth)

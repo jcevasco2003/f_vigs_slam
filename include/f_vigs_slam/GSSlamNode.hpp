@@ -115,7 +115,6 @@ namespace f_vigs_slam
         void publishGaussiansAsPointCloud();
 
         //
-        void processCallbacks(); 
     };
 } // namespace f_vigs_slam
 
