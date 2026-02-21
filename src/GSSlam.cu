@@ -800,6 +800,8 @@ namespace f_vigs_slam
 
     void GSSlam::updateCameraPoseFromImu()
     {
+        // La matriz es de la forma
+        // [ px py pz qx qy qz qw ]
         Eigen::Vector3f imu_trans(static_cast<float>(P_cur_[0]),
                                   static_cast<float>(P_cur_[1]),
                                   static_cast<float>(P_cur_[2]));
@@ -900,23 +902,20 @@ namespace f_vigs_slam
             V_cur_eig = Vj;
         
             // ============================================================
-            // PASO 4: Warping inicial (opcional)
+            // PASO 4: Warping inicial
             // ============================================================
             // Reproyecta el frame previo al pose predicho para mejorar la
-            // convergencia del estimador visual (cuando se usa warping).
-            {
-                Eigen::Vector3d P_cam = Pj + Qj * t_imu_cam_;
-                Eigen::Quaterniond Q_cam = Qj * q_imu_cam_;
-                CameraPose predicted_pose;
-                predicted_pose.position = make_float3(static_cast<float>(P_cam.x()),
-                                                     static_cast<float>(P_cam.y()),
-                                                     static_cast<float>(P_cam.z()));
-                predicted_pose.orientation = make_float4(static_cast<float>(Q_cam.w()),
-                                                         static_cast<float>(Q_cam.x()),
-                                                         static_cast<float>(Q_cam.y()),
-                                                         static_cast<float>(Q_cam.z()));
-                initWarping(predicted_pose);
-            }
+            // convergencia del estimador visual
+            Eigen::Vector3d P_cam = Pj + Qj * t_imu_cam_;
+            Eigen::Quaterniond Q_cam = Qj * q_imu_cam_;
+            CameraPose predicted_pose;
+            predicted_pose.position = make_float3(static_cast<float>(P_cam.x()),
+                                                 static_cast<float>(P_cam.y()),
+                                                 static_cast<float>(P_cam.z()));
+            predicted_pose.orientation = make_float4(static_cast<float>(Q_cam.w()),
+                                                     static_cast<float>(Q_cam.x()),
+                                                     static_cast<float>(Q_cam.y()),
+                                                     static_cast<float>(Q_cam.z()));
             
             // ============================================================
             // PASO 5: Optimización de pose con Ceres Solver
@@ -2264,8 +2263,6 @@ namespace f_vigs_slam
         // ============================================================
         // PASO 4: Optimización multi-nivel (coarse-to-fine)
         // ============================================================
-        // Similar a VIGS-Fusion: optimizar en pirámide de imágenes
-        // Niveles superiores (baja resolución) primero para robustez
         
         min_pyr_level = std::max(0, std::min(min_pyr_level, nb_pyr_levels_ - 1));
 

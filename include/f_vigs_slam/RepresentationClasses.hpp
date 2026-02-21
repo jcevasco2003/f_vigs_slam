@@ -105,7 +105,7 @@ namespace f_vigs_slam
     };
 
     struct CameraPose {
-        // Pose de la camara representada por posicion y orientacion (quaternion)
+        // Pose de la camara representada por posicion y orientacion
         // Quaternion formato: (w, x, y, z)
         
         float3 position;     // Posicion (x, y, z)
@@ -132,7 +132,7 @@ namespace f_vigs_slam
         cv::cuda::GpuMat depth_img;    ///< Imagen de profundidad (GPU memory)
         
         // ===== POSE Y PARÁMETROS INTRÍNSECOS =====
-        CameraPose pose;               ///< Posición + orientación (quaternion)
+        CameraPose pose;               ///< Posición + orientación
         IntrinsicParameters intrinsics; ///< focal (fx, fy), centro óptico (cx, cy)
         
         // ===== METADATOS =====
@@ -216,7 +216,7 @@ namespace f_vigs_slam
         
         // ===== SETTERS =====
         /**
-         * @brief Actualiza la pose (ej: tras loop closure)
+         * @brief Actualiza la pose
          */
         __host__ inline void setPose(const CameraPose &new_pose) { pose = new_pose; }
         
